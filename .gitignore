@@ -7,3 +7,4 @@ ilo/Config.plist
 supabase/.temp/
 supabase/.env
 node_modules/
+.claude/
