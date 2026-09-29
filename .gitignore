@@ -1,0 +1,9 @@
+build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+.DS_Store
+ilo/Config.plist
+supabase/.temp/
+supabase/.env
+node_modules/
