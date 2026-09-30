@@ -45,16 +45,23 @@ designs a Duolingo-style path, and generates each lesson the moment you tap it.
 as an offline fallback. Backend: Supabase (auth, Postgres leaderboards, edge functions) routing to multiple models through
 OpenRouter. The app works fully offline with a curated local AI brain, so it can be judged without any keys.
 
-## Video script (≤ 2:00) — record on iPhone (screen recording) + voice-over
+## Video script (≤ 2:00) — screen recording + voice-over
+A raw, silent 1:52 cut recorded from the simulator is at `docs/assets/demo-raw.mp4` (kept out of git because of its size;
+regenerate it by running `DemoReelTests.testDemoReel` while `xcrun simctl io <id> recordVideo` is capturing, then cutting
+with the scene markers the test writes). Timings below match that cut, so the narration can be read in sync.
+
 | Time | Shot | Voice-over |
 |---|---|---|
-| 0:00–0:08 | Splash: ilo mascot morphs through shapes → "ilo" | "What if Duolingo worked for anything you want to learn?" |
-| 0:08–0:25 | Type "Salsa for my grandma's wedding", pick why/deadline/level, create your own mascot | "Tell ilo your goal. It asks what matters: why, when, how much you already know." |
-| 0:25–0:40 | Building screen: live research steps, path cascading in | "An AI agent researches the topic and designs your full path, unit by unit." |
-| 0:40–0:50 | Hold-to-commit → paywall with trial timeline → Start free week (RevenueCat) | "Commit, start your free week, powered by RevenueCat." |
-| 0:50–1:25 | Path → tap node → lesson: story cards, word bricks, swipe true/false, metronome "1-2-3, 5-6-7" with haptics, camera coach | "Every lesson is generated on the spot and mixes 23 module types. For salsa, that's a haptic metronome and a camera coach counting your steps." |
-| 1:25–1:35 | Quick cut: code lab live preview (HTML course), Teach ilo (Atomic Habits) | "Code for coders, teach-it-back for books." |
-| 1:35–1:50 | Lesson complete: confetti, XP count-up, streak flame, league | "Streaks, leagues, quests: all the addictive parts of a game." |
-| 1:50–2:00 | Home screen + logo | "ilo. Learn anything. Like it's a game." |
+| 0:00–0:07 | Splash: ilo mascot morphs through shapes → "ilo" → "Learn anything. Like it's a game." | "What if Duolingo worked for anything you want to learn?" |
+| 0:07–0:23 | How it works → type "Salsa for my grandma's wedding" → why / deadline / level / styles / minutes → name "Sophia" → purple bloub → reminders | "Tell ilo your goal. It asks what matters: why, when, how much you already know. Then you make your own mascot." |
+| 0:23–0:32 | Building screen: live research steps with sources, path cascading in unit by unit | "An AI agent researches the topic and designs your full path, unit by unit." |
+| 0:32–0:43 | Hold-to-commit (14-day pledge) → paywall → trial timeline and plans → Start my free week → Welcome to ilo Pro | "Commit to your streak and start your free week, powered by RevenueCat." |
+| 0:43–1:12 | Home → path → node 1 "Meet salsa" → story cards, quiz, match pairs, swipe true/false, "what would you do?" scenario | "Every lesson is generated on the spot and mixes 23 module types: stories, quizzes, matching, swipe true or false, real-life scenarios." |
+| 1:12–1:18 | Salsa metronome counting 1-2-3 · 5-6-7 | "For salsa, a haptic metronome counts the basic step with you." |
+| 1:18–1:25 | Code lab: type HTML → live preview → Run & check → "Spot on!" | "For code, a real editor with a live preview." |
+| 1:25–1:33 | Lesson complete: confetti, XP, streak flame, daily goal, quest complete, new badges | "Streaks, XP, quests, badges…" |
+| 1:33–1:42 | Leagues → Quests (claim) → Profile | "…and leagues: all the addictive parts of a game." |
+| 1:42–1:49 | Create tab: "Code my first website" → path building → "Your first website" | "Any new goal becomes a full path in seconds." |
+| 1:49–1:52 | Home: daily goal 100% (add the logo end card here) | "ilo. Learn anything. Like it's a game." |
 
 Tips: turn on Do Not Disturb, 100% battery icon, clean status bar (`xcrun simctl status_bar <id> override --time 9:41 --batteryLevel 100` if recording on simulator; the rules ask for the device it was built for, so an iPhone recording is best). No copyrighted music: use no music or a royalty-free track you have rights to.

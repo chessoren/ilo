@@ -8,3 +8,6 @@ supabase/.temp/
 supabase/.env
 node_modules/
 .claude/
+
+# Demo video (large; regenerate with DemoReelTests)
+docs/assets/demo-raw.mp4
