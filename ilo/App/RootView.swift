@@ -47,5 +47,6 @@ struct RootView: View {
             entitlementGraceOver = true
         }
         .demoSeedHook()
+        .demoLessonHook()
     }
 }
