@@ -230,6 +230,8 @@ final class AppModel {
             prefetch(course: course, after: result.nodeID)
         }
         save()
+        let snapshot = player
+        Task { await LeaderboardService.reportXP(result.totalXP, player: snapshot) }
 
         let summary = RewardSummary(
             xp: result.totalXP,
