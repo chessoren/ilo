@@ -11,10 +11,13 @@ struct RealHeader: View {
     var title: String?
     var tint: CourseTint
     var subtitle: String? = nil
+    /// The lesson player already shows the module chip next to ilo, so it's off by default.
+    var showsChip = false
     @State private var visible = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            if showsChip {
             HStack(spacing: 6) {
                 Image(systemName: type.symbol)
                     .font(.system(size: 12, weight: .bold))
@@ -28,6 +31,7 @@ struct RealHeader: View {
             .padding(.vertical, 7)
             .background(tint.soft, in: .capsule)
             .appear(visible)
+            }
 
             if let title, !title.isEmpty {
                 Text(title)

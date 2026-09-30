@@ -13,7 +13,7 @@ struct ModulePrompt: View {
 
     var body: some View {
         VStack(alignment: alignment, spacing: 6) {
-            if let title, !title.isEmpty {
+            if let title, !title.isEmpty, !Self.isGenericTitle(title) {
                 Text(title.uppercased())
                     .font(.body(12, weight: .bold))
                     .tracking(1.2)
@@ -28,6 +28,13 @@ struct ModulePrompt: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: Alignment(horizontal: alignment, vertical: .center))
+    }
+
+    /// Titles like "True or false?" just repeat the module chip the player already shows.
+    static func isGenericTitle(_ title: String) -> Bool {
+        func norm(_ s: String) -> String { s.lowercased().filter(\.isLetter) }
+        let t = norm(title)
+        return ModuleType.allCases.contains { norm($0.displayName) == t }
     }
 }
 

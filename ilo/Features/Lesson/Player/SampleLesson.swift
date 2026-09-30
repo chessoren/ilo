@@ -99,7 +99,10 @@ enum SampleLesson {
 
     static func lesson(nodeID: UUID = node.id, only: [ModuleType]? = nil) -> Lesson {
         var modules = allModules
-        if let only, !only.isEmpty { modules = modules.filter { only.contains($0.type) } }
+        if let only, !only.isEmpty {
+            // Real-world modules live in builder C's demo set; include them when asked for explicitly.
+            modules = (modules + RealDemo.modules).filter { only.contains($0.type) }
+        }
         return Lesson(nodeID: nodeID, title: "The habit loop",
                       intro: "Every habit runs on the same 4-step loop. Learn it once and you can hack any habit — let's go!",
                       modules: modules,
