@@ -32,6 +32,10 @@ final class LessonRunner {
     private(set) var moduleBonusXP = 0
     private(set) var completedOriginals: Set<UUID> = []
     private(set) var retried: Set<UUID> = []
+    /// Module types the learner actually completed (graded ones answered correctly at least once).
+    private(set) var achieved: Set<ModuleType> = []
+    /// Module types the learner opted out of.
+    private(set) var skippedTypes: Set<ModuleType> = []
     let startedAt = Date()
     private(set) var finishedAt: Date?
 
@@ -46,7 +50,9 @@ final class LessonRunner {
         self.node = node
         self.ai = ai
         let playable = lesson.modules.filter(\.isValid)
-        let modules = playable.isEmpty ? lesson.modules : playable
+        // Fresh ids for every play: module views are keyed by `module.id`, and inner ids (pairs, statements…) drive
+        // ForEach identity and matching — duplicates (reused seed material, LLM output) would break both.
+        let modules = (playable.isEmpty ? lesson.modules : playable).map { $0.withFreshIDs() }
         steps = modules.map { Step(module: $0, originalID: $0.id, isRetry: false) }
         session = ModuleSession(module: modules.first ?? LessonModule(type: .storyCards), course: course, node: node, ai: ai)
         wire(session)
@@ -77,7 +83,8 @@ final class LessonRunner {
     // MARK: Flow
 
     /// Core modules that drive their own flow — hide the Check bar from the first frame (no flicker).
-    private static let selfDriven: Set<ModuleType> = [.storyCards, .audioLesson, .flashcards, .trueFalse, .matchPairs, .speedRound]
+    private static let selfDriven: Set<ModuleType> = [.storyCards, .audioLesson, .flashcards, .trueFalse, .matchPairs, .speedRound,
+                                                       .mission, .cameraCoach, .practiceTimer, .liveCall, .roleplay]
 
     private func wire(_ session: ModuleSession) {
         if Self.selfDriven.contains(session.module.type) { session.hidesCheckBar = true }
@@ -102,9 +109,17 @@ final class LessonRunner {
 
     /// Move past the current module (called by `session.finish()`).
     func advance() {
-        guard let step = current, !isFinished else { return }
+        guard let step = current, !isFinished, !session.isDetached else { return }
         moduleBonusXP += max(0, session.bonusXP)
         let wasWrong = session.phase == .wrong
+        let type = step.module.type
+        if session.skipped {
+            skippedTypes.insert(type)
+        } else if !type.isGraded || session.phase == .correct {
+            achieved.insert(type)
+        }
+        // A second tap on Continue / "Got it" (or a late delayed finish) must not skip the next module.
+        session.detach()
         if wasWrong && step.module.type.isGraded && !retried.contains(step.originalID) {
             // Duolingo-style: missed questions come back once at the end.
             retried.insert(step.originalID)
@@ -136,7 +151,23 @@ final class LessonRunner {
                      bestCombo: bestCombo,
                      seconds: elapsed,
                      kind: node.kind,
-                     usedModules: Array(Set(steps.map(\.module.type))),
-                     takeaways: lesson.takeaways)
+                     // Only what was really done: "Pass a code lab", "Have a live call"… badges and quests read this.
+                     usedModules: Array(achieved),
+                     takeaways: lesson.takeaways,
+                     skippedModules: Array(skippedTypes.subtracting(achieved)))
+    }
+}
+
+extension LessonModule {
+    /// A copy with new ids for the module and all its items (cards, statements, pairs…).
+    func withFreshIDs() -> LessonModule {
+        var m = self
+        m.id = UUID()
+        m.cards = m.cards?.map { var c = $0; c.id = UUID(); return c }
+        m.flashcards = m.flashcards?.map { var f = $0; f.id = UUID(); return f }
+        m.statements = m.statements?.map { var st = $0; st.id = UUID(); return st }
+        m.pairs = m.pairs?.map { var p = $0; p.id = UUID(); return p }
+        m.items = m.items?.map { var i = $0; i.id = UUID(); return i }
+        return m
     }
 }

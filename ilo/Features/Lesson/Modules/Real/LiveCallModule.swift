@@ -112,6 +112,7 @@ struct LiveCallModule: View {
                     Button {
                         Haptics.shared.tap()
                         ended = true
+                        session.skipped = true
                         session.finish()
                     } label: {
                         Image(systemName: "phone.down.fill")

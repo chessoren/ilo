@@ -37,6 +37,7 @@ final class AppModel {
     var generating: Set<UUID> = []
     var generationErrors: [UUID: String] = [:]
     var pendingCelebration: RewardSummary?
+    @ObservationIgnored private var inflight: [UUID: Task<Lesson, Error>] = [:]
 
     let ai: LearningAI
 
@@ -100,17 +101,28 @@ final class AppModel {
 
     func lesson(for node: PathNode, in course: Course) async throws -> Lesson {
         if let cached = lessons[node.id] { return cached }
+        // Tapping a node while its prefetch is still running joins that generation instead of starting a second one.
+        if let running = inflight[node.id] { return try await running.value }
         generating.insert(node.id)
-        defer { generating.remove(node.id) }
         let context = LessonContext(level: course.level,
                                     previousTitles: previousTitles(before: node, in: course),
                                     recentMistakes: Array(recentMistakes.suffix(8)),
                                     preferredStyles: lastRequest?.styles ?? [])
+        let brain = ai
+        let task = Task { try await brain.generateLesson(course: course, node: node, context: context) }
+        inflight[node.id] = task
+        defer {
+            if inflight[node.id] == task { inflight[node.id] = nil }
+            generating.remove(node.id)
+        }
         do {
-            let lesson = try await ai.generateLesson(course: course, node: node, context: context)
-            lessons[node.id] = lesson
-            generationErrors[node.id] = nil
-            save()
+            let lesson = try await task.value
+            // Skip caching if the course was deleted (or everything reset) while generating.
+            if courses.contains(where: { $0.id == course.id }) {
+                lessons[node.id] = lesson
+                generationErrors[node.id] = nil
+                save()
+            }
             return lesson
         } catch {
             generationErrors[node.id] = error.localizedDescription
@@ -160,6 +172,8 @@ final class AppModel {
 
     @discardableResult
     func complete(_ result: LessonResult) -> RewardSummary {
+        // The app may have stayed open past midnight: roll quests / streak freeze before counting this lesson.
+        refreshDailyState()
         let cal = Calendar.current
         let today = cal.startOfDay(for: .now)
         let levelBefore = player.level
@@ -180,7 +194,7 @@ final class AppModel {
         player.lessonsCompleted += 1
         player.minutesLearned += result.seconds / 60
         if result.isPerfect { player.perfectLessons += 1 }
-        if result.kind == .mission { player.missionsCompleted += 1 }
+        if result.didMission { player.missionsCompleted += 1 }
 
         // Streak (extends on first lesson of the day)
         var extended = false
@@ -217,9 +231,9 @@ final class AppModel {
         if result.isPerfect { unlock(.perfectionist) }
         if player.streak >= 7 { unlock(.streak7) }
         if player.streak >= 30 { unlock(.streak30) }
-        if result.kind == .mission { unlock(.missionAccomplished) }
+        if result.didMission { unlock(.missionAccomplished) }
         if result.kind == .boss { unlock(.bossSlayer) }
-        if result.kind == .call || result.usedModules.contains(.liveCall) { unlock(.chatterbox) }
+        if result.didCall { unlock(.chatterbox) }
         if result.usedModules.contains(.codeLab) { unlock(.coder) }
         if result.usedModules.contains(.practiceTimer) || result.usedModules.contains(.cameraCoach) { unlock(.dancer) }
         let hour = cal.component(.hour, from: .now)
@@ -305,8 +319,8 @@ final class AppModel {
             case .perfectLesson: if result.isPerfect { quests[i].progress += 1 }
             case .comboStreak: quests[i].progress = max(quests[i].progress, result.bestCombo)
             case .practiceMinutes: quests[i].progress += max(1, Int(result.seconds / 60))
-            case .completeMission: if result.kind == .mission { quests[i].progress += 1 }
-            case .talkToIlo: if result.usedModules.contains(.liveCall) || result.kind == .call { quests[i].progress += 1 }
+            case .completeMission: if result.didMission { quests[i].progress += 1 }
+            case .talkToIlo: if result.didCall { quests[i].progress += 1 }
             }
             if !wasDone && quests[i].isDone { completed.append(quests[i]) }
         }
@@ -419,6 +433,11 @@ final class AppModel {
         hasOnboarded = false
         lastRequest = nil
         recentMistakes = []
+        for task in inflight.values { task.cancel() }
+        inflight = [:]
+        generating = []
+        generationErrors = [:]
+        pendingCelebration = nil
         refreshDailyState()
         save()
     }
@@ -431,4 +450,16 @@ enum ShopItem: String, CaseIterable, Identifiable {
     var title: String { "Streak Freeze" }
     var detail: String { "Keeps your streak alive if you miss a day." }
     var symbol: String { "snowflake" }
+}
+
+extension LessonResult {
+    /// A mission node whose mission wasn't skipped (or a mission module done elsewhere).
+    var didMission: Bool {
+        usedModules.contains(.mission) || (kind == .mission && !skippedModules.contains(.mission))
+    }
+
+    /// Actually talked to ilo (a declined call doesn't count).
+    var didCall: Bool {
+        usedModules.contains(.liveCall) || (kind == .call && !skippedModules.contains(.liveCall))
+    }
 }

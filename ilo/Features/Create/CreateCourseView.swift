@@ -83,6 +83,13 @@ struct CreateCourseView: View {
                     router.openPath(course)
                 }
             }
+            .background(IloBackground(tint: Palette.lavender))
+            // Building can take a while (on-device / cloud model): always leave a way back.
+            .overlay(alignment: .topLeading) {
+                GlassIconButton(systemImage: "xmark", size: 44) { building = nil }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 6)
+            }
         }
     }
 
@@ -110,6 +117,13 @@ struct CreateCourseView: View {
                 .focused($focused)
                 .submitLabel(.done)
                 .onSubmit { focused = false }
+                .onChange(of: goal) { _, new in
+                    // Vertical TextFields insert "\n" on Return instead of submitting: dismiss the keyboard instead.
+                    if new.contains("\n") {
+                        goal = new.replacingOccurrences(of: "\n", with: "")
+                        focused = false
+                    }
+                }
             HStack {
                 Image(systemName: "sparkles").foregroundStyle(Palette.periwinkleDeep)
                 Text("Be specific: why, for when, what level.")

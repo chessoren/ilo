@@ -34,9 +34,11 @@ struct CameraCoachModule: View {
                 case .camera:
                     cameraStage.appear(visible, delay: 0.05)
                     cameraControls
+                    cuesCard
                 case .practice(let reason):
                     practiceStage(reason: reason).appear(visible, delay: 0.05)
                     practiceControls
+                    cuesCard
                 case .done:
                     doneCard.transition(.scale(scale: 0.9).combined(with: .opacity))
                 }
@@ -76,6 +78,8 @@ struct CameraCoachModule: View {
             mode = .practice("Camera access is off, so let's count together instead.")
             return
         }
+        // Left the module while the permission prompt was up: don't start a camera nobody will stop.
+        guard !Task.isCancelled, !session.isDetached else { return }
         let tracker = tracker
         let skipper = RealFrameSkipper()
         feed.onFrame = { pixels in
@@ -252,6 +256,31 @@ struct CameraCoachModule: View {
     }
 
     // MARK: Shared
+
+    /// Form cues written by the brain (`instructions`) — shown so the coaching content isn't lost.
+    @ViewBuilder
+    private var cuesCard: some View {
+        if let cues = module.instructions, !cues.isEmpty {
+            VStack(alignment: .leading, spacing: 10) {
+                Label("Form cues", systemImage: "checklist")
+                    .font(.body(13, weight: .bold))
+                    .foregroundStyle(session.tint.deep)
+                ForEach(Array(cues.enumerated()), id: \.offset) { _, cue in
+                    HStack(alignment: .top, spacing: 8) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(session.tint.base)
+                        Text(cue)
+                            .font(.body(15, weight: .medium))
+                            .foregroundStyle(Palette.ink2)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .card(radius: 24, padding: 16)
+            .appear(visible, delay: 0.12)
+        }
+    }
 
     private func repRing(size: CGFloat, dark: Bool) -> some View {
         ZStack {

@@ -57,7 +57,7 @@ struct MissionModule: View {
             session.mood = .excited
             if timerLeft == 0 { timerLeft = module.seconds ?? 0 }
         }
-        .onDisappear { timerTask?.cancel() }
+        .onDisappear { timerTask?.cancel(); timerRunning = false }
         .fullScreenCover(isPresented: $showCamera) {
             RealCameraPicker { image in
                 showCamera = false
@@ -308,6 +308,7 @@ struct MissionModule: View {
                         Button {
                             Haptics.shared.tap()
                             timerTask?.cancel()
+                            session.skipped = true
                             session.finish()
                         } label: {
                             Text("Skip for now")

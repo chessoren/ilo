@@ -4,6 +4,7 @@ import SwiftUI
 struct RootView: View {
     @Environment(AppModel.self) private var model
     @Environment(PurchaseService.self) private var store
+    @Environment(\.scenePhase) private var scenePhase
     /// Gives the store a moment to report an existing subscription before showing the paywall.
     @State private var entitlementGraceOver = false
 
@@ -42,6 +43,8 @@ struct RootView: View {
             #endif
         }
         .onChange(of: store.isPro) { _, isPro in model.isPro = isPro }
+        // New day while the app was in the background: reset quests, apply streak freeze / break.
+        .onChange(of: scenePhase) { _, phase in if phase == .active { model.refreshDailyState() } }
         .task {
             try? await Task.sleep(for: .seconds(1.5))
             entitlementGraceOver = true

@@ -410,6 +410,8 @@ struct PathBuildingView: View {
             push(step.phase, step.text, step.detail)
         }
 
+        // Screen closed (e.g. Create's close button): stop the agent instead of waiting for it to finish.
+        if Task.isCancelled { planning.cancel(); return }
         let result = await planning.value
         if Task.isCancelled { return }
 

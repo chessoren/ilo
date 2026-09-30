@@ -288,8 +288,13 @@ extension LessonModule {
         case .cameraCoach: move != nil
         case .practiceTimer: (bpm ?? 0) > 0
         case .estimate: minValue != nil && maxValue != nil && answerValue != nil
-        case .spotTheMistake, .highlight: (segments?.count ?? 0) >= 2 && !(answerIndexes ?? []).isEmpty
-        case .categorize: (buckets?.count ?? 0) >= 2 && !(items ?? []).isEmpty
+        case .spotTheMistake, .highlight:
+            // Every answer index must point at a segment, or the module could never be answered correctly.
+            (segments?.count ?? 0) >= 2 && !(answerIndexes ?? []).isEmpty
+                && (answerIndexes ?? []).allSatisfy { $0 >= 0 && $0 < (segments?.count ?? 0) }
+        case .categorize:
+            (buckets?.count ?? 0) >= 2 && !(items ?? []).isEmpty
+                && (items ?? []).allSatisfy { $0.bucket >= 0 && $0.bucket < (buckets?.count ?? 0) }
         }
     }
 }

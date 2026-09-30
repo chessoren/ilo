@@ -11,6 +11,7 @@ struct LessonCompleteFlow: View {
     enum Step: Hashable { case complete, streak, level(Int), dailyGoal, quests, badges }
 
     @State private var index: Int
+    @State private var finished = false
 
     init(result: LessonResult, summary: RewardSummary, lesson: Lesson, course: Course, startIndex: Int = 0, onDone: @escaping () -> Void) {
         self.result = result
@@ -32,22 +33,24 @@ struct LessonCompleteFlow: View {
     }
 
     var body: some View {
+        let current = min(index, steps.count - 1)
+        let advance = { self.next(from: current) }
         ZStack {
             Palette.canvas.ignoresSafeArea()
             Group {
-                switch steps[min(index, steps.count - 1)] {
+                switch steps[current] {
                 case .complete:
-                    CompleteScreen(result: result, summary: summary, lesson: lesson, onContinue: next)
+                    CompleteScreen(result: result, summary: summary, lesson: lesson, onContinue: advance)
                 case .streak:
-                    StreakScreen(streak: summary.newStreak, onContinue: next)
+                    StreakScreen(streak: summary.newStreak, onContinue: advance)
                 case .level(let level):
-                    LevelUpScreen(level: level, onContinue: next)
+                    LevelUpScreen(level: level, onContinue: advance)
                 case .dailyGoal:
-                    DailyGoalScreen(onContinue: next)
+                    DailyGoalScreen(onContinue: advance)
                 case .quests:
-                    QuestsScreen(quests: summary.questsCompleted, onContinue: next)
+                    QuestsScreen(quests: summary.questsCompleted, onContinue: advance)
                 case .badges:
-                    BadgesScreen(badges: summary.newBadges, onContinue: next)
+                    BadgesScreen(badges: summary.newBadges, onContinue: advance)
                 }
             }
             .id(index)
@@ -57,11 +60,15 @@ struct LessonCompleteFlow: View {
         .animation(.spring(response: 0.55, dampingFraction: 0.86), value: index)
     }
 
-    private func next() {
+    /// `from` is the screen whose button was tapped: a double tap (the old screen stays tappable while it slides out)
+    /// must not skip a screen or call `onDone` twice.
+    private func next(from step: Int) {
+        guard step == min(index, steps.count - 1), !finished else { return }
         if index + 1 < steps.count {
             SoundFX.shared.play(.whoosh)
             index += 1
         } else {
+            finished = true
             onDone()
         }
     }
@@ -638,35 +645,42 @@ private struct BadgesScreen: View {
                     .font(.display(36, weight: .heavy))
                     .foregroundStyle(Palette.ink)
                     .appear(appeared)
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 140), spacing: 14)], spacing: 14) {
-                    ForEach(Array(badges.enumerated()), id: \.element) { i, badge in
-                        VStack(spacing: 10) {
-                            ZStack {
-                                Circle()
-                                    .fill(LinearGradient(colors: [ModulePastels.fill(i), ModulePastels.deep(i)], startPoint: .topLeading, endPoint: .bottomTrailing))
-                                Circle().strokeBorder(.white.opacity(0.7), lineWidth: 4).padding(6)
-                                Image(systemName: badge.symbol)
-                                    .font(.system(size: 34, weight: .bold))
-                                    .foregroundStyle(.white)
+                // Scrolls when a lesson unlocks many badges at once, so Continue never gets pushed off screen.
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 140), spacing: 14)], spacing: 14) {
+                        ForEach(Array(badges.enumerated()), id: \.element) { i, badge in
+                            VStack(spacing: 10) {
+                                ZStack {
+                                    Circle()
+                                        .fill(LinearGradient(colors: [ModulePastels.fill(i), ModulePastels.deep(i)], startPoint: .topLeading, endPoint: .bottomTrailing))
+                                    Circle().strokeBorder(.white.opacity(0.7), lineWidth: 4).padding(6)
+                                    Image(systemName: badge.symbol)
+                                        .font(.system(size: 34, weight: .bold))
+                                        .foregroundStyle(.white)
+                                }
+                                .frame(width: 96, height: 96)
+                                .shadow(color: ModulePastels.deep(i).opacity(0.35), radius: 14, y: 8)
+                                .rotation3DEffect(.degrees(appeared ? 0 : 180), axis: (0, 1, 0))
+                                .animation(.spring(response: 0.8, dampingFraction: 0.6).delay(0.2 + Double(i) * 0.15), value: appeared)
+                                Text(badge.title)
+                                    .font(.display(17, weight: .bold))
+                                    .foregroundStyle(Palette.ink)
+                                Text(badge.detail)
+                                    .font(.body(13, weight: .medium))
+                                    .foregroundStyle(Palette.muted)
+                                    .multilineTextAlignment(.center)
                             }
-                            .frame(width: 96, height: 96)
-                            .shadow(color: ModulePastels.deep(i).opacity(0.35), radius: 14, y: 8)
-                            .rotation3DEffect(.degrees(appeared ? 0 : 180), axis: (0, 1, 0))
-                            .animation(.spring(response: 0.8, dampingFraction: 0.6).delay(0.2 + Double(i) * 0.15), value: appeared)
-                            Text(badge.title)
-                                .font(.display(17, weight: .bold))
-                                .foregroundStyle(Palette.ink)
-                            Text(badge.detail)
-                                .font(.body(13, weight: .medium))
-                                .foregroundStyle(Palette.muted)
-                                .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                            .card(radius: 28, padding: 16)
+                            .appear(appeared, delay: 0.15 + Double(i) * 0.12)
                         }
-                        .frame(maxWidth: .infinity)
-                        .card(radius: 28, padding: 16)
-                        .appear(appeared, delay: 0.15 + Double(i) * 0.12)
                     }
+                    .padding(.horizontal, Metrics.gutter)
+                    .padding(.vertical, 8)
                 }
-                .padding(.horizontal, Metrics.gutter)
+                .scrollBounceBehavior(.basedOnSize)
+                .scrollIndicators(.hidden)
+                .fixedSize(horizontal: false, vertical: badges.count <= 2)
                 Spacer()
                 ContinueButton(action: onContinue)
                     .appear(appeared, delay: 0.5)

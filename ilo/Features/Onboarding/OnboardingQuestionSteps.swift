@@ -59,6 +59,13 @@ struct OBGoalStep: View {
         .onAppear { visible = true }
         .task { await runPlaceholder() }
         .onChange(of: answers.goal) { old, new in
+            // A vertical-axis TextField inserts "\n" on Return instead of calling onSubmit: treat it as submit.
+            if new.contains("\n") {
+                answers.goal = new.replacingOccurrences(of: "\n", with: "")
+                focused = false
+                onSubmit()
+                return
+            }
             if new.count > old.count, new.count % 3 == 0 { Haptics.shared.tick() }
             if old.isEmpty != new.isEmpty { answers.react() }
         }

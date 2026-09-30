@@ -87,6 +87,8 @@ struct LessonResult: Sendable, Hashable {
     var kind: NodeKind
     var usedModules: [ModuleType]
     var takeaways: [String]
+    /// Modules the learner opted out of (skipped mission, declined call).
+    var skippedModules: [ModuleType] = []
 
     var isPerfect: Bool { mistakes == 0 && accuracy >= 0.999 }
     var totalXP: Int { xpEarned + bonusXP }

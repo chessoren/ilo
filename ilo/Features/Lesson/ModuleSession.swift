@@ -32,12 +32,18 @@ final class ModuleSession {
     var mood: BloubExpression = .attentive
     /// Optional bonus XP a module grants (e.g. mission proof, speed round).
     var bonusXP = 0
+    /// Set by self-driven modules when the learner opts out ("Skip for now", declining the call) before `finish()`,
+    /// so the lesson doesn't award mission / call achievements for it.
+    var skipped = false
     /// The Check action registered by the module.
     var onCheck: (() -> Void)?
     /// Set by the player: advance to the next module.
     var onFinish: (() -> Void)?
     /// Set by the player: record the grading outcome.
     var onResolve: ((Bool) -> Void)?
+    /// True once the player moved past this module (or the lesson ended). A detached session ignores
+    /// late `resolve` / `finish` calls (delayed tasks, double taps during the slide transition).
+    private(set) var isDetached = false
 
     init(module: LessonModule, course: Course, node: PathNode, ai: LearningAI) {
         self.module = module
@@ -50,13 +56,13 @@ final class ModuleSession {
     var isResolved: Bool { phase != .answering }
 
     func check() {
-        guard canCheck, phase == .answering else { return }
+        guard canCheck, phase == .answering, !isDetached else { return }
         onCheck?()
     }
 
     /// Grade the answer. Plays haptics/sound and shows the feedback sheet.
     func resolve(correct: Bool, feedback: String? = nil, correctAnswer: String? = nil) {
-        guard phase == .answering else { return }
+        guard phase == .answering, !isDetached else { return }
         self.feedback = feedback ?? module.explanation
         self.correctAnswer = correctAnswer
         phase = correct ? .correct : .wrong
@@ -67,7 +73,14 @@ final class ModuleSession {
 
     /// Advance to the next module (ungraded modules, or after the feedback sheet).
     func finish() {
+        guard !isDetached else { return }
         onFinish?()
+    }
+
+    /// Called by the player when this module is left behind. Idempotent.
+    func detach() {
+        isDetached = true
+        onCheck = nil
     }
 }
 

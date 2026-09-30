@@ -18,6 +18,7 @@ struct SpeedRoundModule: View {
     @State private var appeared = false
     @State private var countdown = 3
     @State private var timerTask: Task<Void, Never>?
+    @State private var countdownTask: Task<Void, Never>?
 
     private var duration: Double { Double(max(session.module.seconds ?? 30, 5)) }
 
@@ -35,7 +36,10 @@ struct SpeedRoundModule: View {
             session.hidesCheckBar = true
             session.mood = .excited
         }
-        .onDisappear { timerTask?.cancel() }
+        .onDisappear {
+            countdownTask?.cancel()
+            timerTask?.cancel()
+        }
     }
 
     // MARK: Ready
@@ -235,13 +239,16 @@ struct SpeedRoundModule: View {
     // MARK: Logic
 
     private func startCountdown() {
+        guard countdownTask == nil else { return }
         Haptics.shared.press()
-        Task {
+        countdownTask = Task {
             for n in stride(from: 2, through: 0, by: -1) {
                 withAnimation(.spring) { countdown = n }
                 SoundFX.shared.play(.tick)
                 Haptics.shared.tick()
                 try? await Task.sleep(for: .milliseconds(550))
+                // Quitting during "3-2-1" must not start the round (and its timer) off screen.
+                if Task.isCancelled { return }
             }
             start()
         }

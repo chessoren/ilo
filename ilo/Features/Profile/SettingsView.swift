@@ -119,8 +119,9 @@ struct SettingsView: View {
         } set: { date in
             model.player.reminderHour = Calendar.current.component(.hour, from: date)
             model.save()
-            OnboardingReminders.schedule(hour: model.player.reminderHour, name: model.player.name,
-                                         goal: model.activeCourse?.title ?? "")
+            // Ask for permission if onboarding's "Not now" skipped it — otherwise the reminder could never fire.
+            let hour = model.player.reminderHour, name = model.player.name, goal = model.activeCourse?.title ?? ""
+            Task { _ = await OnboardingReminders.requestAndSchedule(hour: hour, name: name, goal: goal) }
         }
     }
 }

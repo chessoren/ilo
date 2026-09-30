@@ -254,8 +254,33 @@ struct RealWebPreview: UIViewRepresentable {
             <script>\(code)</script>
             </body></html>
             """
-        default:
+        case "html", "htm", "":
             return "<html><head>\(head)</head><body>\(code)</body></html>"
+        default:
+            // Python / Swift / … can't run in a web view: show the code plus what its literal prints would output,
+            // instead of dumping the source into an HTML body as if it were markup.
+            let output = printedLines(in: code).map(escape).joined(separator: "\n")
+            return """
+            <html><head>\(head)</head><body>
+            <pre style="font-family: ui-monospace, Menlo; font-size: 14px; white-space: pre-wrap; margin: 0;">\(escape(code))</pre>
+            <div id="ilo-console">\(output)</div>
+            </body></html>
+            """
+        }
+    }
+
+    private static func escape(_ text: String) -> String {
+        text.replacingOccurrences(of: "&", with: "&amp;")
+            .replacingOccurrences(of: "<", with: "&lt;")
+            .replacingOccurrences(of: ">", with: "&gt;")
+    }
+
+    /// String literals passed to print(…) / console.log(…) — a friendly stand-in for running the program.
+    private static func printedLines(in code: String) -> [String] {
+        guard let regex = try? NSRegularExpression(pattern: #"(?:print|console\.log|println)\s*\(\s*f?(["'])(.*?)\1\s*\)"#) else { return [] }
+        let ns = code as NSString
+        return regex.matches(in: code, range: NSRange(location: 0, length: ns.length)).compactMap { match in
+            match.numberOfRanges > 2 ? ns.substring(with: match.range(at: 2)) : nil
         }
     }
 }

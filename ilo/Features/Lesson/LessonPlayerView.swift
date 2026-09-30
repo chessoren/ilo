@@ -96,7 +96,7 @@ struct LessonPlayerView: View {
     }
 
     private func finish() {
-        guard let runner, result == nil else { return }
+        guard let runner, runner.isFinished, result == nil else { return }
         let r = runner.makeResult()
         result = r
         summary = model.complete(r)
@@ -136,6 +136,9 @@ struct LessonPlayingView: View {
         .sheet(isPresented: $showQuit) {
             LessonQuitSheet(onStay: { showQuit = false }, onQuit: {
                 showQuit = false
+                // Late resolves (delayed grading, timers) must not play sounds or record results after quitting.
+                // (Not done in onDisappear: full-screen covers inside modules — call, camera — also trigger it.)
+                runner.session.detach()
                 onQuit()
             })
             .presentationDetents([.height(420)])

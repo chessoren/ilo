@@ -36,7 +36,16 @@ struct ProfileView: View {
             }
         }
         .sheet(item: $badge) { BadgeDetailSheet(badge: $0).presentationDetents([.height(420)]) }
-        .sheet(isPresented: $showAllBadges) { AllBadgesSheet { b in showAllBadges = false; badge = b } }
+        .sheet(isPresented: $showAllBadges) {
+            AllBadgesSheet { b in
+                showAllBadges = false
+                // Present the detail once the grid sheet is gone (two sheets can't swap in one update).
+                Task {
+                    try? await Task.sleep(for: .milliseconds(450))
+                    badge = b
+                }
+            }
+        }
         .onAppear { shown = true }
         #if DEBUG
         .sheet(isPresented: Binding(get: { debugDest != nil }, set: { if !$0 { debugDest = nil } })) {

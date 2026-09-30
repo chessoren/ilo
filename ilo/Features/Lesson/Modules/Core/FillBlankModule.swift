@@ -13,7 +13,7 @@ struct FillBlankModule: View {
     private var options: [String] { module.options ?? [] }
     private var correctIndex: Int { module.correctIndex ?? 0 }
 
-    private enum Piece: Hashable { case word(Int, String), blank }
+    private enum Piece: Hashable { case word(Int, String), blank(Int) }
 
     private var pieces: [Piece] {
         let sentence = module.sentence ?? "___"
@@ -22,7 +22,7 @@ struct FillBlankModule: View {
         var n = 0
         for (i, part) in parts.enumerated() {
             for w in part.split(separator: " ") { out.append(.word(n, String(w))); n += 1 }
-            if i < parts.count - 1 { out.append(.blank) }
+            if i < parts.count - 1 { out.append(.blank(i)) }
         }
         return out
     }
@@ -40,8 +40,9 @@ struct FillBlankModule: View {
                             Text(w)
                                 .font(.display(24, weight: .semibold))
                                 .foregroundStyle(Palette.ink)
-                        case .blank:
-                            blank
+                        case .blank(let i):
+                            // Only the first gap holds the chip (one matched-geometry source); extra gaps stay as hints.
+                            if i == 0 { blank } else { emptyGap }
                         }
                     }
                 }
@@ -97,14 +98,18 @@ struct FillBlankModule: View {
             .disabled(session.isResolved)
             .modifier(ModuleShakeEffect(shakes: CGFloat(shakes)))
         } else {
-            RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .fill(session.tint.soft.opacity(0.6))
-                .overlay(alignment: .bottom) {
-                    Capsule().fill(session.tint.deep).frame(height: 3)
-                }
-                .frame(width: 96, height: 40)
-                .phaseAnimator([0.55, 1]) { v, phase in v.opacity(phase) } animation: { _ in .easeInOut(duration: 0.9) }
+            emptyGap
         }
+    }
+
+    private var emptyGap: some View {
+        RoundedRectangle(cornerRadius: 12, style: .continuous)
+            .fill(session.tint.soft.opacity(0.6))
+            .overlay(alignment: .bottom) {
+                Capsule().fill(session.tint.deep).frame(height: 3)
+            }
+            .frame(width: 96, height: 40)
+            .phaseAnimator([0.55, 1]) { v, phase in v.opacity(phase) } animation: { _ in .easeInOut(duration: 0.9) }
     }
 
     private var blankState: AnswerTileState {

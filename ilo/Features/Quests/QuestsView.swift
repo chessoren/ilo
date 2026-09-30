@@ -7,6 +7,7 @@ struct QuestsView: View {
     @State private var shown = false
     @State private var flights: [GemFlight] = []
     @State private var confetti = 0
+    @State private var claiming: Set<UUID> = []
 
     struct GemFlight: Identifiable { let id = UUID(); var from: CGPoint; var amount: Int }
 
@@ -84,17 +85,21 @@ struct QuestsView: View {
     }
 
     private func claim(_ quest: Quest, from origin: CGPoint) {
-        guard quest.isDone, !quest.claimed else { return }
+        // `quest` is a snapshot: a second tap within the 750 ms flight must not launch another burst.
+        guard quest.isDone, !quest.claimed, !claiming.contains(quest.id) else { return }
+        claiming.insert(quest.id)
         Haptics.shared.celebrate()
         SoundFX.shared.play(.coin)
         confetti += 1
-        flights.append(GemFlight(from: origin, amount: quest.reward))
+        let flight = GemFlight(from: origin, amount: quest.reward)
+        flights.append(flight)
         Task {
             try? await Task.sleep(for: .milliseconds(750))
             withAnimation(.spring) { model.claim(quest) }
+            claiming.remove(quest.id)
             SoundFX.shared.play(.coin)
             try? await Task.sleep(for: .seconds(1))
-            flights.removeFirst()
+            flights.removeAll { $0.id == flight.id }
         }
     }
 }

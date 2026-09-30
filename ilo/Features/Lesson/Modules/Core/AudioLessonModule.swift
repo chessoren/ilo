@@ -57,10 +57,11 @@ struct AudioLessonModule: View {
             appeared = true
             session.hidesCheckBar = true
             session.mood = .happy
-            Task {
-                try? await Task.sleep(for: .milliseconds(700))
-                if !reader.hasStarted { reader.play(lines: lines, from: 0) }
-            }
+        }
+        .task {
+            // `.task` is cancelled on disappear, so skipping within 700 ms can't start speech on the next module.
+            try? await Task.sleep(for: .milliseconds(700))
+            if !Task.isCancelled, !reader.hasStarted, !session.isDetached { reader.play(lines: lines, from: 0) }
         }
         .onDisappear { reader.stop() }
         .onChange(of: reader.isPlaying) { _, playing in
