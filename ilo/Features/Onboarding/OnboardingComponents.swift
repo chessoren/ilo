@@ -236,7 +236,7 @@ extension View {
     func obBottomFade() -> some View {
         background {
             LinearGradient(stops: [.init(color: Palette.canvas.opacity(0), location: 0),
-                                   .init(color: Palette.canvas.opacity(0.92), location: 0.2),
+                                   .init(color: Palette.canvas, location: 0.2),
                                    .init(color: Palette.canvas, location: 1)],
                            startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()

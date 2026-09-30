@@ -169,7 +169,7 @@ struct PaywallView: View {
         .padding(.bottom, 2)
         .background {
             LinearGradient(stops: [.init(color: Palette.canvas.opacity(0), location: 0),
-                                   .init(color: Palette.canvas.opacity(0.94), location: 0.14),
+                                   .init(color: Palette.canvas, location: 0.16),
                                    .init(color: Palette.canvas, location: 1)],
                            startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()

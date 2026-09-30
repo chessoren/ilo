@@ -59,9 +59,9 @@ struct PaywallHeroPage: View {
     private var hero: some View {
         VStack(spacing: 12) {
             ZStack {
-                Circle()
-                    .fill(RadialGradient(colors: [tint.base.opacity(0.45), .clear], center: .center, startRadius: 5, endRadius: 125))
-                    .frame(width: 250, height: 250)
+                Ellipse()
+                    .fill(RadialGradient(colors: [tint.base.opacity(0.45), .clear], center: .center, startRadius: 5, endRadius: 110))
+                    .frame(width: 300, height: 170)
                 HStack(alignment: .bottom, spacing: -8) {
                     BloubView(shape: .circle, color: .ink, expression: .happy)
                         .frame(width: 104, height: 104)
@@ -79,7 +79,7 @@ struct PaywallHeroPage: View {
                     .offset(x: 88, y: -52)
                     .symbolEffect(.bounce, value: iconPulse)
             }
-            .frame(height: 150)
+            .frame(height: 170)
 
             Group {
                 if let course {
