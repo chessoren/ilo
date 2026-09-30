@@ -59,7 +59,9 @@ final class DemoReelTests: IloUITestCase {
 
     // MARK: The reel
 
-    func testDemoReel() {
+    /// Only runs when recording the reel: `TEST_RUNNER_ILO_REEL=1 xcodebuild test … -only-testing:iloUITests/DemoReelTests`.
+    func testDemoReel() throws {
+        try XCTSkipUnless(ProcessInfo.processInfo.environment["ILO_REEL"] == "1", "Demo reel runs only when recording")
         try? FileManager.default.removeItem(at: Self.markerURL)
         mark("launch")
         launch(["-resetOnboarding", "-resetPro"])
