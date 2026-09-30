@@ -28,7 +28,19 @@ for the success confetti after a purchase before the app opens. `AppModel.isPro`
 
 Nothing sensitive is persisted by ilo; RevenueCat caches its own `CustomerInfo`.
 
-## Dashboard setup
+## Live configuration (project "ilo")
+
+This is what's set up in the RevenueCat dashboard today (Test Store app):
+
+| Thing | Value |
+| --- | --- |
+| Entitlement | `pro` |
+| Offering | `default` (current) |
+| `$rc_annual` | `ilo_pro_annual`: 1 year, **$79.99**, **1-week free trial** (new customers) |
+| `$rc_weekly` | `ilo_pro_weekly`: 1 week, **$7.99** |
+| Public SDK key | Test Store `test_…` key, used by DEBUG builds so anyone who clones the repo can buy in the simulator |
+
+## Dashboard setup (from scratch)
 
 1. Create a project in RevenueCat and add an **App Store** app with bundle id `app.ilo.learn`
    (or just use the **Test Store** — see below).

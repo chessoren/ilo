@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ilo deck</title>
+<link rel="stylesheet" href="deck.css">
+<script src="bloub-data.js"></script>
+<script src="bloub.js"></script>
+<script src="icons.js"></script>
+<style>
+/* ---------- 01 title ---------- */
+#s1 .title { position: absolute; left: 120px; top: 300px; width: 1250px; }
+#s1 .t1 { font-family: var(--round); font-weight: 800; font-size: 210px; line-height: .98; letter-spacing: -.045em; }
+#s1 .t1 .hl { padding: 0 .12em .04em; margin-left: -.06em; }
+#s1 .t2 { font-family: var(--round); font-weight: 800; font-size: 112px; letter-spacing: -.035em; margin-top: 34px; }
+#s1 .lead { margin-top: 44px; width: 1000px; font-size: 40px; }
+#s1 .badges { margin-top: 64px; display: flex; gap: 18px; }
+#s1 .stage { position: absolute; left: 1360px; top: 170px; width: 920px; height: 1260px; }
+#s1 .hero { position: absolute; left: 110px; top: 250px; width: 700px; height: 700px; filter: drop-shadow(0 60px 80px rgba(90,107,255,.35)); }
+#s1 .goal { position: absolute; }
+#s1 .goal .pill { height: 78px; font-size: 30px; padding: 0 32px; gap: 14px; }
+#s1 .goal .pill i { color: var(--peri-deep); }
+
+/* ---------- 02 problem ---------- */
+#s2 .left { position: absolute; left: 0; top: 40px; width: 1060px; }
+#s2 h1 { font-size: 100px; }
+#s2 h1 span { color: var(--faint); }
+#s2 .pains { margin-top: 80px; display: grid; gap: 30px; }
+#s2 .pain { display: flex; gap: 30px; align-items: center; }
+#s2 .pain .ic { width: 96px; height: 96px; border-radius: 30px; display: flex; align-items: center; justify-content: center; flex: none; }
+#s2 .pain b { display: block; font-family: var(--round); font-size: 40px; letter-spacing: -.015em; }
+#s2 .pain span { font-size: 29px; color: var(--muted); }
+#s2 .mess { position: absolute; left: 1180px; top: 0; width: 980px; height: 1260px; }
+#s2 .browser { position: absolute; left: 30px; top: 60px; width: 900px; padding: 0 0 36px; transform: rotate(-2.5deg); overflow: hidden; }
+#s2 .tabs { display: flex; gap: 6px; padding: 22px 22px 0; background: #ECEEF4; }
+#s2 .tabs div { flex: 1; min-width: 0; height: 50px; border-radius: 14px 14px 0 0; background: #DDE1EA; font-size: 17px; padding: 14px 12px 0; color: var(--muted); white-space: nowrap; overflow: hidden; }
+#s2 .tabs div.on { background: #fff; color: var(--ink); }
+#s2 .url { margin: 18px 28px 10px; height: 58px; border-radius: 999px; background: #F3F4F8; display: flex; align-items: center; padding: 0 26px; gap: 14px; font-size: 24px; color: var(--muted); }
+#s2 .res { padding: 18px 44px 0; }
+#s2 .res div { padding: 20px 0; border-bottom: 1.5px solid var(--hair); }
+#s2 .res b { display: block; font-size: 29px; color: #3d52c9; font-weight: 600; }
+#s2 .res span { font-size: 22px; color: var(--faint); }
+#s2 .note { position: absolute; left: 520px; top: 770px; width: 420px; padding: 36px 40px; background: var(--butter); border-radius: 30px; transform: rotate(4deg); box-shadow: var(--shadow-lg); }
+#s2 .note b { font-family: var(--round); font-size: 32px; }
+#s2 .note p { font-size: 24px; color: #7a6a2a; margin-top: 12px; line-height: 1.55; }
+#s2 .note s { color: #b3a260; }
+#s2 .yt { position: absolute; left: 70px; top: 860px; width: 460px; padding: 30px; transform: rotate(-6deg); }
+#s2 .yt .v { height: 170px; border-radius: 22px; background: linear-gradient(135deg, #2A2C35, #474B5C); display: flex; align-items: center; justify-content: center; color: #fff; }
+#s2 .yt b { display: block; margin-top: 18px; font-size: 25px; }
+#s2 .yt span { font-size: 21px; color: var(--faint); }
+#s2 .confused { position: absolute; left: 790px; top: 560px; width: 220px; height: 220px; }
+
+/* ---------- 03 idea ---------- */
+#s3 .left { position: absolute; left: 0; top: 30px; width: 1500px; }
+#s3 .rows { margin-top: 80px; display: grid; gap: 34px; }
+#s3 .r { display: flex; align-items: center; gap: 34px; }
+#s3 .goalbox { width: 560px; height: 150px; border-radius: 34px; background: #fff; border: 3px solid var(--peri); display: flex; align-items: center; padding: 0 36px; font-family: var(--round); font-weight: 700; font-size: 33px; line-height: 1.2; box-shadow: var(--shadow); }
+#s3 .arrow { width: 70px; height: 70px; border-radius: 50%; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; flex: none; }
+#s3 .course { width: 760px; height: 150px; border-radius: 34px; display: flex; align-items: center; gap: 28px; padding: 0 34px; }
+#s3 .course .ic { width: 86px; height: 86px; border-radius: 26px; background: rgba(255,255,255,.7); display: flex; align-items: center; justify-content: center; flex: none; }
+#s3 .course b { display: block; font-family: var(--round); font-size: 37px; letter-spacing: -.015em; }
+#s3 .course span { font-size: 26px; color: rgba(10,10,12,.55); font-weight: 500; }
+#s3 .ph { position: absolute; right: 30px; top: 0; }
+#s3 .note { position: absolute; left: 0; bottom: 0; font-size: 26px; color: var(--faint); }
+
+/* ---------- 04 how it works ---------- */
+#s4 h1 { font-size: 96px; }
+#s4 .steps { position: absolute; top: 200px; left: 0; right: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 44px; }
+#s4 .st { height: 860px; padding: 48px 44px; position: relative; display: flex; flex-direction: column; }
+#s4 .n { width: 68px; height: 68px; border-radius: 50%; background: var(--ink); color: #fff; font-family: var(--round); font-weight: 800; font-size: 32px; display: flex; align-items: center; justify-content: center; }
+#s4 .st h3 { margin-top: 30px; font-size: 44px; }
+#s4 .st p { margin-top: 16px; font-size: 27px; line-height: 1.42; color: rgba(10,10,12,.62); }
+#s4 .vis { margin-top: auto; }
+#s4 .mini { background: #fff; border-radius: 28px; padding: 22px 24px; box-shadow: 0 10px 30px -12px rgba(40,52,120,.2); }
+#s4 .input { font-family: var(--round); font-weight: 700; font-size: 27px; border: 2.5px solid var(--peri); }
+#s4 .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+#s4 .chips .chip { background: rgba(255,255,255,.75); color: var(--ink2); height: 46px; font-size: 21px; padding: 0 18px; }
+#s4 .src { display: flex; gap: 14px; align-items: center; padding: 11px 0; font-size: 21px; border-bottom: 1.5px solid var(--hair); }
+#s4 .src:last-child { border: 0; }
+#s4 .src i { color: #fff; background: var(--green); border-radius: 50%; width: 32px; height: 32px; justify-content: center; align-items: center; flex: none; }
+#s4 .src small { display: block; color: var(--faint); font-size: 17px; }
+#s4 .unit { background: var(--orange); color: #fff; border-radius: 24px; padding: 18px 22px; font-family: var(--round); }
+#s4 .unit small { font-size: 16px; letter-spacing: .12em; font-weight: 800; opacity: .8; }
+#s4 .unit b { display: block; font-size: 28px; }
+#s4 .nodes { display: flex; gap: 22px; justify-content: center; margin: 22px 0 18px; }
+#s4 .nodes div { width: 78px; height: 78px; border-radius: 50%; background: #fff; box-shadow: inset 0 -6px 0 rgba(10,10,12,.08); display: flex; align-items: center; justify-content: center; color: var(--faint); }
+#s4 .nodes div.on { background: var(--orange); color: #fff; box-shadow: inset 0 -6px 0 rgba(0,0,0,.14), 0 0 0 8px rgba(244,145,63,.25); }
+#s4 .brief { font-size: 20px; line-height: 1.4; color: var(--muted); }
+#s4 .brief b { color: var(--ink); font-family: var(--round); font-size: 23px; display: block; margin-bottom: 4px; }
+#s4 .mods { display: flex; flex-wrap: wrap; gap: 10px; }
+#s4 .mods .chip { height: 46px; font-size: 21px; background: #fff; color: var(--ink2); padding: 0 18px; }
+#s4 .ready { margin-top: 16px; display: flex; align-items: center; gap: 12px; font-family: var(--round); font-weight: 700; font-size: 22px; color: #1f7a52; }
+#s4 .foot { position: absolute; left: 0; right: 0; bottom: -10px; display: flex; gap: 18px; justify-content: center; }
+
+/* ---------- 05 modules ---------- */
+#s5 .top { display: flex; align-items: flex-end; gap: 50px; }
+#s5 .big { font-size: 260px; line-height: .8; color: var(--ilo); }
+#s5 .top h1 { font-size: 88px; }
+#s5 .grid { position: absolute; top: 290px; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: 1fr 1.18fr 1.08fr 1.08fr; gap: 32px; }
+#s5 .g { padding: 38px 36px; border-radius: 40px; }
+#s5 .gh { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
+#s5 .gh b { font-family: var(--round); font-weight: 800; font-size: 40px; letter-spacing: -.015em; }
+#s5 .gh span { font-family: var(--round); font-weight: 800; font-size: 56px; opacity: .35; }
+#s5 .m { display: flex; gap: 18px; align-items: center; background: rgba(255,255,255,.72); border-radius: 22px; padding: 14px 18px; margin-top: 12px; }
+#s5 .m i { width: 50px; height: 50px; border-radius: 15px; background: #fff; justify-content: center; align-items: center; flex: none; }
+#s5 .m b { display: block; font-family: var(--round); font-size: 26px; }
+#s5 .m span { display: block; font-size: 19px; color: rgba(10,10,12,.55); margin-top: 1px; }
+
+/* ---------- 06 real world ---------- */
+#s6 .phones { position: absolute; left: 0; right: 0; top: 250px; display: flex; justify-content: space-between; }
+#s6 .phones > div { width: 388px; }
+#s6 .phone { --w: 388px; height: 770px; }
+#s6 .cap { margin-top: 30px; font-size: 33px; }
+#s6 .cap i { color: var(--peri-deep); margin-right: 10px; vertical-align: -3px; }
+
+/* ---------- 07 meet ilo ---------- */
+#s7 .hero { position: absolute; left: -10px; top: 40px; width: 600px; height: 600px; filter: drop-shadow(0 50px 70px rgba(90,107,255,.35)); }
+#s7 .intro { position: absolute; left: 0; top: 700px; width: 820px; }
+#s7 .intro h1 { font-size: 110px; }
+#s7 .intro .lead { margin-top: 26px; font-size: 34px; }
+#s7 .facts { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+#s7 .exprs { position: absolute; left: 900px; top: 0; right: 0; height: 740px; padding: 46px 50px; }
+#s7 .eg { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px 0; margin-top: 18px; }
+#s7 .eg div { text-align: center; font-size: 19px; color: var(--muted); font-family: var(--round); font-weight: 600; }
+#s7 .eg [data-bloub] { width: 150px; height: 150px; margin: 0 auto 2px; }
+#s7 .you { position: absolute; left: 900px; top: 780px; right: 0; bottom: 0; padding: 46px 50px; background: var(--lavender); }
+#s7 .shapes { display: flex; justify-content: space-between; margin-top: 30px; }
+#s7 .shapes div { text-align: center; font-family: var(--round); font-weight: 700; font-size: 20px; color: rgba(10,10,12,.55); }
+#s7 .shapes [data-bloub] { width: 140px; height: 140px; margin-bottom: 6px; }
+#s7 .hd { display: flex; justify-content: space-between; align-items: baseline; }
+#s7 .hd h3 { font-size: 40px; }
+#s7 .hd span { font-size: 25px; color: var(--muted); }
+
+/* ---------- 08 game loop ---------- */
+#s8 h1 { font-size: 92px; width: 1300px; }
+#s8 .bento { position: absolute; left: 0; top: 250px; width: 1420px; bottom: 0; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 30px; }
+#s8 .b { padding: 40px 40px; border-radius: 40px; display: flex; flex-direction: column; }
+#s8 .b i.ic { width: 76px; height: 76px; border-radius: 24px; background: rgba(255,255,255,.75); justify-content: center; align-items: center; }
+#s8 .b h3 { margin-top: 26px; font-size: 40px; }
+#s8 .b p { margin-top: 10px; font-size: 25px; line-height: 1.4; color: rgba(10,10,12,.6); }
+#s8 .b .num { font-size: 92px; line-height: .9; margin-top: auto; }
+#s8 .leagues { grid-column: span 2; }
+#s8 .lg { display: flex; justify-content: space-between; margin-top: auto; align-items: flex-end; }
+#s8 .lg div { text-align: center; font-family: var(--round); font-weight: 700; font-size: 18px; color: var(--muted); }
+#s8 .lg [data-bloub] { width: 104px; height: 104px; margin: 0 auto 4px; }
+#s8 .phones { position: absolute; right: 0; top: 40px; display: flex; gap: 36px; }
+#s8 .phone { --w: 330px; }
+#s8 .phones > div:nth-child(2) { margin-top: 170px; }
+
+/* ---------- 09 craft ---------- */
+#s9 h1 { font-size: 92px; }
+#s9 .bento { position: absolute; left: 0; top: 240px; width: 1580px; bottom: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 30px; }
+#s9 .b { padding: 40px 44px; border-radius: 40px; position: relative; overflow: hidden; }
+#s9 .b h3 { font-size: 42px; }
+#s9 .b p { margin-top: 12px; font-size: 25px; line-height: 1.42; color: rgba(10,10,12,.6); width: 420px; }
+#s9 .b .v { position: absolute; right: 36px; top: 40px; bottom: 40px; width: 280px; display: flex; align-items: center; justify-content: center; }
+#s9 .glassbg { position: absolute; inset: 0; border-radius: 30px; overflow: hidden; background: linear-gradient(135deg, #FFD9B8, #F3B7EC 50%, #8FA8F7); }
+#s9 .glassbg::before, #s9 .glassbg::after { content: ''; position: absolute; border-radius: 50%; }
+#s9 .glassbg::before { width: 150px; height: 150px; background: #F4913F; left: 20px; top: 40px; }
+#s9 .glassbg::after { width: 120px; height: 120px; background: #5A6BFF; right: 10px; bottom: 60px; }
+#s9 .glass { position: absolute; left: 20px; right: 20px; bottom: 30px; height: 96px; border-radius: 999px; background: rgba(255,255,255,.35); backdrop-filter: blur(18px) saturate(1.6); -webkit-backdrop-filter: blur(18px) saturate(1.6); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.8), inset 0 -1px 0 rgba(255,255,255,.3), 0 12px 30px rgba(40,52,120,.18); display: flex; align-items: center; justify-content: space-around; color: var(--ink); }
+#s9 .glass.top { top: 30px; bottom: auto; left: 60px; right: 60px; height: 72px; font-family: var(--round); font-weight: 800; font-size: 24px; }
+#s9 .hap { display: flex; align-items: flex-end; gap: 10px; height: 200px; }
+#s9 .hap div { width: 16px; border-radius: 8px; background: var(--ink); }
+#s9 .ph { position: absolute; right: 0; top: 30px; }
+#s9 .ph .phone { --w: 520px; }
+#s9 .morph { display: flex; gap: 6px; align-items: center; }
+#s9 .morph [data-bloub] { width: 88px; height: 88px; }
+
+/* ---------- 10 onboarding ---------- */
+#s10 h1 { font-size: 92px; }
+#s10 .rail { position: absolute; left: 0; right: 0; top: 230px; display: flex; justify-content: space-between; }
+#s10 .rail::before { content: ''; position: absolute; left: 40px; right: 40px; top: 25px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--peri-soft), var(--peri) 85%, var(--ink)); }
+#s10 .rail div { position: relative; width: 132px; text-align: center; font-family: var(--round); font-weight: 700; font-size: 19px; color: var(--muted); line-height: 1.2; }
+#s10 .rail div span { display: flex; margin: 0 auto 14px; width: 54px; height: 54px; border-radius: 50%; background: #fff; box-shadow: var(--shadow); align-items: center; justify-content: center; font-size: 22px; color: var(--ink); font-weight: 800; }
+#s10 .rail div.k span { background: var(--peri-deep); color: #fff; }
+#s10 .rail div.k { color: var(--ink); }
+#s10 .rail div.pw span { background: var(--ink); color: #fff; }
+#s10 .rail div.pw { color: var(--ink); }
+#s10 .phones { position: absolute; left: 0; right: 0; top: 410px; display: flex; justify-content: space-between; align-items: flex-start; }
+#s10 .phones > div { width: 360px; }
+#s10 .phone { --w: 360px; height: 690px; }
+#s10 .cap { margin-top: 26px; font-size: 30px; }
+#s10 .cap small { font-size: 23px; }
+#s10 .phones .arrow { width: 40px; height: 690px; display: flex; align-items: center; justify-content: center; color: var(--faint); }
+
+/* ---------- 11 revenuecat ---------- */
+#s11 .ph { position: absolute; left: 0; top: 0; }
+#s11 .ph .phone { --w: 560px; }
+#s11 .right { position: absolute; left: 700px; top: 0; right: 0; bottom: 0; }
+#s11 h1 { font-size: 90px; }
+#s11 .plans { display: grid; grid-template-columns: 1.25fr 1fr; gap: 28px; margin-top: 50px; }
+#s11 .plan { padding: 36px 40px; border-radius: 40px; position: relative; }
+#s11 .plan.best { background: var(--ink); color: #fff; }
+#s11 .plan .tag { position: absolute; top: 34px; right: 34px; background: var(--victory); color: #fff; font-family: var(--round); font-weight: 800; font-size: 19px; letter-spacing: .08em; padding: 10px 18px; border-radius: 999px; }
+#s11 .plan b { font-family: var(--round); font-size: 36px; }
+#s11 .plan .num { font-size: 104px; line-height: 1; margin-top: 16px; }
+#s11 .plan .num small { font-size: 34px; letter-spacing: 0; font-weight: 700; opacity: .6; }
+#s11 .plan p { font-size: 25px; margin-top: 12px; opacity: .7; line-height: 1.4; }
+#s11 .api { margin-top: 28px; padding: 38px 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; }
+#s11 .api .it { display: flex; gap: 18px; align-items: flex-start; }
+#s11 .api .it i { width: 54px; height: 54px; border-radius: 17px; background: var(--peri-mist); color: var(--peri-deep); align-items: center; justify-content: center; flex: none; }
+#s11 .api .it b { display: block; font-family: var(--round); font-size: 26px; }
+#s11 .api .it span { display: block; font-size: 21px; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+#s11 .why { margin-top: 28px; display: flex; gap: 22px; align-items: center; font-size: 26px; line-height: 1.4; color: var(--ink2); padding: 28px 36px; border-radius: 32px; background: var(--mint); }
+
+/* ---------- 12 under the hood ---------- */
+#s12 h1 { font-size: 92px; }
+#s12 .arch { position: absolute; left: 0; top: 230px; width: 1520px; bottom: 0; }
+#s12 .layer { border-radius: 36px; padding: 30px 38px; }
+#s12 .app { background: #fff; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; }
+#s12 .app b, #s12 .router b { font-family: var(--round); font-size: 36px; }
+#s12 .app .chips { display: flex; gap: 10px; }
+#s12 .router { margin-top: 22px; background: var(--ink); color: #fff; display: flex; justify-content: space-between; align-items: center; }
+#s12 .router span { font-size: 24px; opacity: .65; }
+#s12 .conn { height: 50px; display: flex; justify-content: space-around; }
+#s12 .conn div { width: 4px; background: repeating-linear-gradient(180deg, var(--peri) 0 8px, transparent 8px 16px); }
+#s12 .brains { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 26px; }
+#s12 .br { border-radius: 36px; padding: 34px 34px; height: 590px; display: flex; flex-direction: column; }
+#s12 .br .o { font-family: var(--round); font-weight: 800; font-size: 20px; letter-spacing: .12em; opacity: .5; }
+#s12 .br h3 { margin-top: 10px; font-size: 38px; }
+#s12 .br ul { list-style: none; margin-top: 18px; display: grid; gap: 14px; }
+#s12 .br li { font-size: 23px; line-height: 1.36; color: rgba(10,10,12,.66); padding-left: 24px; position: relative; }
+#s12 .br li::before { content: ''; position: absolute; left: 0; top: 12px; width: 9px; height: 9px; border-radius: 50%; background: rgba(10,10,12,.35); }
+#s12 .br .ft { margin-top: auto; font-family: var(--round); font-weight: 700; font-size: 21px; display: flex; gap: 10px; align-items: center; }
+#s12 .stats { position: absolute; right: 0; top: 0; width: 560px; bottom: 0; display: grid; grid-template-rows: repeat(4, 1fr); gap: 24px; }
+#s12 .stat { padding: 30px 40px; display: flex; flex-direction: column; justify-content: center; }
+#s12 .stat .num { font-size: 96px; line-height: .95; }
+#s12 .stat span { font-size: 25px; color: var(--muted); margin-top: 8px; line-height: 1.3; }
+
+/* ---------- 13 closing ---------- */
+#s13 .hero { position: absolute; left: 1520px; top: 60px; width: 560px; height: 560px; filter: drop-shadow(0 50px 70px rgba(90,107,255,.35)); }
+#s13 .t { position: absolute; left: 0; top: 70px; width: 1450px; }
+#s13 .t .h { font-family: var(--round); font-weight: 800; font-size: 150px; letter-spacing: -.045em; line-height: .98; }
+#s13 .t .lead { margin-top: 36px; width: 1250px; }
+#s13 .next { position: absolute; left: 0; right: 0; top: 700px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+#s13 .nx { padding: 40px 42px; border-radius: 40px; height: 330px; display: flex; flex-direction: column; }
+#s13 .nx i { width: 70px; height: 70px; border-radius: 22px; background: rgba(255,255,255,.75); justify-content: center; align-items: center; }
+#s13 .nx h3 { margin-top: 26px; font-size: 40px; }
+#s13 .nx p { margin-top: 10px; font-size: 25px; line-height: 1.4; color: rgba(10,10,12,.6); }
+#s13 .repo { position: absolute; left: 0; right: 0; bottom: 0; height: 170px; background: var(--ink); color: #fff; border-radius: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; }
+#s13 .repo .u { display: flex; gap: 26px; align-items: center; font-family: var(--round); font-weight: 800; font-size: 58px; letter-spacing: -.02em; }
+#s13 .repo .u small { display: block; font-size: 22px; font-weight: 700; letter-spacing: .14em; opacity: .5; }
+#s13 .repo .meta { display: flex; gap: 14px; }
+#s13 .repo .chip { background: rgba(255,255,255,.12); color: #fff; height: 56px; font-size: 23px; }
+
+/* ---------- 14 gallery ---------- */
+#s14 .gal { position: absolute; left: 110px; right: 110px; top: 70px; bottom: 60px; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: 1fr 1fr; gap: 40px 0; justify-items: center; }
+#s14 .gal > div { display: flex; flex-direction: column; align-items: center; }
+#s14 .phone { --w: 318px; }
+#s14 .lbl { margin-top: 20px; font-family: var(--round); font-weight: 700; font-size: 24px; color: var(--muted); display: flex; gap: 12px; align-items: center; }
+#s14 .lbl b { color: var(--ink); font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+
+<!-- 01 · TITLE -->
+<section class="slide" id="s1" data-section="RevenueCat Shipaton 2026 · Next Gen">
+  <div class="title">
+    <div class="kicker">An iOS app by a 16-year-old student</div>
+    <div class="t1">Learn<br><span class="hl">anything.</span></div>
+    <div class="t2">Like it's a <span class="accent">game.</span></div>
+    <p class="lead">Type any goal. ilo researches it on the web and turns it into a Duolingo-style path, with every lesson generated the moment you tap it.</p>
+    <div class="badges">
+      <span class="pill"><i data-icon="sparkles"></i>Planned by Claude</span>
+      <span class="pill"><i data-icon="card"></i>Monetized with RevenueCat</span>
+      <span class="pill"><i data-icon="layers"></i>Native iOS 26</span>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="glow" style="left:120px;top:260px;width:700px;height:700px;background:rgba(143,168,247,.55)"></div>
+    <div class="hero" data-bloub="shape=circle;color=ilo;expr=excited;size=700;gloss=1"></div>
+    <div class="goal" style="left:40px;top:130px;transform:rotate(-4deg)"><span class="pill"><i data-icon="music"></i>Salsa for a wedding</span></div>
+    <div class="goal" style="left:560px;top:70px;transform:rotate(3deg)"><span class="pill"><i data-icon="code"></i>My first website</span></div>
+    <div class="goal" style="left:640px;top:520px;transform:rotate(-3deg)"><span class="pill"><i data-icon="layers"></i>Atomic Habits</span></div>
+    <div class="goal" style="left:-40px;top:620px;transform:rotate(4deg)"><span class="pill"><i data-icon="target"></i>Chess openings</span></div>
+    <div class="goal" style="left:80px;top:1030px;transform:rotate(-3deg)"><span class="pill"><i data-icon="book"></i>Japanese for my trip</span></div>
+    <div class="goal" style="left:540px;top:980px;transform:rotate(3deg)"><span class="pill"><i data-icon="mic"></i>Public speaking</span></div>
+  </div>
+</section>
+
+<!-- 02 · PROBLEM -->
+<section class="slide" id="s2" data-section="The problem">
+  <div class="body">
+    <div class="left">
+      <div class="kicker">The problem</div>
+      <h1>Duolingo made languages addictive.<br><span>Everything else is still homework.</span></h1>
+      <div class="pains">
+        <div class="pain"><div class="ic" style="background:var(--peach)"><i data-icon="signpost" data-size="46px"></i></div><div><b>No path.</b><span>Forty tabs, three playlists and no idea what comes first.</span></div></div>
+        <div class="pain"><div class="ic" style="background:var(--lavender)"><i data-icon="eye" data-size="46px"></i></div><div><b>No practice.</b><span>Watching a tutorial feels like learning. It isn't.</span></div></div>
+        <div class="pain"><div class="ic" style="background:var(--mint)"><i data-icon="calendar" data-size="46px"></i></div><div><b>No reason to come back.</b><span>No streak, no feedback, no one cheering. Motivation fades by day three.</span></div></div>
+      </div>
+    </div>
+    <div class="mess">
+      <div class="card browser">
+        <div class="tabs"><div class="on">salsa basic step</div><div>best salsa tutorial</div><div>On1 vs On2</div><div>r/Salsa</div><div>salsa for beginn</div><div>clave rhythm</div><div>wedding dance</div><div>how long to</div><div>salsa music</div></div>
+        <div class="url"><i data-icon="search"></i>how to learn salsa fast for a wedding</div>
+        <div class="res">
+          <div><b>Salsa for absolute beginners: full course</b><span>video · full course</span></div>
+          <div><b>How long does it take to learn salsa?</b><span>forum thread</span></div>
+          <div><b>The ultimate salsa playlist for practice</b><span>playlist</span></div>
+          <div><b>On1 or On2? A guide nobody asked for</b><span>blog post</span></div>
+          <div><b>Learn salsa in 30 days (printable PDF)</b><span>download</span></div>
+        </div>
+      </div>
+      <div class="card yt"><div class="v"><i data-icon="eye" data-size="60px"></i></div><b>Watch later</b><span>still unwatched</span></div>
+      <div class="note"><b>my salsa plan (v3)</b><p><s>watch full course</s><br><s>practice every day</s><br>find a partner??<br>the wedding is soon!!</p></div>
+      <div class="confused" data-bloub="shape=circle;color=ilo;expr=confused;size=220;gloss=1"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · IDEA -->
+<section class="slide" id="s3" data-section="The idea">
+  <div class="body">
+    <div class="left">
+      <div class="kicker">The idea</div>
+      <h1>One sentence in.<br><span class="accent">A whole path out.</span></h1>
+      <div class="rows">
+        <div class="r"><div class="goalbox">Salsa for my grandma's wedding</div><div class="arrow"><i data-icon="arrow" data-size="36px"></i></div>
+          <div class="course" style="background:var(--peach)"><div class="ic" style="color:var(--orange)"><i data-icon="music" data-size="44px"></i></div><div><b>Salsa, wedding-ready</b><span>4 units · 23 lessons</span></div></div></div>
+        <div class="r"><div class="goalbox">Code my first website</div><div class="arrow"><i data-icon="arrow" data-size="36px"></i></div>
+          <div class="course" style="background:var(--sky)"><div class="ic" style="color:#3B93F0"><i data-icon="code" data-size="44px"></i></div><div><b>Your first website</b><span>3 units · 18 lessons</span></div></div></div>
+        <div class="r"><div class="goalbox">Atomic Habits</div><div class="arrow"><i data-icon="arrow" data-size="36px"></i></div>
+          <div class="course" style="background:var(--butter)"><div class="ic" style="color:#C9921A"><i data-icon="layers" data-size="44px"></i></div><div><b>Atomic Habits, applied</b><span>3 units · 18 lessons</span></div></div></div>
+        <div class="r"><div class="goalbox">Learn to juggle three balls</div><div class="arrow"><i data-icon="arrow" data-size="36px"></i></div>
+          <div class="course" style="background:var(--lavender)"><div class="ic" style="color:var(--ilo)"><i data-icon="sparkles" data-size="44px"></i></div><div><b>Juggling three balls, from zero</b><span>3 units · 16 lessons</span></div></div></div>
+      </div>
+    </div>
+    <div class="ph"><div class="phone" style="--w:560px"><img src="../shots/path-ready.png"></div></div>
+  </div>
+</section>
+
+<!-- 04 · HOW IT WORKS -->
+<section class="slide" id="s4" data-section="How it works">
+  <div class="body">
+    <div class="kicker">How it works</div>
+    <h1>From a goal to a lesson, live.</h1>
+    <div class="steps">
+      <div class="st tile" style="background:var(--peach)">
+        <div class="n">1</div><h3>You type a goal</h3>
+        <p>Anything: a dance, a book, a skill. ilo asks what matters: why, by when, your level, how you like to learn, minutes a day.</p>
+        <div class="vis"><div class="mini input">Salsa for my grandma's wedding</div>
+          <div class="chips"><span class="chip">Why</span><span class="chip">Deadline</span><span class="chip">Level</span><span class="chip">Style</span><span class="chip">Minutes a day</span></div></div>
+      </div>
+      <div class="st tile" style="background:var(--lavender)">
+        <div class="n">2</div><h3>Claude researches the web</h3>
+        <p>Claude Opus 5.5 runs live web searches, reads real sources, then designs units and nodes as structured JSON.</p>
+        <div class="vis"><div class="mini">
+          <div class="src"><i data-icon="check" data-size="20px" data-sw="3"></i>Understanding your goal</div>
+          <div class="src"><i data-icon="check" data-size="20px" data-sw="3"></i><div>Salsa (dance) — Wikipedia<small>en.wikipedia.org</small></div></div>
+          <div class="src"><i data-icon="check" data-size="20px" data-sw="3"></i><div>Clave (rhythm) — Wikipedia<small>en.wikipedia.org</small></div></div>
+          <div class="src"><i data-icon="check" data-size="20px" data-sw="3"></i>Mapping the skill tree</div>
+        </div></div>
+      </div>
+      <div class="st tile" style="background:var(--pink)">
+        <div class="n">3</div><h3>A path of briefs</h3>
+        <p>Each node carries only a short brief. The whole path appears in seconds, unit by unit.</p>
+        <div class="vis"><div class="unit"><small>UNIT 1</small><b>Find the beat</b></div>
+          <div class="nodes"><div class="on"><i data-icon="music" data-size="34px"></i></div><div><i data-icon="lock" data-size="30px"></i></div><div><i data-icon="lock" data-size="30px"></i></div></div>
+          <div class="mini brief"><b>Meet salsa</b>What salsa is, where it comes from (Cuban son + New York), the 8-count…</div></div>
+      </div>
+      <div class="st tile" style="background:var(--mint)">
+        <div class="n">4</div><h3>Lessons written on tap</h3>
+        <p>Tap a node and its lesson is generated from the brief, mixing the best of 23 module types. The next two are prefetched.</p>
+        <div class="vis"><div class="mods"><span class="chip">Story</span><span class="chip">Quiz</span><span class="chip">Match</span><span class="chip">True or false</span><span class="chip">What would you do?</span><span class="chip">Metronome</span></div>
+          <div class="ready"><i data-icon="zap"></i>Next 2 lessons already waiting</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · MODULES -->
+<section class="slide" id="s5" data-section="Lesson modules">
+  <div class="body">
+    <div class="top"><div class="num big">23</div><div><div class="kicker">Lesson modules</div><h1>ways to learn, mixed<br>for every topic.</h1></div></div>
+    <div class="grid">
+      <div class="g" style="background:var(--peach)">
+        <div class="gh"><b>Learn</b><span>3</span></div>
+        <div class="m"><i data-icon="cards" data-size="28px"></i><div><b>Story cards</b><span>Swipeable cards that set the scene</span></div></div>
+        <div class="m"><i data-icon="speaker" data-size="28px"></i><div><b>Listen</b><span>Audio with karaoke captions</span></div></div>
+        <div class="m"><i data-icon="layers" data-size="28px"></i><div><b>Flashcards</b><span>Tap to reveal, again or got it</span></div></div>
+      </div>
+      <div class="g" style="background:var(--lavender)">
+        <div class="gh"><b>Practice</b><span>8</span></div>
+        <div class="m"><i data-icon="help" data-size="28px"></i><div><b>Quiz</b><span>Multiple choice, shuffled each play</span></div></div>
+        <div class="m"><i data-icon="swipe" data-size="28px"></i><div><b>True or false</b><span>Swipe right or left</span></div></div>
+        <div class="m"><i data-icon="link" data-size="28px"></i><div><b>Match</b><span>Pair each item with its partner</span></div></div>
+        <div class="m"><i data-icon="list" data-size="28px"></i><div><b>Put in order</b><span>Drag steps into sequence</span></div></div>
+        <div class="m"><i data-icon="grid" data-size="28px"></i><div><b>Word bricks</b><span>Build the sentence from tiles</span></div></div>
+        <div class="m"><i data-icon="brackets" data-size="28px"></i><div><b>Fill the gap</b><span>Pick the missing piece</span></div></div>
+        <div class="m"><i data-icon="pen" data-size="28px"></i><div><b>Your words</b><span>Free answer, graded by AI</span></div></div>
+        <div class="m"><i data-icon="chat" data-size="28px"></i><div><b>Roleplay</b><span>Chat with a character</span></div></div>
+      </div>
+      <div class="g" style="background:var(--mint)">
+        <div class="gh"><b>Real world</b><span>5</span></div>
+        <div class="m"><i data-icon="flag" data-size="28px"></i><div><b>Mission</b><span>Do it for real, send photo proof</span></div></div>
+        <div class="m"><i data-icon="code" data-size="28px"></i><div><b>Code lab</b><span>Editor with a live WebKit preview</span></div></div>
+        <div class="m"><i data-icon="camera" data-size="28px"></i><div><b>Camera coach</b><span>Vision counts your reps</span></div></div>
+        <div class="m"><i data-icon="music" data-size="28px"></i><div><b>Metronome</b><span>Haptic count: 1-2-3 · 5-6-7</span></div></div>
+        <div class="m"><i data-icon="phone" data-size="28px"></i><div><b>Call ilo</b><span>A live voice conversation</span></div></div>
+      </div>
+      <div class="g" style="background:var(--pink)">
+        <div class="gh"><b>ilo originals</b><span>7</span></div>
+        <div class="m"><i data-icon="gauge" data-size="28px"></i><div><b>Guess it</b><span>Drag a slider to estimate</span></div></div>
+        <div class="m"><i data-icon="search" data-size="28px"></i><div><b>Spot the mistake</b><span>Tap the part that's wrong</span></div></div>
+        <div class="m"><i data-icon="filter" data-size="28px"></i><div><b>Sort it</b><span>Drop items into buckets</span></div></div>
+        <div class="m"><i data-icon="cap" data-size="28px"></i><div><b>Teach ilo</b><span>Explain it like ilo is five</span></div></div>
+        <div class="m"><i data-icon="timer" data-size="28px"></i><div><b>Speed round</b><span>30 seconds, true or false</span></div></div>
+        <div class="m"><i data-icon="signpost" data-size="28px"></i><div><b>What would you do?</b><span>Real-life scenarios</span></div></div>
+        <div class="m"><i data-icon="eye" data-size="28px"></i><div><b>Find it</b><span>Tap the words that matter</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · REAL WORLD -->
+<section class="slide" id="s6" data-section="Real-world modules">
+  <div class="body">
+    <div class="kicker">Real-world modules</div>
+    <h1>Learning that leaves the screen.</h1>
+    <div class="phones">
+      <div><div class="phone"><img src="../shots/metronome.png"></div><div class="cap"><i data-icon="music"></i>Haptic metronome<small>Feel the salsa count, 1-2-3 · 5-6-7, in your hand.</small></div></div>
+      <div><div class="phone"><img src="../shots/module-cameraCoach.png"></div><div class="cap"><i data-icon="camera"></i>Camera coach<small>Vision tracks your body and counts every rep.</small></div></div>
+      <div><div class="phone"><img src="../shots/code-lab.png"></div><div class="cap"><i data-icon="code"></i>Code lab<small>Write HTML, see it live in WebKit, run the check.</small></div></div>
+      <div><div class="phone"><img src="../shots/module-mission.png"></div><div class="cap"><i data-icon="flag"></i>Missions<small>Do it in real life, then snap a photo as proof.</small></div></div>
+      <div><div class="phone"><img src="../shots/module-liveCall.png"></div><div class="cap"><i data-icon="phone"></i>Call ilo<small>A spoken conversation to practise out loud.</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · MEET ILO -->
+<section class="slide" id="s7" data-section="Meet ilo">
+  <div class="body">
+    <div class="glow" style="left:0;top:60px;width:560px;height:560px;background:rgba(143,168,247,.5)"></div>
+    <div class="hero" data-bloub="shape=circle;color=ilo;expr=happy;size=600;gloss=1"></div>
+    <div class="intro">
+      <div class="kicker">Meet ilo</div>
+      <h1>A teacher<br>with <span class="ilo-c">feelings.</span></h1>
+      <p class="lead">ilo reacts to every answer: proud when you nail it, confused when you don't, asleep when you've been away.</p>
+    </div>
+    <div class="card exprs">
+      <div class="hd"><h3>16 expressions</h3><span>Rendered from the app's own face parameters</span></div>
+      <div class="eg" id="expr-grid"></div>
+    </div>
+    <div class="tile you">
+      <div class="hd"><h3>Every player gets their own bloub</h3><span>8 shapes · 12 colours · unlocked by level</span></div>
+      <div class="shapes" id="shape-row"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · GAME LOOP -->
+<section class="slide" id="s8" data-section="The game loop">
+  <div class="body">
+    <div class="kicker">The game loop</div>
+    <h1>Everything that makes a game<br>hard to put down.</h1>
+    <div class="bento">
+      <div class="b" style="background:var(--peach)"><i class="ic" data-icon="flame" data-size="40px" style="color:var(--flame)"></i><h3>Streaks</h3><p>Daily flame, weekly calendar, and streak freezes for the days life happens.</p></div>
+      <div class="b leagues card"><div class="row" style="justify-content:space-between;align-items:flex-start"><div><h3 style="margin-top:0">8 weekly leagues</h3><p>Named after ilo's shapes. Top 20% move up every week.</p></div><i class="ic" data-icon="trophy" data-size="40px" style="background:var(--peri-mist);color:var(--peri-deep)"></i></div>
+        <div class="lg" id="league-row"></div></div>
+      <div class="b" style="background:var(--butter)"><i class="ic" data-icon="zap" data-size="40px" style="color:#C9921A"></i><h3>XP &amp; levels</h3><p>Every lesson pays XP. Levels unlock new shapes and colours for your bloub.</p></div>
+      <div class="b" style="background:var(--mint)"><i class="ic" data-icon="users" data-size="40px" style="color:#1f7a52"></i><h3>Daily + friend quests</h3><p>Three quests a day, plus a shared quest with a friend.</p></div>
+      <div class="b" style="background:var(--lavender)"><i class="ic" data-icon="star" data-size="40px" style="color:var(--ilo)"></i><h3>15 badges</h3><p>From First Steps to Night Owl, Hello World and Light Feet.</p></div>
+    </div>
+    <div class="phones">
+      <div class="phone"><img src="../shots/streak.png"></div>
+      <div class="phone"><img src="../shots/leagues.png"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · CRAFT -->
+<section class="slide" id="s9" data-section="Craft">
+  <div class="body">
+    <div class="kicker">Craft</div>
+    <h1>Native to the bone.</h1>
+    <div class="bento">
+      <div class="b card"><h3>Liquid Glass</h3><p>iOS 26 glass on floating chrome only: stat pills, tab bar, sheets, the Check bar. Solid, tactile tiles for answers.</p>
+        <div class="v"><div class="glassbg"><div class="glass top">340 gems</div><div class="glass"><i data-icon="book" data-size="34px"></i><i data-icon="trophy" data-size="34px"></i><i data-icon="list" data-size="34px"></i></div></div></div></div>
+      <div class="b" style="background:var(--lavender)"><h3>Core Haptics</h3><p>14 named haptic moments, 8 of them custom patterns: correct, wrong, celebrate, ignite, heartbeat, charge, beat, level up.</p>
+        <div class="v"><div class="hap" id="hap"></div></div></div>
+      <div class="b" style="background:var(--peach)"><h3>Sound, synthesized</h3><p>11 sound effects built at runtime from sine, triangle, square and noise waves. Zero audio files in the repo.</p>
+        <div class="v"><svg id="wave" width="280" height="200" viewBox="0 0 280 200"></svg></div></div>
+      <div class="b" style="background:var(--mint)"><h3>A real mascot engine</h3><p>Ported from an SVG: 64-point silhouettes morph between 8 shapes, eyes are projected on a 3D sphere, blinks on a seeded timeline.</p>
+        <div class="v"><div class="col" style="gap:4px;align-items:center"><div class="morph"><div data-bloub="shape=circle;color=ilo;expr=neutral;size=88"></div><div data-bloub="shape=pebble;color=ilo;expr=curious;size=88"></div><div data-bloub="shape=squircle;color=ilo;expr=happy;size=88"></div></div><div class="morph"><div data-bloub="shape=cloud;color=ilo;expr=surprised;size=88"></div><div data-bloub="shape=droplet;color=ilo;expr=shy;size=88"></div><div data-bloub="shape=hexagon;color=ilo;expr=proud;size=88"></div></div></div></div></div>
+    </div>
+    <div class="ph"><div class="phone"><img src="../shots/lesson-complete.png"></div></div>
+  </div>
+</section>
+
+<!-- 10 · ONBOARDING -->
+<section class="slide" id="s10" data-section="Onboarding">
+  <div class="body">
+    <div class="kicker">Onboarding · 15 steps</div>
+    <h1>You see your path <span class="accent">before</span> we ask you to pay.</h1>
+    <div class="rail">
+      <div><span>1</span>Splash</div><div><span>2</span>Welcome</div><div><span>3</span>How it works</div><div class="k"><span>4</span>Your goal</div><div><span>5</span>Why</div>
+      <div><span>6</span>Deadline</div><div><span>7</span>Level</div><div><span>8</span>Styles</div><div><span>9</span>Minutes</div><div><span>10</span>Name</div>
+      <div><span>11</span>Your bloub</div><div><span>12</span>Reminders</div><div class="k"><span>13</span>Connect Claude</div><div class="k"><span>14</span>Path built live</div><div class="k"><span>15</span>Hold to commit</div>
+      <div class="pw"><span><i data-icon="lock" data-size="24px"></i></span>Paywall</div>
+    </div>
+    <div class="phones">
+      <div><div class="phone"><img src="../shots/goal.png"></div><div class="cap">Any goal<small>Suggestions help, but anything works.</small></div></div>
+      <div class="arrow"><i data-icon="arrow" data-size="36px"></i></div>
+      <div><div class="phone"><img src="../shots/building.png"></div><div class="cap">Built live<small>Research steps and sources stream in.</small></div></div>
+      <div class="arrow"><i data-icon="arrow" data-size="36px"></i></div>
+      <div><div class="phone"><img src="../shots/path-ready.png"></div><div class="cap">Your path<small>Units, lessons, days to goal.</small></div></div>
+      <div class="arrow"><i data-icon="arrow" data-size="36px"></i></div>
+      <div><div class="phone"><img src="../shots/commit.png"></div><div class="cap">Hold to commit<small>A personal pledge, 7 to 30 days.</small></div></div>
+      <div class="arrow"><i data-icon="arrow" data-size="36px"></i></div>
+      <div><div class="phone"><img src="../shots/paywall.png"></div><div class="cap">Then the paywall<small>Right at the peak of motivation.</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · REVENUECAT -->
+<section class="slide" id="s11" data-section="Monetization">
+  <div class="body">
+    <div class="ph"><div class="phone"><img src="../shots/paywall.png"></div></div>
+    <div class="right">
+      <div class="kicker">Monetization with RevenueCat</div>
+      <h1>A hard paywall, placed at the aha moment.</h1>
+      <div class="plans">
+        <div class="plan best"><span class="tag">7 DAYS FREE</span><b>Yearly</b><div class="num">$79.99<small> /year</small></div><p>7-day free trial, about $1.54 a week. The default choice.</p></div>
+        <div class="plan card"><b>Weekly</b><div class="num">$7.99<small> /week</small></div><p>Flexible, cancel anytime. The price anchor.</p></div>
+      </div>
+      <div class="card api">
+        <div class="it"><i data-icon="layers" data-size="28px"></i><div><b>Offerings &amp; packages</b><span><code>$rc_annual</code> and <code>$rc_weekly</code> from the current offering</span></div></div>
+        <div class="it"><i data-icon="key" data-size="28px"></i><div><b>One <code>pro</code> entitlement</b><span>Gates the whole app, checked everywhere</span></div></div>
+        <div class="it"><i data-icon="pulse" data-size="28px"></i><div><b>customerInfoStream</b><span>Access updates live, no relaunch</span></div></div>
+        <div class="it"><i data-icon="gift" data-size="28px"></i><div><b>Trial eligibility check</b><span>The trial timeline only shows to eligible users</span></div></div>
+        <div class="it"><i data-icon="restore" data-size="28px"></i><div><b>Restore purchases</b><span>On the paywall and in Settings</span></div></div>
+        <div class="it"><i data-icon="users" data-size="28px"></i><div><b>App user = Supabase user</b><span><code>logIn</code> with the account id when the backend is on</span></div></div>
+        <div class="it"><i data-icon="flask" data-size="28px"></i><div><b>Test Store ready</b><span>A <code>test_</code> key works without App Store Connect</span></div></div>
+        <div class="it"><i data-icon="shield" data-size="28px"></i><div><b>StoreKit 2 fallback</b><span>Bundled config: anyone can buy in the simulator</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · UNDER THE HOOD -->
+<section class="slide" id="s12" data-section="Under the hood">
+  <div class="body">
+    <div class="kicker">Under the hood</div>
+    <h1>Bring your own Claude.</h1>
+    <div class="arch">
+      <div class="layer app"><b>SwiftUI app</b><div class="chips"><span class="chip">Onboarding</span><span class="chip">Path</span><span class="chip">23 modules</span><span class="chip">Leagues</span><span class="chip">Bloub engine</span></div></div>
+      <div class="layer router"><b>LearningAI router</b><span>Resolved on every call · falls back on any error</span></div>
+      <div class="conn"><div></div><div></div><div></div></div>
+      <div class="brains">
+        <div class="br" style="background:var(--lavender)"><div class="o">FIRST CHOICE</div><h3>Your own Claude</h3>
+          <ul><li>Learner adds an Anthropic API key at sign-up</li><li>Stored in the Keychain, sent only to api.anthropic.com</li><li>Claude Opus 5.5 with live web search plans the path and writes lessons</li></ul>
+          <div class="ft"><i data-icon="key"></i>Bring your own key</div></div>
+        <div class="br" style="background:var(--sky)"><div class="o">IF CONFIGURED</div><h3>ilo backend</h3>
+          <ul><li>Supabase auth, Postgres leaderboards, edge function <code>ilo-ai</code></li><li>Routes to models through OpenRouter</li><li>Serves AI to entitled users only</li></ul>
+          <div class="ft"><i data-icon="server"></i>Optional</div></div>
+        <div class="br" style="background:var(--mint)"><div class="o">ALWAYS THERE</div><h3>Offline brain</h3>
+          <ul><li>3 hand-written flagship courses: salsa, first website, Atomic Habits</li><li>A generic composer for any other goal</li><li>Apple Foundation Models when available</li></ul>
+          <div class="ft"><i data-icon="offline"></i>Zero keys needed</div></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="card stat"><div class="num">25.9k</div><span>lines of Swift across 111 files</span></div>
+      <div class="card stat"><div class="num">22</div><span>XCUITests drive the real app, onboarding to purchase</span></div>
+      <div class="card stat"><div class="num">23/23</div><span>module types checked by the brain self-test</span></div>
+      <div class="card stat"><div class="num">0</div><span>keys needed to run and judge it</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · CLOSING -->
+<section class="slide" id="s13" data-section="What's next">
+  <div class="body">
+    <div class="glow" style="left:1540px;top:80px;width:520px;height:520px;background:rgba(143,168,247,.5)"></div>
+    <div class="hero" data-bloub="shape=circle;color=ilo;expr=proud;size=560;gloss=1"></div>
+    <div class="t">
+      <div class="kicker">What's next</div>
+      <div class="h">Learn anything.<br><span class="accent">Like it's a game.</span></div>
+      <p class="lead">ilo is open source and runs with zero configuration. Clone it, press Run, and build a path for whatever you want to learn next.</p>
+    </div>
+    <div class="next">
+      <div class="nx" style="background:var(--peach)"><i data-icon="sparkles" data-size="38px" style="color:var(--orange)"></i><h3>App Store launch</h3><p>TestFlight with real learners, then the App Store with the RevenueCat paywall live.</p></div>
+      <div class="nx" style="background:var(--lavender)"><i data-icon="users" data-size="38px" style="color:var(--ilo)"></i><h3>Learn together</h3><p>Share a path with a friend and race through it in the same league.</p></div>
+      <div class="nx" style="background:var(--mint)"><i data-icon="flag" data-size="38px" style="color:#1f7a52"></i><h3>More of the real world</h3><p>New modules that leave the screen: instruments, sports, cooking.</p></div>
+    </div>
+    <div class="repo">
+      <div class="u"><i data-icon="github" data-size="64px"></i><div><small>OPEN SOURCE · MIT</small>github.com/chessoren/ilo</div></div>
+      <div class="meta"><span class="chip">SwiftUI · iOS 26</span><span class="chip">Claude</span><span class="chip">RevenueCat</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 · GALLERY -->
+<section class="slide" id="s14" data-bare="1">
+  <div class="gal">
+    <div><div class="phone"><img src="../shots/goal.png"></div><div class="lbl"><b>01</b>Any goal</div></div>
+    <div><div class="phone"><img src="../shots/building.png"></div><div class="lbl"><b>02</b>Path built live</div></div>
+    <div><div class="phone"><img src="../shots/path.png"></div><div class="lbl"><b>03</b>Your path</div></div>
+    <div><div class="phone"><img src="../shots/story-card.png"></div><div class="lbl"><b>04</b>Story cards</div></div>
+    <div><div class="phone"><img src="../shots/metronome.png"></div><div class="lbl"><b>05</b>Haptic metronome</div></div>
+    <div><div class="phone"><img src="../shots/code-lab.png"></div><div class="lbl"><b>06</b>Code lab</div></div>
+    <div><div class="phone"><img src="../shots/lesson-complete.png"></div><div class="lbl"><b>07</b>Lesson complete</div></div>
+    <div><div class="phone"><img src="../shots/streak.png"></div><div class="lbl"><b>08</b>Streak</div></div>
+    <div><div class="phone"><img src="../shots/leagues.png"></div><div class="lbl"><b>09</b>Leagues</div></div>
+    <div><div class="phone"><img src="../shots/paywall.png"></div><div class="lbl"><b>10</b>Paywall</div></div>
+  </div>
+</section>
+
+<script>
+(function () {
+  // Dynamic content that uses the bloub engine.
+  const exprs = ['neutral','attentive','surprised','excited','happy','laughing','angry','sad','scared','suspicious','confused','curious','proud','shy','unimpressed','sleepy'];
+  document.getElementById('expr-grid').innerHTML = exprs.map(e =>
+    `<div><div data-bloub="shape=circle;color=ilo;expr=${e};size=150"></div>${e}</div>`).join('');
+  const shapes = [['circle','ink','happy'],['pebble','orange','curious'],['squircle','violet','excited'],['capsule','green','proud'],['droplet','blue','shy'],['cloud','pink','laughing'],['hexagon','amber','attentive'],['triangle','turquoise','suspicious']];
+  document.getElementById('shape-row').innerHTML = shapes.map(([s,c,e]) =>
+    `<div><div data-bloub="shape=${s};color=${c};expr=${e};size=140"></div>${s}</div>`).join('');
+  const leagues = [['Pebble','pebble','brown'],['Bubble','circle','turquoise'],['Squircle','squircle','orange'],['Capsule','capsule','pink'],['Droplet','droplet','blue'],['Cloud','cloud','violet'],['Hexagon','hexagon','amber'],['Apex','triangle','ink']];
+  document.getElementById('league-row').innerHTML = leagues.map(([n,s,c]) =>
+    `<div><div data-bloub="shape=${s};color=${c};expr=attentive;size=104"></div>${n}</div>`).join('');
+  // Haptic "celebrate"-style bars (illustrative).
+  const bars = [.35,.6,1,.5,.3,.75,.95,.45,.25,.6,.85,.4];
+  document.getElementById('hap').innerHTML = bars.map((h,i) =>
+    `<div style="height:${Math.round(h*200)}px;opacity:${.35 + h*.65}"></div>`).join('');
+  // Synth waveform: decaying sine + harmonics.
+  let d = 'M0,100';
+  for (let x = 0; x <= 280; x += 2) {
+    const t = x / 280, env = Math.exp(-3.2 * t) * (1 - Math.exp(-40 * t));
+    const y = 100 - 88 * env * (Math.sin(t * 58) * .75 + Math.sin(t * 131) * .25);
+    d += ` L${x},${y.toFixed(1)}`;
+  }
+  document.getElementById('wave').innerHTML = `<path d="${d}" fill="none" stroke="#0A0A0C" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`;
+  if (window.bloubRender) window.bloubRender();
+
+  // Header / footer chrome.
+  const slides = [...document.querySelectorAll('.slide')];
+  const total = slides.length;
+  slides.forEach((s, i) => {
+    if (s.dataset.bare) return;
+    const n = String(i + 1).padStart(2, '0');
+    s.insertAdjacentHTML('afterbegin',
+      `<div class="hdr"><div class="wordmark"><div class="m" data-bloub="shape=circle;color=ilo;expr=happy;size=52"></div>ilo</div><div class="section">${s.dataset.section || ''}</div></div>`);
+    s.insertAdjacentHTML('beforeend',
+      `<div class="ftr"><div>Learn anything. Like it's a game.</div><div class="pg"><b>${n}</b> / ${String(total).padStart(2, '0')}</div></div>`);
+  });
+  if (window.bloubRender) window.bloubRender();
+
+  const n = new URLSearchParams(location.search).get('n');
+  if (n) {
+    document.body.classList.add('single');
+    const el = slides[+n - 1];
+    if (el) el.classList.add('on');
+  }
+})();
+</script>
+</body>
+</html>
