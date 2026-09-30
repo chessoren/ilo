@@ -119,6 +119,15 @@ final class PurchaseService {
             Purchases.logLevel = .warn
             #endif
             Purchases.configure(withAPIKey: key)
+            // Share one identity between RevenueCat and Supabase so the backend can verify the `pro`
+            // entitlement before spending AI credits on this learner.
+            if AppConfig.hasBackend {
+                Task {
+                    if let session = try? await SupabaseClient.shared.validSession() {
+                        _ = try? await Purchases.shared.logIn(session.userID)
+                    }
+                }
+            }
             listeners.append(Task { [weak self] in
                 for await info in Purchases.shared.customerInfoStream {
                     self?.apply(info)
