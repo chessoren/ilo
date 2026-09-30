@@ -119,6 +119,10 @@ enum DebugSeed {
         model.friendQuest = FriendQuest(friendName: "Maya", target: 300, mine: 120, theirs: 85,
                                         endsAt: cal.date(byAdding: .day, value: 7, to: cal.startOfWeek(for: .now)) ?? .now)
         model.hasOnboarded = true
+        if ProcessInfo.processInfo.arguments.contains("-demoEmpty") {
+            for c in model.courses { model.delete(c) }
+            model.player.xpByDay[today] = nil
+        }
         model.save()
     }
 

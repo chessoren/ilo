@@ -43,7 +43,8 @@ struct HomeView: View {
                 Text(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide)))
                     .font(.body(15, weight: .medium))
                     .foregroundStyle(Palette.muted)
-                (Text("Hello, ").foregroundStyle(Palette.ink) + Text(name).foregroundStyle(Palette.periwinkleDeep))
+                Text("Hello, \(Text(name).foregroundStyle(Palette.periwinkleDeep))")
+                    .foregroundStyle(Palette.ink)
                     .font(.display(34, weight: .heavy))
                     .lineLimit(1)
                     .minimumScaleFactor(0.6)
@@ -161,6 +162,7 @@ struct ContinueHeroCard: View {
     @Environment(AppModel.self) private var model
     @Environment(AppRouter.self) private var router
     let course: Course
+    @State private var pressed = false
 
     var body: some View {
         let node = model.currentNode(in: course)
@@ -171,7 +173,7 @@ struct ContinueHeroCard: View {
         let unitTotal = unit?.nodes.count ?? 1
         let tint = unit?.tint ?? course.tint
 
-        Button { router.openPath(course) } label: {
+        Group {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(alignment: .top) {
                     Image(systemName: course.symbol)
@@ -237,7 +239,14 @@ struct ContinueHeroCard: View {
             }
             .shadow(color: tint.deep.opacity(0.15), radius: 20, y: 10)
         }
-        .buttonStyle(.squish(0.98))
+        .contentShape(.rect(cornerRadius: 36))
+        .scaleEffect(pressed ? 0.98 : 1)
+        .animation(.spring(response: 0.25, dampingFraction: 0.6), value: pressed)
+        .onTapGesture {
+            Haptics.shared.tap()
+            router.openPath(course)
+        }
+        .onLongPressGesture(minimumDuration: 0.4, pressing: { pressed = $0 }, perform: { router.openPath(course) })
     }
 }
 

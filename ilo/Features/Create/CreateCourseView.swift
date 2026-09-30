@@ -90,7 +90,7 @@ struct CreateCourseView: View {
         HStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("New path").font(.body(15, weight: .semibold)).foregroundStyle(Palette.muted)
-                (Text("What do you want to ") + Text("learn next?").foregroundStyle(Palette.periwinkleDeep))
+                Text("What do you want to \(Text("learn next?").foregroundStyle(Palette.periwinkleDeep))")
                     .font(.display(34, weight: .heavy))
                     .foregroundStyle(Palette.ink)
             }

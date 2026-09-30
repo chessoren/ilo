@@ -51,6 +51,9 @@ struct LeaguesView: View {
         .animation(.spring(response: 0.4, dampingFraction: 0.8), value: meVisible)
         .task(id: model.player.weeklyXP) { await provider.refresh(for: model.player) }
         .onAppear { shown = true }
+        #if DEBUG
+        .task { if DebugSeed.action("friends") { board = .friends } }
+        #endif
     }
 
     private var countdown: some View {

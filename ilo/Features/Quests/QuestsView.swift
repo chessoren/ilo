@@ -224,7 +224,7 @@ private struct FriendQuestCard: View {
     @Environment(AppModel.self) private var model
     let quest: FriendQuest
 
-    private var friendShape: BloubShape { BloubShape.allCases[abs(quest.friendName.hashValue) % BloubShape.allCases.count] }
+    private var friendShape: BloubShape { BloubShape.allCases[quest.friendName.unicodeScalars.reduce(0) { $0 + Int($1.value) } % BloubShape.allCases.count] }
     private var friendColor: BloubColor { [.orange, .pink, .turquoise, .violet, .green][quest.friendName.count % 5] }
 
     var body: some View {
@@ -308,7 +308,7 @@ private struct MonthlyChallengeCard: View {
                 Text("Learn on \(target) days this month")
                     .font(.display(18, weight: .bold)).foregroundStyle(.white)
                 GlossyProgressBar(progress: fraction, tint: Palette.gold, height: 10)
-                Text("\(days)/\(target) days · \(left) days left")
+                Text("\(days)/\(target) days · " + (left == 0 ? "last day!" : "\(left) days left"))
                     .font(.body(12, weight: .semibold)).foregroundStyle(.white.opacity(0.7))
             }
         }

@@ -192,7 +192,7 @@ struct ChestOpenOverlay: View {
             }
             .padding(28)
             .frame(maxWidth: 340)
-            .glassEffect(.regular, in: .rect(cornerRadius: 40, style: .continuous))
+            .glassEffect(.regular.tint(.white.opacity(0.55)), in: .rect(cornerRadius: 40, style: .continuous))
             .padding(24)
         }
         .onAppear {
