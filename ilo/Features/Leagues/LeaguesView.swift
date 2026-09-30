@@ -57,6 +57,18 @@ struct LeaguesView: View {
     }
 
     private var countdown: some View {
+        VStack(spacing: 8) {
+            countdownPill
+            if !AppConfig.hasBackend {
+                // Honest about offline mode: without the ilo backend, rivals are simulated.
+                Label("Practice league: rivals are simulated until ilo is online", systemImage: "wifi.slash")
+                    .font(.body(12, weight: .semibold))
+                    .foregroundStyle(Palette.muted)
+            }
+        }
+    }
+
+    private var countdownPill: some View {
         TimelineView(.periodic(from: .now, by: 1)) { ctx in
             let end = Calendar.current.date(byAdding: .day, value: 7, to: Calendar.current.startOfWeek(for: ctx.date)) ?? ctx.date
             let left = max(0, Int(end.timeIntervalSince(ctx.date)))

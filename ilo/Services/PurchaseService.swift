@@ -1,3 +1,4 @@
+import UserNotifications
 import Foundation
 import Observation
 import RevenueCat
@@ -252,6 +253,7 @@ final class PurchaseService {
             try? await Task.sleep(for: .seconds(1.2))
             debugUnlocked = true
             isPro = true
+            if let days = package.trialDays { Self.scheduleTrialReminder(trialDays: days, price: package.price) }
             return true
             #else
             errorMessage = "The App Store isn't reachable right now. Please try again in a moment."
@@ -282,6 +284,7 @@ final class PurchaseService {
                     return false
                 }
             }
+            if isPro, let days = package.trialDays { Self.scheduleTrialReminder(trialDays: days, price: package.price) }
             return isPro
         } catch ErrorCode.purchaseCancelledError {
             return false
@@ -289,6 +292,20 @@ final class PurchaseService {
             errorMessage = error.localizedDescription
             return false
         }
+    }
+
+    /// Keeps the paywall's promise: a local reminder two days before the free trial converts.
+    static func scheduleTrialReminder(trialDays: Int, price: String) {
+        let center = UNUserNotificationCenter.current()
+        let id = "ilo.trial.reminder"
+        center.removePendingNotificationRequests(withIdentifiers: [id])
+        let content = UNMutableNotificationContent()
+        content.title = "Your free week ends in 2 days"
+        content.body = "After that it's \(price)/year. Keep learning, or cancel anytime in Settings › Subscriptions."
+        content.sound = .default
+        let seconds = TimeInterval(max(trialDays - 2, 1)) * 86_400
+        center.add(UNNotificationRequest(identifier: id, content: content,
+                                         trigger: UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)))
     }
 
     /// Restores previous purchases. Returns true when Pro is active afterwards.
