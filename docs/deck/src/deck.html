@@ -9,7 +9,7 @@
 <script src="icons.js"></script>
 <style>
 /* ---------- 01 title ---------- */
-#s1 .title { position: absolute; left: 120px; top: 300px; width: 1250px; }
+#s1 .title { position: absolute; left: 120px; top: 330px; width: 1250px; }
 #s1 .t1 { font-family: var(--round); font-weight: 800; font-size: 210px; line-height: .98; letter-spacing: -.045em; }
 #s1 .t1 .hl { padding: 0 .12em .04em; margin-left: -.06em; }
 #s1 .t2 { font-family: var(--round); font-weight: 800; font-size: 112px; letter-spacing: -.035em; margin-top: 34px; }
@@ -25,11 +25,11 @@
 #s2 .left { position: absolute; left: 0; top: 40px; width: 1060px; }
 #s2 h1 { font-size: 100px; }
 #s2 h1 span { color: var(--faint); }
-#s2 .pains { margin-top: 80px; display: grid; gap: 30px; }
+#s2 .pains { margin-top: 120px; display: grid; gap: 48px; }
 #s2 .pain { display: flex; gap: 30px; align-items: center; }
-#s2 .pain .ic { width: 96px; height: 96px; border-radius: 30px; display: flex; align-items: center; justify-content: center; flex: none; }
+#s2 .pain .ic { width: 112px; height: 112px; border-radius: 30px; display: flex; align-items: center; justify-content: center; flex: none; }
 #s2 .pain b { display: block; font-family: var(--round); font-size: 40px; letter-spacing: -.015em; }
-#s2 .pain span { font-size: 29px; color: var(--muted); }
+#s2 .pain span { font-size: 30px; color: var(--muted); }
 #s2 .mess { position: absolute; left: 1180px; top: 0; width: 980px; height: 1260px; }
 #s2 .browser { position: absolute; left: 30px; top: 60px; width: 900px; padding: 0 0 36px; transform: rotate(-2.5deg); overflow: hidden; }
 #s2 .tabs { display: flex; gap: 6px; padding: 22px 22px 0; background: #ECEEF4; }
@@ -65,31 +65,32 @@
 
 /* ---------- 04 how it works ---------- */
 #s4 h1 { font-size: 96px; }
-#s4 .steps { position: absolute; top: 200px; left: 0; right: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 44px; }
-#s4 .st { height: 860px; padding: 48px 44px; position: relative; display: flex; flex-direction: column; }
+#s4 .steps { position: absolute; top: 200px; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 44px; }
+#s4 .st { padding: 48px 44px 44px; position: relative; display: flex; flex-direction: column; }
 #s4 .n { width: 68px; height: 68px; border-radius: 50%; background: var(--ink); color: #fff; font-family: var(--round); font-weight: 800; font-size: 32px; display: flex; align-items: center; justify-content: center; }
 #s4 .st h3 { margin-top: 30px; font-size: 44px; }
-#s4 .st p { margin-top: 16px; font-size: 27px; line-height: 1.42; color: rgba(10,10,12,.62); }
+#s4 .st p { margin-top: 18px; font-size: 29px; line-height: 1.42; color: rgba(10,10,12,.62); }
 #s4 .vis { margin-top: auto; }
 #s4 .mini { background: #fff; border-radius: 28px; padding: 22px 24px; box-shadow: 0 10px 30px -12px rgba(40,52,120,.2); }
-#s4 .input { font-family: var(--round); font-weight: 700; font-size: 27px; border: 2.5px solid var(--peri); }
+#s4 .input { font-family: var(--round); font-weight: 700; font-size: 31px; padding: 28px 28px; border: 2.5px solid var(--peri); }
 #s4 .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-#s4 .chips .chip { background: rgba(255,255,255,.75); color: var(--ink2); height: 46px; font-size: 21px; padding: 0 18px; }
-#s4 .src { display: flex; gap: 14px; align-items: center; padding: 11px 0; font-size: 21px; border-bottom: 1.5px solid var(--hair); }
+#s4 .chips .chip { background: rgba(255,255,255,.75); color: var(--ink2); height: 54px; font-size: 24px; padding: 0 22px; }
+#s4 .src { display: flex; gap: 16px; align-items: center; padding: 15px 0; font-size: 25px; border-bottom: 1.5px solid var(--hair); }
 #s4 .src:last-child { border: 0; }
 #s4 .src i { color: #fff; background: var(--green); border-radius: 50%; width: 32px; height: 32px; justify-content: center; align-items: center; flex: none; }
-#s4 .src small { display: block; color: var(--faint); font-size: 17px; }
+#s4 .src small { display: block; color: var(--faint); font-size: 19px; }
 #s4 .unit { background: var(--orange); color: #fff; border-radius: 24px; padding: 18px 22px; font-family: var(--round); }
 #s4 .unit small { font-size: 16px; letter-spacing: .12em; font-weight: 800; opacity: .8; }
-#s4 .unit b { display: block; font-size: 28px; }
+#s4 .unit b { display: block; font-size: 33px; }
 #s4 .nodes { display: flex; gap: 22px; justify-content: center; margin: 22px 0 18px; }
-#s4 .nodes div { width: 78px; height: 78px; border-radius: 50%; background: #fff; box-shadow: inset 0 -6px 0 rgba(10,10,12,.08); display: flex; align-items: center; justify-content: center; color: var(--faint); }
+#s4 .nodes div { width: 92px; height: 92px; border-radius: 50%; background: #fff; box-shadow: inset 0 -6px 0 rgba(10,10,12,.08); display: flex; align-items: center; justify-content: center; color: var(--faint); }
 #s4 .nodes div.on { background: var(--orange); color: #fff; box-shadow: inset 0 -6px 0 rgba(0,0,0,.14), 0 0 0 8px rgba(244,145,63,.25); }
-#s4 .brief { font-size: 20px; line-height: 1.4; color: var(--muted); }
-#s4 .brief b { color: var(--ink); font-family: var(--round); font-size: 23px; display: block; margin-bottom: 4px; }
+#s4 .brief { font-size: 23px; line-height: 1.42; color: var(--muted); }
+#s4 .brief b { color: var(--ink); font-family: var(--round); font-size: 27px; display: block; margin-bottom: 4px; }
 #s4 .mods { display: flex; flex-wrap: wrap; gap: 10px; }
-#s4 .mods .chip { height: 46px; font-size: 21px; background: #fff; color: var(--ink2); padding: 0 18px; }
-#s4 .ready { margin-top: 16px; display: flex; align-items: center; gap: 12px; font-family: var(--round); font-weight: 700; font-size: 22px; color: #1f7a52; }
+#s4 .mods { gap: 12px; }
+#s4 .mods .chip { height: 56px; font-size: 24px; background: #fff; color: var(--ink2); padding: 0 22px; }
+#s4 .ready { margin-top: 24px; display: flex; align-items: center; gap: 12px; font-family: var(--round); font-weight: 700; font-size: 26px; color: #1f7a52; }
 #s4 .foot { position: absolute; left: 0; right: 0; bottom: -10px; display: flex; gap: 18px; justify-content: center; }
 
 /* ---------- 05 modules ---------- */
@@ -101,16 +102,18 @@
 #s5 .gh { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
 #s5 .gh b { font-family: var(--round); font-weight: 800; font-size: 40px; letter-spacing: -.015em; }
 #s5 .gh span { font-family: var(--round); font-weight: 800; font-size: 56px; opacity: .35; }
-#s5 .m { display: flex; gap: 18px; align-items: center; background: rgba(255,255,255,.72); border-radius: 22px; padding: 14px 18px; margin-top: 12px; }
-#s5 .m i { width: 50px; height: 50px; border-radius: 15px; background: #fff; justify-content: center; align-items: center; flex: none; }
-#s5 .m b { display: block; font-family: var(--round); font-size: 26px; }
-#s5 .m span { display: block; font-size: 19px; color: rgba(10,10,12,.55); margin-top: 1px; }
+#s5 .mod { display: flex; gap: 18px; align-items: center; background: rgba(255,255,255,.72); border-radius: 22px; padding: 14px 18px; margin-top: 12px; }
+#s5 .mod i { width: 50px; height: 50px; border-radius: 15px; background: #fff; justify-content: center; align-items: center; flex: none; }
+#s5 .mod b { display: block; font-family: var(--round); font-size: 26px; }
+#s5 .mod span { display: block; font-size: 19px; color: rgba(10,10,12,.55); margin-top: 1px; }
+#s5 .g { display: flex; flex-direction: column; }
+#s5 .peek { margin-top: 22px; flex: 1; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 60px); max-height: 520px; min-height: 200px; border-radius: 26px 26px 0 0; background-size: 100% auto; background-repeat: no-repeat; box-shadow: var(--shadow); margin-bottom: -38px; margin-left: 20px; margin-right: 20px; }
 
 /* ---------- 06 real world ---------- */
-#s6 .phones { position: absolute; left: 0; right: 0; top: 250px; display: flex; justify-content: space-between; }
+#s6 .phones { position: absolute; left: 0; right: 0; top: 230px; display: flex; justify-content: space-between; }
 #s6 .phones > div { width: 388px; }
-#s6 .phone { --w: 388px; height: 770px; }
-#s6 .cap { margin-top: 30px; font-size: 33px; }
+#s6 .phone { --w: 388px; }
+#s6 .cap { margin-top: 26px; font-size: 32px; }
 #s6 .cap i { color: var(--peri-deep); margin-right: 10px; vertical-align: -3px; }
 
 /* ---------- 07 meet ilo ---------- */
@@ -119,53 +122,68 @@
 #s7 .intro h1 { font-size: 110px; }
 #s7 .intro .lead { margin-top: 26px; font-size: 34px; }
 #s7 .facts { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
-#s7 .exprs { position: absolute; left: 900px; top: 0; right: 0; height: 740px; padding: 46px 50px; }
-#s7 .eg { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px 0; margin-top: 18px; }
-#s7 .eg div { text-align: center; font-size: 19px; color: var(--muted); font-family: var(--round); font-weight: 600; }
-#s7 .eg [data-bloub] { width: 150px; height: 150px; margin: 0 auto 2px; }
-#s7 .you { position: absolute; left: 900px; top: 780px; right: 0; bottom: 0; padding: 46px 50px; background: var(--lavender); }
-#s7 .shapes { display: flex; justify-content: space-between; margin-top: 30px; }
-#s7 .shapes div { text-align: center; font-family: var(--round); font-weight: 700; font-size: 20px; color: rgba(10,10,12,.55); }
-#s7 .shapes [data-bloub] { width: 140px; height: 140px; margin-bottom: 6px; }
+#s7 .exprs { position: absolute; left: 900px; top: 0; right: 0; height: 640px; padding: 46px 50px; }
+#s7 .eg { display: grid; grid-template-columns: repeat(8, 1fr); gap: 18px 0; margin-top: 30px; }
+#s7 .eg div { text-align: center; font-size: 21px; color: var(--muted); font-family: var(--round); font-weight: 600; }
+#s7 .eg [data-bloub] { width: 172px; height: 172px; margin: 0 auto 0; }
+#s7 .you { position: absolute; left: 900px; top: 680px; right: 0; bottom: 0; padding: 46px 50px; background: var(--lavender); }
+#s7 .shapes { display: flex; justify-content: space-between; margin-top: 50px; }
+#s7 .shapes div { text-align: center; font-family: var(--round); font-weight: 700; font-size: 22px; color: rgba(10,10,12,.55); }
+#s7 .shapes [data-bloub] { width: 170px; height: 170px; margin-bottom: 10px; }
 #s7 .hd { display: flex; justify-content: space-between; align-items: baseline; }
 #s7 .hd h3 { font-size: 40px; }
 #s7 .hd span { font-size: 25px; color: var(--muted); }
 
 /* ---------- 08 game loop ---------- */
 #s8 h1 { font-size: 92px; width: 1300px; }
-#s8 .bento { position: absolute; left: 0; top: 250px; width: 1420px; bottom: 0; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 30px; }
+#s8 .bento { position: absolute; left: 0; top: 300px; width: 1350px; bottom: 0; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1.12fr 1fr; gap: 30px; }
 #s8 .b { padding: 40px 40px; border-radius: 40px; display: flex; flex-direction: column; }
 #s8 .b i.ic { width: 76px; height: 76px; border-radius: 24px; background: rgba(255,255,255,.75); justify-content: center; align-items: center; }
-#s8 .b h3 { margin-top: 26px; font-size: 40px; }
+#s8 .b h3 { margin-top: 22px; font-size: 40px; }
 #s8 .b p { margin-top: 10px; font-size: 25px; line-height: 1.4; color: rgba(10,10,12,.6); }
 #s8 .b .num { font-size: 92px; line-height: .9; margin-top: auto; }
 #s8 .leagues { grid-column: span 2; }
 #s8 .lg { display: flex; justify-content: space-between; margin-top: auto; align-items: flex-end; }
 #s8 .lg div { text-align: center; font-family: var(--round); font-weight: 700; font-size: 18px; color: var(--muted); }
 #s8 .lg [data-bloub] { width: 104px; height: 104px; margin: 0 auto 4px; }
-#s8 .phones { position: absolute; right: 0; top: 40px; display: flex; gap: 36px; }
-#s8 .phone { --w: 330px; }
-#s8 .phones > div:nth-child(2) { margin-top: 170px; }
+#s8 .phones { position: absolute; right: 0; top: 30px; display: flex; gap: 34px; }
+#s8 .phone { --w: 370px; }
+#s8 .phones > div:nth-child(2) { margin-top: 230px; }
+#s8 .viz { margin-top: auto; }
+#s8 .week { display: flex; gap: 10px; }
+#s8 .week div { flex: 1; text-align: center; font-family: var(--round); font-weight: 700; font-size: 18px; color: rgba(10,10,12,.45); }
+#s8 .week span { display: flex; margin: 8px auto 0; width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.7); align-items: center; justify-content: center; color: #fff; }
+#s8 .week .on span { background: var(--flame); }
+#s8 .week .fz span { background: #8FC7FF; }
+#s8 .xpbar { background: rgba(255,255,255,.7); border-radius: 22px; padding: 18px 22px; }
+#s8 .xpbar .l { display: flex; justify-content: space-between; font-family: var(--round); font-weight: 800; font-size: 22px; }
+#s8 .xpbar .t { height: 16px; border-radius: 8px; background: rgba(10,10,12,.08); margin-top: 12px; overflow: hidden; }
+#s8 .xpbar .t div { height: 100%; width: 72%; border-radius: 8px; background: linear-gradient(90deg, var(--gold), #F0B429); }
+#s8 .q { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,.7); border-radius: 20px; padding: 12px 16px; margin-top: 10px; font-family: var(--round); font-weight: 700; font-size: 21px; }
+#s8 .q i { width: 38px; height: 38px; border-radius: 12px; background: #fff; justify-content: center; align-items: center; color: #1f7a52; flex: none; }
+#s8 .q em { margin-left: auto; font-style: normal; color: rgba(10,10,12,.45); font-size: 19px; }
+#s8 .bd { display: flex; gap: 12px; }
+#s8 .bd span { width: 76px; height: 76px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: inset 0 -5px 0 rgba(0,0,0,.12); }
 
 /* ---------- 09 craft ---------- */
 #s9 h1 { font-size: 92px; }
 #s9 .bento { position: absolute; left: 0; top: 240px; width: 1580px; bottom: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 30px; }
-#s9 .b { padding: 40px 44px; border-radius: 40px; position: relative; overflow: hidden; }
+#s9 .b { padding: 40px 44px; border-radius: 40px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
 #s9 .b h3 { font-size: 42px; }
-#s9 .b p { margin-top: 12px; font-size: 25px; line-height: 1.42; color: rgba(10,10,12,.6); width: 420px; }
-#s9 .b .v { position: absolute; right: 36px; top: 40px; bottom: 40px; width: 280px; display: flex; align-items: center; justify-content: center; }
+#s9 .b p { margin-top: 12px; font-size: 26px; line-height: 1.42; color: rgba(10,10,12,.6); }
+#s9 .b .v { margin-top: auto; height: 190px; position: relative; display: flex; align-items: flex-end; justify-content: center; }
 #s9 .glassbg { position: absolute; inset: 0; border-radius: 30px; overflow: hidden; background: linear-gradient(135deg, #FFD9B8, #F3B7EC 50%, #8FA8F7); }
 #s9 .glassbg::before, #s9 .glassbg::after { content: ''; position: absolute; border-radius: 50%; }
-#s9 .glassbg::before { width: 150px; height: 150px; background: #F4913F; left: 20px; top: 40px; }
-#s9 .glassbg::after { width: 120px; height: 120px; background: #5A6BFF; right: 10px; bottom: 60px; }
-#s9 .glass { position: absolute; left: 20px; right: 20px; bottom: 30px; height: 96px; border-radius: 999px; background: rgba(255,255,255,.35); backdrop-filter: blur(18px) saturate(1.6); -webkit-backdrop-filter: blur(18px) saturate(1.6); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.8), inset 0 -1px 0 rgba(255,255,255,.3), 0 12px 30px rgba(40,52,120,.18); display: flex; align-items: center; justify-content: space-around; color: var(--ink); }
-#s9 .glass.top { top: 30px; bottom: auto; left: 60px; right: 60px; height: 72px; font-family: var(--round); font-weight: 800; font-size: 24px; }
-#s9 .hap { display: flex; align-items: flex-end; gap: 10px; height: 200px; }
+#s9 .glassbg::before { width: 170px; height: 170px; background: #F4913F; left: 70px; top: -20px; }
+#s9 .glassbg::after { width: 140px; height: 140px; background: #5A6BFF; right: 90px; bottom: -30px; }
+#s9 .glass { position: absolute; z-index: 2; left: 150px; right: 150px; bottom: 26px; height: 90px; border-radius: 999px; background: rgba(255,255,255,.35); backdrop-filter: blur(18px) saturate(1.6); -webkit-backdrop-filter: blur(18px) saturate(1.6); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.8), inset 0 -1px 0 rgba(255,255,255,.3), 0 12px 30px rgba(40,52,120,.18); display: flex; align-items: center; justify-content: space-around; color: var(--ink); }
+#s9 .glass.top { top: 22px; bottom: auto; left: 30px; right: auto; width: 200px; height: 64px; font-family: var(--round); font-weight: 800; font-size: 24px; }
+#s9 .hap { display: flex; align-items: center; gap: 12px; height: 190px; width: 100%; justify-content: space-between; }
 #s9 .hap div { width: 16px; border-radius: 8px; background: var(--ink); }
 #s9 .ph { position: absolute; right: 0; top: 30px; }
 #s9 .ph .phone { --w: 520px; }
 #s9 .morph { display: flex; gap: 6px; align-items: center; }
-#s9 .morph [data-bloub] { width: 88px; height: 88px; }
+#s9 .morph [data-bloub] { width: 130px; height: 130px; }
 
 /* ---------- 10 onboarding ---------- */
 #s10 h1 { font-size: 92px; }
@@ -177,12 +195,12 @@
 #s10 .rail div.k { color: var(--ink); }
 #s10 .rail div.pw span { background: var(--ink); color: #fff; }
 #s10 .rail div.pw { color: var(--ink); }
-#s10 .phones { position: absolute; left: 0; right: 0; top: 410px; display: flex; justify-content: space-between; align-items: flex-start; }
-#s10 .phones > div { width: 360px; }
-#s10 .phone { --w: 360px; height: 690px; }
-#s10 .cap { margin-top: 26px; font-size: 30px; }
+#s10 .phones { position: absolute; left: 0; right: 0; top: 400px; display: flex; justify-content: space-between; align-items: flex-start; }
+#s10 .phones > div { width: 340px; }
+#s10 .phone { --w: 340px; }
+#s10 .cap { margin-top: 22px; font-size: 30px; }
 #s10 .cap small { font-size: 23px; }
-#s10 .phones .arrow { width: 40px; height: 690px; display: flex; align-items: center; justify-content: center; color: var(--faint); }
+#s10 .phones .arrow { width: 40px; height: 737px; display: flex; align-items: center; justify-content: center; color: var(--faint); }
 
 /* ---------- 11 revenuecat ---------- */
 #s11 .ph { position: absolute; left: 0; top: 0; }
@@ -205,28 +223,33 @@
 #s11 .why { margin-top: 28px; display: flex; gap: 22px; align-items: center; font-size: 26px; line-height: 1.4; color: var(--ink2); padding: 28px 36px; border-radius: 32px; background: var(--mint); }
 
 /* ---------- 12 under the hood ---------- */
-#s12 h1 { font-size: 92px; }
-#s12 .arch { position: absolute; left: 0; top: 230px; width: 1520px; bottom: 0; }
-#s12 .layer { border-radius: 36px; padding: 30px 38px; }
+#s12 .ph { position: absolute; left: 0; top: 30px; }
+#s12 .ph .phone { --w: 500px; }
+#s12 .ph .tag { margin-top: 26px; text-align: center; font-family: var(--round); font-weight: 700; font-size: 24px; color: var(--muted); }
+#s12 .main { position: absolute; left: 600px; right: 0; top: 0; bottom: 0; }
+#s12 h1 { font-size: 88px; }
+#s12 .arch { margin-top: 44px; }
+#s12 .layer { border-radius: 32px; padding: 24px 34px; }
 #s12 .app { background: #fff; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; }
-#s12 .app b, #s12 .router b { font-family: var(--round); font-size: 36px; }
+#s12 .app b, #s12 .router b { font-family: var(--round); font-size: 34px; }
 #s12 .app .chips { display: flex; gap: 10px; }
-#s12 .router { margin-top: 22px; background: var(--ink); color: #fff; display: flex; justify-content: space-between; align-items: center; }
-#s12 .router span { font-size: 24px; opacity: .65; }
-#s12 .conn { height: 50px; display: flex; justify-content: space-around; }
+#s12 .app .chip { height: 46px; font-size: 21px; padding: 0 18px; }
+#s12 .router { margin-top: 16px; background: var(--ink); color: #fff; display: flex; justify-content: space-between; align-items: center; }
+#s12 .router span { font-size: 23px; opacity: .65; }
+#s12 .conn { height: 36px; display: flex; justify-content: space-around; }
 #s12 .conn div { width: 4px; background: repeating-linear-gradient(180deg, var(--peri) 0 8px, transparent 8px 16px); }
-#s12 .brains { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 26px; }
-#s12 .br { border-radius: 36px; padding: 34px 34px; height: 590px; display: flex; flex-direction: column; }
-#s12 .br .o { font-family: var(--round); font-weight: 800; font-size: 20px; letter-spacing: .12em; opacity: .5; }
-#s12 .br h3 { margin-top: 10px; font-size: 38px; }
-#s12 .br ul { list-style: none; margin-top: 18px; display: grid; gap: 14px; }
-#s12 .br li { font-size: 23px; line-height: 1.36; color: rgba(10,10,12,.66); padding-left: 24px; position: relative; }
-#s12 .br li::before { content: ''; position: absolute; left: 0; top: 12px; width: 9px; height: 9px; border-radius: 50%; background: rgba(10,10,12,.35); }
+#s12 .brains { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+#s12 .br { border-radius: 34px; padding: 32px 34px; height: 590px; display: flex; flex-direction: column; }
+#s12 .br .o { font-family: var(--round); font-weight: 800; font-size: 19px; letter-spacing: .12em; opacity: .5; }
+#s12 .br h3 { margin-top: 8px; font-size: 36px; }
+#s12 .br ul { list-style: none; margin-top: 16px; display: grid; gap: 12px; }
+#s12 .br li { font-size: 25px; line-height: 1.36; color: rgba(10,10,12,.66); padding-left: 22px; position: relative; }
+#s12 .br li::before { content: ''; position: absolute; left: 0; top: 12px; width: 8px; height: 8px; border-radius: 50%; background: rgba(10,10,12,.35); }
 #s12 .br .ft { margin-top: auto; font-family: var(--round); font-weight: 700; font-size: 21px; display: flex; gap: 10px; align-items: center; }
-#s12 .stats { position: absolute; right: 0; top: 0; width: 560px; bottom: 0; display: grid; grid-template-rows: repeat(4, 1fr); gap: 24px; }
-#s12 .stat { padding: 30px 40px; display: flex; flex-direction: column; justify-content: center; }
-#s12 .stat .num { font-size: 96px; line-height: .95; }
-#s12 .stat span { font-size: 25px; color: var(--muted); margin-top: 8px; line-height: 1.3; }
+#s12 .stats { position: absolute; left: 0; right: 0; bottom: 0; height: 190px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+#s12 .stat { padding: 26px 32px; display: flex; flex-direction: column; justify-content: center; }
+#s12 .stat .num { font-size: 76px; line-height: .95; }
+#s12 .stat span { font-size: 22px; color: var(--muted); margin-top: 8px; line-height: 1.3; }
 
 /* ---------- 13 closing ---------- */
 #s13 .hero { position: absolute; left: 1520px; top: 60px; width: 560px; height: 560px; filter: drop-shadow(0 50px 70px rgba(90,107,255,.35)); }
@@ -245,10 +268,10 @@
 #s13 .repo .chip { background: rgba(255,255,255,.12); color: #fff; height: 56px; font-size: 23px; }
 
 /* ---------- 14 gallery ---------- */
-#s14 .gal { position: absolute; left: 110px; right: 110px; top: 70px; bottom: 60px; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: 1fr 1fr; gap: 40px 0; justify-items: center; }
-#s14 .gal > div { display: flex; flex-direction: column; align-items: center; }
-#s14 .phone { --w: 318px; }
-#s14 .lbl { margin-top: 20px; font-family: var(--round); font-weight: 700; font-size: 24px; color: var(--muted); display: flex; gap: 12px; align-items: center; }
+#s14 .gal { position: absolute; left: 110px; right: 110px; top: 64px; bottom: 50px; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: 1fr 1fr; gap: 40px 0; justify-items: center; }
+#s14 .gal > div { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+#s14 .phone { --w: 300px; }
+#s14 .lbl { margin-top: 18px; font-family: var(--round); font-weight: 700; font-size: 24px; color: var(--muted); display: flex; gap: 12px; align-items: center; }
 #s14 .lbl b { color: var(--ink); font-variant-numeric: tabular-nums; }
 </style>
 </head>
@@ -269,13 +292,13 @@
   </div>
   <div class="stage">
     <div class="glow" style="left:120px;top:260px;width:700px;height:700px;background:rgba(143,168,247,.55)"></div>
-    <div class="hero" data-bloub="shape=circle;color=ilo;expr=excited;size=700;gloss=1"></div>
-    <div class="goal" style="left:40px;top:130px;transform:rotate(-4deg)"><span class="pill"><i data-icon="music"></i>Salsa for a wedding</span></div>
-    <div class="goal" style="left:560px;top:70px;transform:rotate(3deg)"><span class="pill"><i data-icon="code"></i>My first website</span></div>
-    <div class="goal" style="left:640px;top:520px;transform:rotate(-3deg)"><span class="pill"><i data-icon="layers"></i>Atomic Habits</span></div>
-    <div class="goal" style="left:-40px;top:620px;transform:rotate(4deg)"><span class="pill"><i data-icon="target"></i>Chess openings</span></div>
-    <div class="goal" style="left:80px;top:1030px;transform:rotate(-3deg)"><span class="pill"><i data-icon="book"></i>Japanese for my trip</span></div>
-    <div class="goal" style="left:540px;top:980px;transform:rotate(3deg)"><span class="pill"><i data-icon="mic"></i>Public speaking</span></div>
+    <div class="hero" data-bloub="shape=circle;color=ilo;expr=neutral;size=700;gloss=1"></div>
+    <div class="goal" style="left:-20px;top:230px;transform:rotate(-4deg)"><span class="pill"><i data-icon="music"></i>Salsa for a wedding</span></div>
+    <div class="goal" style="left:470px;top:110px;transform:rotate(3deg)"><span class="pill"><i data-icon="code"></i>My first website</span></div>
+    <div class="goal" style="left:600px;top:340px;transform:rotate(-3deg)"><span class="pill"><i data-icon="layers"></i>Atomic Habits</span></div>
+    <div class="goal" style="left:-60px;top:840px;transform:rotate(4deg)"><span class="pill"><i data-icon="target"></i>Chess openings</span></div>
+    <div class="goal" style="left:120px;top:1080px;transform:rotate(-3deg)"><span class="pill"><i data-icon="book"></i>Japanese for my trip</span></div>
+    <div class="goal" style="left:580px;top:960px;transform:rotate(3deg)"><span class="pill"><i data-icon="mic"></i>Public speaking</span></div>
   </div>
 </section>
 
@@ -377,38 +400,40 @@
     <div class="grid">
       <div class="g" style="background:var(--peach)">
         <div class="gh"><b>Learn</b><span>3</span></div>
-        <div class="m"><i data-icon="cards" data-size="28px"></i><div><b>Story cards</b><span>Swipeable cards that set the scene</span></div></div>
-        <div class="m"><i data-icon="speaker" data-size="28px"></i><div><b>Listen</b><span>Audio with karaoke captions</span></div></div>
-        <div class="m"><i data-icon="layers" data-size="28px"></i><div><b>Flashcards</b><span>Tap to reveal, again or got it</span></div></div>
+        <div class="mod"><i data-icon="cards" data-size="28px"></i><div><b>Story cards</b><span>Swipeable cards that set the scene</span></div></div>
+        <div class="mod"><i data-icon="speaker" data-size="28px"></i><div><b>Listen</b><span>Audio with karaoke captions</span></div></div>
+        <div class="mod"><i data-icon="layers" data-size="28px"></i><div><b>Flashcards</b><span>Tap to reveal, again or got it</span></div></div>
+        <div class="peek" style="background-image:url(../shots/story-card.png);background-position:0 -120px"></div>
       </div>
       <div class="g" style="background:var(--lavender)">
         <div class="gh"><b>Practice</b><span>8</span></div>
-        <div class="m"><i data-icon="help" data-size="28px"></i><div><b>Quiz</b><span>Multiple choice, shuffled each play</span></div></div>
-        <div class="m"><i data-icon="swipe" data-size="28px"></i><div><b>True or false</b><span>Swipe right or left</span></div></div>
-        <div class="m"><i data-icon="link" data-size="28px"></i><div><b>Match</b><span>Pair each item with its partner</span></div></div>
-        <div class="m"><i data-icon="list" data-size="28px"></i><div><b>Put in order</b><span>Drag steps into sequence</span></div></div>
-        <div class="m"><i data-icon="grid" data-size="28px"></i><div><b>Word bricks</b><span>Build the sentence from tiles</span></div></div>
-        <div class="m"><i data-icon="brackets" data-size="28px"></i><div><b>Fill the gap</b><span>Pick the missing piece</span></div></div>
-        <div class="m"><i data-icon="pen" data-size="28px"></i><div><b>Your words</b><span>Free answer, graded by AI</span></div></div>
-        <div class="m"><i data-icon="chat" data-size="28px"></i><div><b>Roleplay</b><span>Chat with a character</span></div></div>
+        <div class="mod"><i data-icon="help" data-size="28px"></i><div><b>Quiz</b><span>Multiple choice, shuffled each play</span></div></div>
+        <div class="mod"><i data-icon="swipe" data-size="28px"></i><div><b>True or false</b><span>Swipe right or left</span></div></div>
+        <div class="mod"><i data-icon="link" data-size="28px"></i><div><b>Match</b><span>Pair each item with its partner</span></div></div>
+        <div class="mod"><i data-icon="list" data-size="28px"></i><div><b>Put in order</b><span>Drag steps into sequence</span></div></div>
+        <div class="mod"><i data-icon="grid" data-size="28px"></i><div><b>Word bricks</b><span>Build the sentence from tiles</span></div></div>
+        <div class="mod"><i data-icon="brackets" data-size="28px"></i><div><b>Fill the gap</b><span>Pick the missing piece</span></div></div>
+        <div class="mod"><i data-icon="pen" data-size="28px"></i><div><b>Your words</b><span>Free answer, graded by AI</span></div></div>
+        <div class="mod"><i data-icon="chat" data-size="28px"></i><div><b>Roleplay</b><span>Chat with a character</span></div></div>
       </div>
       <div class="g" style="background:var(--mint)">
         <div class="gh"><b>Real world</b><span>5</span></div>
-        <div class="m"><i data-icon="flag" data-size="28px"></i><div><b>Mission</b><span>Do it for real, send photo proof</span></div></div>
-        <div class="m"><i data-icon="code" data-size="28px"></i><div><b>Code lab</b><span>Editor with a live WebKit preview</span></div></div>
-        <div class="m"><i data-icon="camera" data-size="28px"></i><div><b>Camera coach</b><span>Vision counts your reps</span></div></div>
-        <div class="m"><i data-icon="music" data-size="28px"></i><div><b>Metronome</b><span>Haptic count: 1-2-3 · 5-6-7</span></div></div>
-        <div class="m"><i data-icon="phone" data-size="28px"></i><div><b>Call ilo</b><span>A live voice conversation</span></div></div>
+        <div class="mod"><i data-icon="flag" data-size="28px"></i><div><b>Mission</b><span>Do it for real, send photo proof</span></div></div>
+        <div class="mod"><i data-icon="code" data-size="28px"></i><div><b>Code lab</b><span>Editor with a live WebKit preview</span></div></div>
+        <div class="mod"><i data-icon="camera" data-size="28px"></i><div><b>Camera coach</b><span>Vision counts your reps</span></div></div>
+        <div class="mod"><i data-icon="music" data-size="28px"></i><div><b>Metronome</b><span>Haptic count: 1-2-3 · 5-6-7</span></div></div>
+        <div class="mod"><i data-icon="phone" data-size="28px"></i><div><b>Call ilo</b><span>A live voice conversation</span></div></div>
+        <div class="peek" style="background-image:url(../shots/code-lab.png);background-position:0 -150px"></div>
       </div>
       <div class="g" style="background:var(--pink)">
         <div class="gh"><b>ilo originals</b><span>7</span></div>
-        <div class="m"><i data-icon="gauge" data-size="28px"></i><div><b>Guess it</b><span>Drag a slider to estimate</span></div></div>
-        <div class="m"><i data-icon="search" data-size="28px"></i><div><b>Spot the mistake</b><span>Tap the part that's wrong</span></div></div>
-        <div class="m"><i data-icon="filter" data-size="28px"></i><div><b>Sort it</b><span>Drop items into buckets</span></div></div>
-        <div class="m"><i data-icon="cap" data-size="28px"></i><div><b>Teach ilo</b><span>Explain it like ilo is five</span></div></div>
-        <div class="m"><i data-icon="timer" data-size="28px"></i><div><b>Speed round</b><span>30 seconds, true or false</span></div></div>
-        <div class="m"><i data-icon="signpost" data-size="28px"></i><div><b>What would you do?</b><span>Real-life scenarios</span></div></div>
-        <div class="m"><i data-icon="eye" data-size="28px"></i><div><b>Find it</b><span>Tap the words that matter</span></div></div>
+        <div class="mod"><i data-icon="gauge" data-size="28px"></i><div><b>Guess it</b><span>Drag a slider to estimate</span></div></div>
+        <div class="mod"><i data-icon="search" data-size="28px"></i><div><b>Spot the mistake</b><span>Tap the part that's wrong</span></div></div>
+        <div class="mod"><i data-icon="filter" data-size="28px"></i><div><b>Sort it</b><span>Drop items into buckets</span></div></div>
+        <div class="mod"><i data-icon="cap" data-size="28px"></i><div><b>Teach ilo</b><span>Explain it like ilo is five</span></div></div>
+        <div class="mod"><i data-icon="timer" data-size="28px"></i><div><b>Speed round</b><span>30 seconds, true or false</span></div></div>
+        <div class="mod"><i data-icon="signpost" data-size="28px"></i><div><b>What would you do?</b><span>Real-life scenarios</span></div></div>
+        <div class="mod"><i data-icon="eye" data-size="28px"></i><div><b>Find it</b><span>Tap the words that matter</span></div></div>
       </div>
     </div>
   </div>
@@ -456,12 +481,12 @@
     <div class="kicker">The game loop</div>
     <h1>Everything that makes a game<br>hard to put down.</h1>
     <div class="bento">
-      <div class="b" style="background:var(--peach)"><i class="ic" data-icon="flame" data-size="40px" style="color:var(--flame)"></i><h3>Streaks</h3><p>Daily flame, weekly calendar, and streak freezes for the days life happens.</p></div>
+      <div class="b" style="background:var(--peach)"><i class="ic" data-icon="flame" data-size="40px" style="color:var(--flame)"></i><h3>Streaks</h3><p>A daily flame, plus freezes for the days life happens.</p><div class="viz week"><div class="on">M<span><i data-icon="flame" data-size="24px"></i></span></div><div class="on">T<span><i data-icon="flame" data-size="24px"></i></span></div><div class="fz">W<span><i data-icon="snow" data-size="22px"></i></span></div><div class="on">T<span><i data-icon="flame" data-size="24px"></i></span></div><div>F<span></span></div></div></div>
       <div class="b leagues card"><div class="row" style="justify-content:space-between;align-items:flex-start"><div><h3 style="margin-top:0">8 weekly leagues</h3><p>Named after ilo's shapes. Top 20% move up every week.</p></div><i class="ic" data-icon="trophy" data-size="40px" style="background:var(--peri-mist);color:var(--peri-deep)"></i></div>
         <div class="lg" id="league-row"></div></div>
-      <div class="b" style="background:var(--butter)"><i class="ic" data-icon="zap" data-size="40px" style="color:#C9921A"></i><h3>XP &amp; levels</h3><p>Every lesson pays XP. Levels unlock new shapes and colours for your bloub.</p></div>
-      <div class="b" style="background:var(--mint)"><i class="ic" data-icon="users" data-size="40px" style="color:#1f7a52"></i><h3>Daily + friend quests</h3><p>Three quests a day, plus a shared quest with a friend.</p></div>
-      <div class="b" style="background:var(--lavender)"><i class="ic" data-icon="star" data-size="40px" style="color:var(--ilo)"></i><h3>15 badges</h3><p>From First Steps to Night Owl, Hello World and Light Feet.</p></div>
+      <div class="b" style="background:var(--butter)"><i class="ic" data-icon="zap" data-size="40px" style="color:#C9921A"></i><h3>XP &amp; levels</h3><p>Every lesson pays XP. Levels unlock new shapes and colours for your bloub.</p><div class="viz xpbar"><div class="l"><span>Level 3</span><span style="opacity:.5">Level 4</span></div><div class="t"><div></div></div></div></div>
+      <div class="b" style="background:var(--mint)"><i class="ic" data-icon="users" data-size="40px" style="color:#1f7a52"></i><h3>Daily + friend quests</h3><p>Three quests a day, plus a shared quest with a friend.</p><div class="viz"><div class="q"><i data-icon="zap" data-size="22px"></i>Earn 30 XP</div><div class="q"><i data-icon="check" data-size="22px"></i>Finish 2 lessons</div><div class="q"><i data-icon="users" data-size="22px"></i>Team up with a friend</div></div></div>
+      <div class="b" style="background:var(--lavender)"><i class="ic" data-icon="star" data-size="40px" style="color:var(--ilo)"></i><h3>15 badges</h3><p>From First Steps to Night Owl, Hello, World and Light Feet. Plus chests and gems along the path.</p><div class="viz bd"><span style="background:var(--orange)"><i data-icon="star" data-size="34px"></i></span><span style="background:var(--peri-deep)"><i data-icon="flame" data-size="34px"></i></span><span style="background:var(--green)"><i data-icon="code" data-size="34px"></i></span><span style="background:var(--orchid)"><i data-icon="music" data-size="34px"></i></span></div></div>
     </div>
     <div class="phones">
       <div class="phone"><img src="../shots/streak.png"></div>
@@ -481,9 +506,9 @@
       <div class="b" style="background:var(--lavender)"><h3>Core Haptics</h3><p>14 named haptic moments, 8 of them custom patterns: correct, wrong, celebrate, ignite, heartbeat, charge, beat, level up.</p>
         <div class="v"><div class="hap" id="hap"></div></div></div>
       <div class="b" style="background:var(--peach)"><h3>Sound, synthesized</h3><p>11 sound effects built at runtime from sine, triangle, square and noise waves. Zero audio files in the repo.</p>
-        <div class="v"><svg id="wave" width="280" height="200" viewBox="0 0 280 200"></svg></div></div>
+        <div class="v"><svg id="wave" width="690" height="190" viewBox="0 0 690 200" preserveAspectRatio="none"></svg></div></div>
       <div class="b" style="background:var(--mint)"><h3>A real mascot engine</h3><p>Ported from an SVG: 64-point silhouettes morph between 8 shapes, eyes are projected on a 3D sphere, blinks on a seeded timeline.</p>
-        <div class="v"><div class="col" style="gap:4px;align-items:center"><div class="morph"><div data-bloub="shape=circle;color=ilo;expr=neutral;size=88"></div><div data-bloub="shape=pebble;color=ilo;expr=curious;size=88"></div><div data-bloub="shape=squircle;color=ilo;expr=happy;size=88"></div></div><div class="morph"><div data-bloub="shape=cloud;color=ilo;expr=surprised;size=88"></div><div data-bloub="shape=droplet;color=ilo;expr=shy;size=88"></div><div data-bloub="shape=hexagon;color=ilo;expr=proud;size=88"></div></div></div></div></div>
+        <div class="v"><div class="morph" style="width:100%;justify-content:space-between"><div data-bloub="shape=circle;color=ilo;expr=neutral;size=130"></div><div data-bloub="shape=pebble;color=ilo;expr=curious;size=130"></div><div data-bloub="shape=squircle;color=ilo;expr=happy;size=130"></div><div data-bloub="shape=cloud;color=ilo;expr=surprised;size=130"></div><div data-bloub="shape=droplet;color=ilo;expr=shy;size=130"></div><div data-bloub="shape=hexagon;color=ilo;expr=proud;size=130"></div></div></div></div>
     </div>
     <div class="ph"><div class="phone"><img src="../shots/lesson-complete.png"></div></div>
   </div>
@@ -527,7 +552,7 @@
       </div>
       <div class="card api">
         <div class="it"><i data-icon="layers" data-size="28px"></i><div><b>Offerings &amp; packages</b><span><code>$rc_annual</code> and <code>$rc_weekly</code> from the current offering</span></div></div>
-        <div class="it"><i data-icon="key" data-size="28px"></i><div><b>One <code>pro</code> entitlement</b><span>Gates the whole app, checked everywhere</span></div></div>
+        <div class="it"><i data-icon="key" data-size="28px"></i><div><b>One <code>pro</code> entitlement</b><span>Unlocks the whole app after onboarding</span></div></div>
         <div class="it"><i data-icon="pulse" data-size="28px"></i><div><b>customerInfoStream</b><span>Access updates live, no relaunch</span></div></div>
         <div class="it"><i data-icon="gift" data-size="28px"></i><div><b>Trial eligibility check</b><span>The trial timeline only shows to eligible users</span></div></div>
         <div class="it"><i data-icon="restore" data-size="28px"></i><div><b>Restore purchases</b><span>On the paywall and in Settings</span></div></div>
@@ -535,6 +560,7 @@
         <div class="it"><i data-icon="flask" data-size="28px"></i><div><b>Test Store ready</b><span>A <code>test_</code> key works without App Store Connect</span></div></div>
         <div class="it"><i data-icon="shield" data-size="28px"></i><div><b>StoreKit 2 fallback</b><span>Bundled config: anyone can buy in the simulator</span></div></div>
       </div>
+      <div class="why"><i data-icon="sparkles" data-size="40px" style="color:#1f7a52;flex:none"></i><div><b>Why here:</b> the learner has just watched their own path being built and pledged a streak. AI generation is ilo's main per-user cost, so the paywall sits right after that reveal.</div></div>
     </div>
   </div>
 </section>
@@ -542,29 +568,32 @@
 <!-- 12 · UNDER THE HOOD -->
 <section class="slide" id="s12" data-section="Under the hood">
   <div class="body">
-    <div class="kicker">Under the hood</div>
-    <h1>Bring your own Claude.</h1>
-    <div class="arch">
-      <div class="layer app"><b>SwiftUI app</b><div class="chips"><span class="chip">Onboarding</span><span class="chip">Path</span><span class="chip">23 modules</span><span class="chip">Leagues</span><span class="chip">Bloub engine</span></div></div>
-      <div class="layer router"><b>LearningAI router</b><span>Resolved on every call · falls back on any error</span></div>
-      <div class="conn"><div></div><div></div><div></div></div>
-      <div class="brains">
-        <div class="br" style="background:var(--lavender)"><div class="o">FIRST CHOICE</div><h3>Your own Claude</h3>
-          <ul><li>Learner adds an Anthropic API key at sign-up</li><li>Stored in the Keychain, sent only to api.anthropic.com</li><li>Claude Opus 5.5 with live web search plans the path and writes lessons</li></ul>
-          <div class="ft"><i data-icon="key"></i>Bring your own key</div></div>
-        <div class="br" style="background:var(--sky)"><div class="o">IF CONFIGURED</div><h3>ilo backend</h3>
-          <ul><li>Supabase auth, Postgres leaderboards, edge function <code>ilo-ai</code></li><li>Routes to models through OpenRouter</li><li>Serves AI to entitled users only</li></ul>
-          <div class="ft"><i data-icon="server"></i>Optional</div></div>
-        <div class="br" style="background:var(--mint)"><div class="o">ALWAYS THERE</div><h3>Offline brain</h3>
-          <ul><li>3 hand-written flagship courses: salsa, first website, Atomic Habits</li><li>A generic composer for any other goal</li><li>Apple Foundation Models when available</li></ul>
-          <div class="ft"><i data-icon="offline"></i>Zero keys needed</div></div>
+    <div class="ph"><div class="phone"><img src="../shots/claude.png"></div><div class="tag">Connect your Claude · or skip it</div></div>
+    <div class="main">
+      <div class="kicker">Under the hood</div>
+      <h1>Bring your own Claude.</h1>
+      <div class="arch">
+        <div class="layer app"><b>SwiftUI app</b><div class="chips"><span class="chip">Core Haptics</span><span class="chip">AVFoundation</span><span class="chip">Speech</span><span class="chip">Vision</span><span class="chip">WebKit</span></div></div>
+        <div class="layer router"><b>LearningAI router</b><span>Resolved on every call · falls back on any error</span></div>
+        <div class="conn"><div></div><div></div><div></div></div>
+        <div class="brains">
+          <div class="br" style="background:var(--lavender)"><div class="o">FIRST CHOICE</div><h3>Your own Claude</h3>
+            <ul><li>The learner pastes an Anthropic API key at sign-up</li><li>Kept in the Keychain, sent only to api.anthropic.com</li><li>Claude Opus 5.5 with live web search plans paths and writes lessons</li></ul>
+            <div class="ft"><i data-icon="key"></i>Bring your own key</div></div>
+          <div class="br" style="background:var(--sky)"><div class="o">IF CONFIGURED</div><h3>ilo backend</h3>
+            <ul><li>Supabase auth, Postgres leaderboards, edge function <code>ilo-ai</code></li><li>Routes to models through OpenRouter</li><li>Daily AI quota per user, raised for <code>pro</code> via RevenueCat</li></ul>
+            <div class="ft"><i data-icon="server"></i>Optional</div></div>
+          <div class="br" style="background:var(--mint)"><div class="o">ALWAYS THERE</div><h3>Offline brain</h3>
+            <ul><li>3 hand-written flagship courses: salsa, first website, Atomic Habits</li><li>A generic composer for any other goal</li><li>Apple Foundation Models when available</li></ul>
+            <div class="ft"><i data-icon="offline"></i>Zero keys needed</div></div>
+        </div>
       </div>
-    </div>
-    <div class="stats">
-      <div class="card stat"><div class="num">25.9k</div><span>lines of Swift across 111 files</span></div>
-      <div class="card stat"><div class="num">22</div><span>XCUITests drive the real app, onboarding to purchase</span></div>
-      <div class="card stat"><div class="num">23/23</div><span>module types checked by the brain self-test</span></div>
-      <div class="card stat"><div class="num">0</div><span>keys needed to run and judge it</span></div>
+      <div class="stats">
+        <div class="card stat"><div class="num">25.9k</div><span>lines of Swift, 111 files</span></div>
+        <div class="card stat"><div class="num">22</div><span>XCUITests drive the real app</span></div>
+        <div class="card stat"><div class="num">23/23</div><span>modules in the brain self-test</span></div>
+        <div class="card stat"><div class="num">0</div><span>keys needed to run it</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -573,7 +602,7 @@
 <section class="slide" id="s13" data-section="What's next">
   <div class="body">
     <div class="glow" style="left:1540px;top:80px;width:520px;height:520px;background:rgba(143,168,247,.5)"></div>
-    <div class="hero" data-bloub="shape=circle;color=ilo;expr=proud;size=560;gloss=1"></div>
+    <div class="hero" data-bloub="shape=circle;color=ilo;expr=excited;size=560;gloss=1"></div>
     <div class="t">
       <div class="kicker">What's next</div>
       <div class="h">Learn anything.<br><span class="accent">Like it's a game.</span></div>
@@ -595,7 +624,7 @@
 <section class="slide" id="s14" data-bare="1">
   <div class="gal">
     <div><div class="phone"><img src="../shots/goal.png"></div><div class="lbl"><b>01</b>Any goal</div></div>
-    <div><div class="phone"><img src="../shots/building.png"></div><div class="lbl"><b>02</b>Path built live</div></div>
+    <div><div class="phone"><img src="../shots/path-ready.png"></div><div class="lbl"><b>02</b>Built live for you</div></div>
     <div><div class="phone"><img src="../shots/path.png"></div><div class="lbl"><b>03</b>Your path</div></div>
     <div><div class="phone"><img src="../shots/story-card.png"></div><div class="lbl"><b>04</b>Story cards</div></div>
     <div><div class="phone"><img src="../shots/metronome.png"></div><div class="lbl"><b>05</b>Haptic metronome</div></div>
@@ -612,22 +641,22 @@
   // Dynamic content that uses the bloub engine.
   const exprs = ['neutral','attentive','surprised','excited','happy','laughing','angry','sad','scared','suspicious','confused','curious','proud','shy','unimpressed','sleepy'];
   document.getElementById('expr-grid').innerHTML = exprs.map(e =>
-    `<div><div data-bloub="shape=circle;color=ilo;expr=${e};size=150"></div>${e}</div>`).join('');
+    `<div><div data-bloub="shape=circle;color=ilo;expr=${e};size=172"></div>${e}</div>`).join('');
   const shapes = [['circle','ink','happy'],['pebble','orange','curious'],['squircle','violet','excited'],['capsule','green','proud'],['droplet','blue','shy'],['cloud','pink','laughing'],['hexagon','amber','attentive'],['triangle','turquoise','suspicious']];
   document.getElementById('shape-row').innerHTML = shapes.map(([s,c,e]) =>
-    `<div><div data-bloub="shape=${s};color=${c};expr=${e};size=140"></div>${s}</div>`).join('');
+    `<div><div data-bloub="shape=${s};color=${c};expr=${e};size=170"></div>${s}</div>`).join('');
   const leagues = [['Pebble','pebble','brown'],['Bubble','circle','turquoise'],['Squircle','squircle','orange'],['Capsule','capsule','pink'],['Droplet','droplet','blue'],['Cloud','cloud','violet'],['Hexagon','hexagon','amber'],['Apex','triangle','ink']];
   document.getElementById('league-row').innerHTML = leagues.map(([n,s,c]) =>
     `<div><div data-bloub="shape=${s};color=${c};expr=attentive;size=104"></div>${n}</div>`).join('');
   // Haptic "celebrate"-style bars (illustrative).
-  const bars = [.35,.6,1,.5,.3,.75,.95,.45,.25,.6,.85,.4];
+  const bars = [.2,.35,.6,1,.5,.3,.18,.75,.95,.45,.25,.6,.85,.4,.22,.5,.9,.55,.3,.7,1,.45,.2,.35,.6,.3];
   document.getElementById('hap').innerHTML = bars.map((h,i) =>
-    `<div style="height:${Math.round(h*200)}px;opacity:${.35 + h*.65}"></div>`).join('');
+    `<div style="height:${Math.round(h*180)}px;opacity:${.35 + h*.65}"></div>`).join('');
   // Synth waveform: decaying sine + harmonics.
   let d = 'M0,100';
-  for (let x = 0; x <= 280; x += 2) {
-    const t = x / 280, env = Math.exp(-3.2 * t) * (1 - Math.exp(-40 * t));
-    const y = 100 - 88 * env * (Math.sin(t * 58) * .75 + Math.sin(t * 131) * .25);
+  for (let x = 0; x <= 690; x += 2) {
+    const t = x / 690, env = Math.exp(-3.2 * t) * (1 - Math.exp(-40 * t));
+    const y = 100 - 90 * env * (Math.sin(t * 120) * .75 + Math.sin(t * 270) * .25);
     d += ` L${x},${y.toFixed(1)}`;
   }
   document.getElementById('wave').innerHTML = `<path d="${d}" fill="none" stroke="#0A0A0C" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`;
@@ -640,7 +669,7 @@
     if (s.dataset.bare) return;
     const n = String(i + 1).padStart(2, '0');
     s.insertAdjacentHTML('afterbegin',
-      `<div class="hdr"><div class="wordmark"><div class="m" data-bloub="shape=circle;color=ilo;expr=happy;size=52"></div>ilo</div><div class="section">${s.dataset.section || ''}</div></div>`);
+      `<div class="hdr"><div class="wordmark"><div class="m" data-bloub="shape=circle;color=ilo;expr=happy;size=52"></div>ilo</div><div class="section">RevenueCat Shipaton 2026</div></div>`);
     s.insertAdjacentHTML('beforeend',
       `<div class="ftr"><div>Learn anything. Like it's a game.</div><div class="pg"><b>${n}</b> / ${String(total).padStart(2, '0')}</div></div>`);
   });

@@ -21,6 +21,7 @@ const chrome = spawn(chromePath, [
   `--remote-debugging-port=${port}`, '--window-size=2400,1600', 'about:blank'
 ], { stdio: 'ignore' });
 
+const T0 = Date.now(); const log = m => process.env.DEBUG && console.log(((Date.now()-T0)/1000).toFixed(1)+'s', m);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function targets() {
   for (let i = 0; i < 600; i++) {
@@ -30,6 +31,7 @@ async function targets() {
 }
 
 try {
+  log('chrome spawned');
   const page = (await targets()).find(t => t.type === 'page');
   const ws = new WebSocket(page.webSocketDebuggerUrl);
   await new Promise((ok, fail) => { ws.onopen = ok; ws.onerror = fail; });
@@ -42,12 +44,14 @@ try {
   const send = (method, params = {}) => new Promise(r => { const i = ++id; pending.set(i, r); ws.send(JSON.stringify({ id: i, method, params })); });
   const once = method => new Promise(resolve => waiters.push({ method, resolve }));
 
+  log('connected');
   await send('Page.enable');
   await send('Emulation.setDeviceMetricsOverride', { width: 2400, height: 1600, deviceScaleFactor: 1, mobile: false });
   for (const n of list) {
     const loaded = once('Page.loadEventFired');
     await send('Page.navigate', { url: `file://${join(here, 'deck.html')}?n=${n}` });
-    await loaded;
+    await loaded; log('loaded '+n);
+    if (process.env.DEBUG) { const r = await send('Runtime.evaluate', { expression: 'JSON.stringify(performance.getEntriesByType("resource").map(e=>[e.name.split("/").pop(), Math.round(e.startTime), Math.round(e.duration)]).sort((a,b)=>b[2]-a[2]).slice(0,6))' }); log(r.result.result.value); }
     await send('Runtime.evaluate', { expression: 'document.fonts.ready.then(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))))', awaitPromise: true });
     const shot = await send('Page.captureScreenshot', { format: 'png', clip: { x: 0, y: 0, width: 2400, height: 1600, scale: 1 } });
     const file = join(outDir, `slide-${String(n).padStart(2, '0')}.png`);
