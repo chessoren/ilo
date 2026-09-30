@@ -1,8 +1,8 @@
 import Foundation
 import Observation
 
-/// Single call site for leaderboard data. Today it reads the offline `LeagueSimulator`;
-/// swap the two `fetch` bodies for `LeaderboardService` when the backend lands.
+/// Single call site for leaderboard data. `LeaderboardService` reads the Supabase cohort,
+/// and falls back to the offline `LeagueSimulator` when no backend is configured.
 @Observable
 @MainActor
 final class LeaderboardProvider {
@@ -18,10 +18,10 @@ final class LeaderboardProvider {
     }
 
     private func fetchLeague(for player: Player) async -> [LeaderboardEntry] {
-        LeagueSimulator.board(for: player, weekStart: Calendar.current.startOfWeek(for: .now))
+        await LeaderboardService.league(for: player)
     }
 
     private func fetchFriends(for player: Player) async -> [LeaderboardEntry] {
-        LeagueSimulator.friends(for: player)
+        await LeaderboardService.friends(for: player)
     }
 }

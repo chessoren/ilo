@@ -3,6 +3,8 @@ import SwiftUI
 /// Settings: profile, goal, reminders, sound/haptics, purchases, reset, about.
 struct SettingsView: View {
     @Environment(AppModel.self) private var model
+    @Environment(PurchaseService.self) private var store
+    @Environment(\.openURL) private var openURL
     @AppStorage("sound.enabled") private var soundOn = true
     @AppStorage("haptics.enabled") private var hapticsOn = true
     @State private var confirmReset = false
@@ -51,9 +53,11 @@ struct SettingsView: View {
                 Button {
                     restoring = true
                     Task {
-                        try? await Task.sleep(for: .seconds(1.2))
+                        let ok = await store.restore()
                         restoring = false
-                        restoreMessage = "Your purchases are up to date."
+                        restoreMessage = ok && store.isPro
+                            ? "ilo Pro is active on this account."
+                            : (store.errorMessage ?? "No active subscription was found for this account.")
                     }
                 } label: {
                     HStack {
@@ -61,6 +65,11 @@ struct SettingsView: View {
                         Spacer()
                         if restoring { ProgressView() }
                     }
+                }
+                Button {
+                    if let url = URL(string: "https://apps.apple.com/account/subscriptions") { openURL(url) }
+                } label: {
+                    Label("Manage subscription", systemImage: "creditcard.fill")
                 }
             }
 
@@ -110,6 +119,8 @@ struct SettingsView: View {
         } set: { date in
             model.player.reminderHour = Calendar.current.component(.hour, from: date)
             model.save()
+            OnboardingReminders.schedule(hour: model.player.reminderHour, name: model.player.name,
+                                         goal: model.activeCourse?.title ?? "")
         }
     }
 }
