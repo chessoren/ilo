@@ -49,6 +49,7 @@ struct SpotTheMistakeModule: View {
                                     .scaleEffect(selected.contains(i) && !session.isResolved ? 1.05 : 1)
                             }
                             .buttonStyle(.squish(0.94))
+                            .accessibilityIdentifier("segment-\(i)")
                             .disabled(session.isResolved)
                             .modifier(ModuleShakeEffect(shakes: session.phase == .wrong && selected.contains(i) && !answers.contains(i) ? CGFloat(shakes) : 0))
                         }

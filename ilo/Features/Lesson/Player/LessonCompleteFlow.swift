@@ -160,6 +160,7 @@ private struct ContinueButton: View {
     var body: some View {
         Button(title, action: action)
             .buttonStyle(.pill(kind))
+            .accessibilityIdentifier("celebration-continue")
             .padding(.horizontal, Metrics.gutter)
             .padding(.bottom, 8)
     }

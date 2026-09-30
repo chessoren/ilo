@@ -53,6 +53,7 @@ struct HighlightModule: View {
                                 }
                         }
                         .buttonStyle(.squish(0.92))
+                        .accessibilityIdentifier("segment-\(i)")
                         .disabled(session.isResolved)
                     }
                 }

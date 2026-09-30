@@ -62,6 +62,7 @@ struct CreateCourseView: View {
                 Label("Build my path", systemImage: "sparkles")
             }
             .buttonStyle(.pill(.ink))
+            .accessibilityIdentifier("create-build")
             .disabled(!canBuild)
             .padding(.horizontal, Metrics.gutter)
             .padding(.top, 14)
@@ -87,6 +88,7 @@ struct CreateCourseView: View {
             // Building can take a while (on-device / cloud model): always leave a way back.
             .overlay(alignment: .topLeading) {
                 GlassIconButton(systemImage: "xmark", size: 44) { building = nil }
+                    .accessibilityIdentifier("create-build-close")
                     .padding(.horizontal, 16)
                     .padding(.top, 6)
             }
@@ -116,6 +118,7 @@ struct CreateCourseView: View {
                 .lineLimit(2...4)
                 .focused($focused)
                 .submitLabel(.done)
+                .accessibilityIdentifier("create-goal-field")
                 .onSubmit { focused = false }
                 .onChange(of: goal) { _, new in
                     // Vertical TextFields insert "\n" on Return instead of submitting: dismiss the keyboard instead.

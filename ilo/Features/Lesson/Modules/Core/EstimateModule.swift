@@ -151,6 +151,8 @@ struct EstimateModule: View {
             }
             .frame(height: 60)
             .contentShape(.rect)
+            .accessibilityElement()
+            .accessibilityIdentifier("estimate-track")
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { g in

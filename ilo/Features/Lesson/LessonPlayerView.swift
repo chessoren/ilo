@@ -154,6 +154,7 @@ struct LessonPlayingView: View {
                 Haptics.shared.warning()
                 showQuit = true
             }
+            .accessibilityIdentifier("lesson-close")
             GlossyProgressBar(progress: runner.progress, tint: runner.combo >= 3 ? Palette.flame : Palette.success, height: 16)
                 .animation(.smooth, value: runner.combo >= 3)
             if runner.combo >= 3 {
@@ -190,6 +191,8 @@ struct LessonPlayingView: View {
                 .padding(.vertical, 6)
                 .background(session.tint.soft, in: .capsule)
                 .contentTransition(.opacity)
+                .accessibilityElement(children: .combine)
+                .accessibilityIdentifier("module-\(session.module.type.rawValue)")
             }
             Spacer()
         }
@@ -299,6 +302,7 @@ struct LessonCheckBar: View {
                 .contentTransition(.opacity)
         }
         .buttonStyle(.pill(.ink))
+        .accessibilityIdentifier("lesson-check")
         .disabled(!session.canCheck)
         .animation(.smooth(duration: 0.2), value: session.canCheck)
         .padding(.horizontal, 14)
@@ -368,6 +372,7 @@ struct LessonFeedbackPanel: View {
                 onContinue()
             }
             .buttonStyle(.pill(correct ? .success : .danger))
+            .accessibilityIdentifier("lesson-feedback-continue")
             .padding(.top, 4)
         }
         .padding(.horizontal, 20)
@@ -415,6 +420,7 @@ struct LessonQuitSheet: View {
             Spacer(minLength: 8)
             Button("Keep learning", action: onStay)
                 .buttonStyle(.pill(.ink))
+                .accessibilityIdentifier("quit-stay")
             Button {
                 Haptics.shared.thud()
                 onQuit()

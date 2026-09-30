@@ -137,6 +137,7 @@ struct PathView: View {
 
     @ViewBuilder
     private func unitNodes(_ unit: CourseUnit, unitIndex: Int, course: Course, current: PathNode?) -> some View {
+        let globalOffset = course.units.prefix(unitIndex).reduce(0) { $0 + $1.nodes.count }
         let offsets = unit.nodes.indices.map { i in
             CGFloat(sin(Double(i) * .pi / 4)) * 78 * (unitIndex.isMultiple(of: 2) ? 1 : -1)
         }
@@ -168,6 +169,8 @@ struct PathView: View {
                                  selected: selected == node.id) {
                         tap(node)
                     }
+                    .accessibilityIdentifier("node-\(globalOffset + i)")
+                    .accessibilityValue(state == .current ? "current" : (state == .completed ? "completed" : "locked"))
                     .anchorPreference(key: SelectedNodeAnchor.self, value: .bounds) { selected == node.id ? $0 : nil }
                     .overlay(alignment: .top) {
                         if state == .current && selected != node.id {

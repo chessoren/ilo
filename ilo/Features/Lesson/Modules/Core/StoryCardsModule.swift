@@ -42,6 +42,7 @@ struct StoryCardsModule: View {
                 .onTapGesture(coordinateSpace: .local) { location in
                     if location.x < geo.size.width * 0.3 { back() } else { next() }
                 }
+                .accessibilityIdentifier("story-cards")
             }
             .padding(.horizontal, Metrics.gutter)
             .padding(.bottom, 26)
@@ -56,6 +57,7 @@ struct StoryCardsModule: View {
                         Label("Got it", systemImage: "checkmark")
                     }
                     .buttonStyle(.pill(.ink))
+                    .accessibilityIdentifier("module-done")
                     .transition(.scale(scale: 0.8).combined(with: .opacity))
                 } else {
                     HStack(spacing: 6) {

@@ -219,6 +219,7 @@ struct PathBuildingView: View {
                 VStack(spacing: 14) {
                     stats(course)
                         .padding(.top, 14)
+                        .id("reveal-top")
                     ForEach(Array(course.units.enumerated()), id: \.element.id) { u, unit in
                         let offset = course.units[..<u].reduce(0) { $0 + $1.nodes.count }
                         unitCard(unit, index: u, offset: offset)
@@ -239,6 +240,18 @@ struct PathBuildingView: View {
             .onChange(of: revealed) {
                 guard let unit = unitIndex(forNode: revealed - 1, in: course) else { return }
                 withAnimation(.smooth) { proxy.scrollTo(course.units[unit].id, anchor: .center) }
+            }
+            // Once everything is revealed, glide back to the start of the path (stats + unit 1).
+            .onChange(of: stage) { _, new in
+                guard new == .ready else { return }
+                Task {
+                    try? await Task.sleep(for: .milliseconds(600))
+                    withAnimation(.smooth(duration: 0.9)) { proxy.scrollTo("reveal-top", anchor: .top) }
+                }
+            }
+            .mask {
+                LinearGradient(stops: [.init(color: .clear, location: 0), .init(color: .black, location: 0.03),
+                                       .init(color: .black, location: 1)], startPoint: .top, endPoint: .bottom)
             }
         }
     }
@@ -344,6 +357,7 @@ struct PathBuildingView: View {
                     }
                 }
                 .buttonStyle(.pill(.ink))
+                .accessibilityIdentifier("path-ready")
                 .padding(.horizontal, Metrics.gutter)
                 .padding(.vertical, 8)
                 .transition(.move(edge: .bottom).combined(with: .opacity))

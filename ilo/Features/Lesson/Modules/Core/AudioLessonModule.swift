@@ -125,6 +125,7 @@ struct AudioLessonModule: View {
                 Text(reader.finished ? "Continue" : "I've got it")
             }
             .buttonStyle(.pill(reader.finished ? .ink : .white))
+            .accessibilityIdentifier("module-done")
         }
         .padding(14)
         .glassEffect(.regular, in: .rect(cornerRadius: 34, style: .continuous))

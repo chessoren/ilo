@@ -140,6 +140,7 @@ struct TrueFalseModule: View {
                 .frame(height: 56)
         }
         .buttonStyle(.answerTile(value ? .correct : .wrong, radius: 28))
+        .accessibilityIdentifier(value ? "tf-true" : "tf-false")
     }
 
     private var swipeGesture: some Gesture {

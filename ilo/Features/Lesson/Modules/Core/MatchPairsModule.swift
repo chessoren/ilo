@@ -73,6 +73,7 @@ struct MatchPairsModule: View {
                         .padding(.horizontal, 8)
                 }
                 .buttonStyle(.answerTile(state(for: item), radius: 18))
+                .accessibilityIdentifier("match-\(item.isLeft ? "L" : "R")-\(i)")
                 .disabled(isMatched || session.isResolved)
                 .scaleEffect(justMatched == item.pairID ? 1.08 : 1)
                 .opacity(isMatched && justMatched != item.pairID && !session.isResolved ? 0.4 : 1)

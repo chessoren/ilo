@@ -46,6 +46,7 @@ struct OBGoalStep: View {
                 OBFlowLayout(spacing: 8, lineSpacing: 10) {
                     ForEach(Array(suggestions.enumerated()), id: \.element.id) { i, s in
                         OBChip(title: s.text, symbol: s.symbol, selected: answers.trimmedGoal == s.text) { fill(s.text) }
+                            .accessibilityIdentifier("suggestion-\(i)")
                             .appear(visible, delay: 0.15 + Double(i) * 0.05)
                     }
                 }
@@ -90,6 +91,7 @@ struct OBGoalStep: View {
                 .submitLabel(.done)
                 .onSubmit { focused = false; onSubmit() }
                 .textInputAutocapitalization(.sentences)
+                .accessibilityIdentifier("goal-field")
         }
         .padding(.horizontal, 22)
         .padding(.vertical, 24)
@@ -209,6 +211,7 @@ struct OBWhyStep: View {
             .animation(.spring(response: 0.3, dampingFraction: 0.6), value: selected)
         }
         .buttonStyle(.squish(0.95))
+        .accessibilityIdentifier("choice")
     }
 }
 
@@ -334,6 +337,7 @@ struct OBStylesStep: View {
             .animation(.spring(response: 0.3, dampingFraction: 0.65), value: selected)
         }
         .buttonStyle(.squish(0.95))
+        .accessibilityIdentifier("choice")
     }
 }
 
@@ -426,6 +430,7 @@ struct OBNameStep: View {
                 .submitLabel(.continue)
                 .focused($focused)
                 .onSubmit(onSubmit)
+                .accessibilityIdentifier("name-field")
                 .padding(.vertical, 22)
                 .padding(.horizontal, 18)
                 .glassEffect(.regular.tint(.white.opacity(0.55)).interactive(), in: .rect(cornerRadius: 30, style: .continuous))

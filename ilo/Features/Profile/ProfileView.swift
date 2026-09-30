@@ -177,6 +177,7 @@ struct ProfileView: View {
                             BadgeCircle(badge: b, unlocked: p.unlockedBadges.contains(b), size: 64)
                         }
                         .buttonStyle(.squish)
+                        .accessibilityIdentifier("badge")
                     }
                 }
                 .padding(.horizontal, Metrics.gutter)
@@ -194,12 +195,15 @@ struct ProfileView: View {
             NavigationLink { BloubStudioView() } label: {
                 LinkRow(symbol: "paintpalette.fill", title: "Customize my bloub", subtitle: "Shapes & colours")
             }
+            .accessibilityIdentifier("link-bloub")
             NavigationLink { ShopView() } label: {
                 LinkRow(symbol: "bag.fill", title: "Shop", subtitle: "\(model.player.gems) gems to spend")
             }
+            .accessibilityIdentifier("link-shop")
             NavigationLink { SettingsView() } label: {
                 LinkRow(symbol: "gearshape.fill", title: "Settings", subtitle: "Goal, reminders, sound")
             }
+            .accessibilityIdentifier("link-settings")
         }
         .buttonStyle(.squish(0.98))
     }

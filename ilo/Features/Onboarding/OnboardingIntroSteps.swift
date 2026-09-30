@@ -48,6 +48,10 @@ struct OBSplashStep: View {
         .frame(maxWidth: .infinity)
         .contentShape(.rect)
         .onTapGesture { done() }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("ilo")
+        .accessibilityAddTraits(.isButton)
+        .accessibilityIdentifier("splash")
         .task {
             withAnimation(.spring(response: 0.55, dampingFraction: 0.6)) { entered = true }
             Haptics.shared.softTap()
@@ -138,6 +142,7 @@ struct OBWelcomeStep: View {
                 }
             }
             .buttonStyle(.pill(.ink))
+            .accessibilityIdentifier("welcome-start")
             .appear(visible, delay: 0.45)
 
             Text("Takes 2 minutes. No account needed.")

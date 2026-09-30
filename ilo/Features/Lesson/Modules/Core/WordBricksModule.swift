@@ -67,6 +67,7 @@ struct WordBricksModule: View {
                                 brickLabel(brick.text)
                             }
                             .buttonStyle(.answerTile(session.isResolved ? .dimmed : .idle, radius: 14))
+                            .accessibilityIdentifier("brick")
                             .matchedGeometryEffect(id: brick.id, in: ns)
                             .disabled(session.isResolved)
                         }

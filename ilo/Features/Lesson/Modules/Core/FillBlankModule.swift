@@ -67,6 +67,7 @@ struct FillBlankModule: View {
                                 chipText(option)
                             }
                             .buttonStyle(.answerTile(session.isResolved ? .dimmed : .idle, radius: 16))
+                            .accessibilityIdentifier("answer-\(i)")
                             .matchedGeometryEffect(id: i, in: ns)
                             .disabled(session.isResolved)
                         }

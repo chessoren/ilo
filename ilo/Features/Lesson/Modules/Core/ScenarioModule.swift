@@ -58,6 +58,7 @@ struct ScenarioModule: View {
                                 .contentShape(.rect)
                             }
                             .buttonStyle(.answerTile(tileState(i), radius: 22))
+                            .accessibilityIdentifier("answer-\(i)")
                             .disabled(revealed)
 
                             if revealed && selected == i, let consequence = consequence(for: i) {

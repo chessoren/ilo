@@ -46,6 +46,7 @@ struct OnboardingFlow: View {
                     }
                 }
                 .buttonStyle(.pill(.ink))
+                .accessibilityIdentifier("onboarding-continue")
                 .disabled(!canContinue)
                 .animation(.smooth, value: canContinue)
                 .padding(.horizontal, Metrics.gutter)

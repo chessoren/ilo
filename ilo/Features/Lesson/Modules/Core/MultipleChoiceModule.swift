@@ -36,6 +36,7 @@ struct MultipleChoiceModule: View {
                             .contentShape(.rect)
                         }
                         .buttonStyle(.answerTile(state(for: i), radius: 20))
+                        .accessibilityIdentifier("answer-\(i)")
                         .scaleEffect(selected == i && !session.isResolved ? 1.02 : 1)
                         .modifier(ModuleShakeEffect(shakes: session.phase == .wrong && selected == i ? CGFloat(shakes) : 0))
                         .disabled(session.isResolved)

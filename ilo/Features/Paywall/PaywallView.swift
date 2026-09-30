@@ -111,6 +111,7 @@ struct PaywallView: View {
                 .background(Palette.ink, in: .capsule)
         }
         .contentShape(.rect)
+        .accessibilityIdentifier("paywall-logo")
         .onLongPressGesture(minimumDuration: 1.5) {
             #if DEBUG
             store.isCelebrating = true
@@ -138,6 +139,7 @@ struct PaywallView: View {
                     }
                 }
                 .buttonStyle(.pill(.ink))
+                .accessibilityIdentifier("paywall-next")
                 Text(trialLine)
                     .font(.body(13, weight: .medium))
                     .foregroundStyle(Palette.muted)
@@ -153,6 +155,7 @@ struct PaywallView: View {
                     }
                 }
                 .buttonStyle(.pill(.victory))
+                .accessibilityIdentifier("paywall-cta")
                 .disabled(store.isPurchasing || store.isRestoring || selected == nil)
                 .phaseAnimator([1.0, 1.035, 1.0, 1.02, 1.0], trigger: heartbeat) { view, s in
                     view.scaleEffect(s)

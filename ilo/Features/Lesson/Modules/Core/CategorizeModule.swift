@@ -42,6 +42,9 @@ struct CategorizeModule: View {
                                 .offset(dragItem == item.id ? dragTranslation : .zero)
                                 .zIndex(dragItem == item.id ? 10 : 0)
                                 .onTapGesture { select(item) }
+                                .accessibilityElement(children: .combine)
+                                .accessibilityAddTraits(.isButton)
+                                .accessibilityIdentifier("cat-item")
                                 .gesture(dragGesture(for: item))
                         }
                     }
@@ -117,6 +120,7 @@ struct CategorizeModule: View {
         .animation(.spring(response: 0.3, dampingFraction: 0.6), value: targeted)
         .contentShape(.rect)
         .onTapGesture { drop(into: b) }
+        .accessibilityIdentifier("cat-bucket-\(b)")
         .onGeometryChange(for: CGRect.self) { $0.frame(in: .named("categorize")) } action: { bucketFrames[b] = $0 }
     }
 

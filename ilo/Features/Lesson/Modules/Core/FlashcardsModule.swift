@@ -66,6 +66,7 @@ struct FlashcardsModule: View {
                             .frame(maxWidth: .infinity).frame(height: 54)
                     }
                     .buttonStyle(.answerTile(.correct, radius: 27))
+                    .accessibilityIdentifier("flash-gotit")
                 }
                 .padding(.horizontal, Metrics.gutter)
                 .padding(.bottom, 8)
@@ -130,6 +131,7 @@ struct FlashcardsModule: View {
                 session.finish()
             }
             .buttonStyle(.pill(.ink))
+            .accessibilityIdentifier("module-done")
             .padding(.top, 10)
         }
         .padding(24)

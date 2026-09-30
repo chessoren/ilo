@@ -446,6 +446,7 @@ struct OBCommitStep: View {
             .font(.body(16))
             .foregroundStyle(Palette.ink2)
             .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity)
             .card(Palette.peach.opacity(0.6), radius: 24, padding: 16)
             .contentTransition(.numericText())
@@ -494,6 +495,7 @@ struct OBCommitStep: View {
         }
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel("Hold to commit")
+        .accessibilityIdentifier("commit-hold")
         .accessibilityAction { commit() }
     }
 

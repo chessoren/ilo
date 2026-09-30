@@ -156,6 +156,7 @@ private struct QuestRow: View {
                 .shadow(color: Palette.gold.opacity(0.5), radius: 8, y: 4)
             }
             .buttonStyle(.squish(0.9))
+            .accessibilityIdentifier("quest-claim")
             .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { frame = $0 }
         } else {
             VStack(spacing: 2) {

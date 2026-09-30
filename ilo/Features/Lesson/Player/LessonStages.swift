@@ -341,6 +341,7 @@ struct LessonIntroView: View {
                     Label("Start lesson", systemImage: "play.fill")
                 }
                 .buttonStyle(.pill(.ink))
+                .accessibilityIdentifier("lesson-start")
                 .padding(.horizontal, Metrics.gutter)
                 .padding(.bottom, 8)
                 .appear(appeared, delay: 0.3)

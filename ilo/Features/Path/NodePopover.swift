@@ -117,6 +117,7 @@ struct NodePopover: View {
             if node.kind == .chest {
                 Button { perform(.openChest) } label: { Label("Open chest", systemImage: "gift.fill") }
                     .buttonStyle(.pill(.ink, height: 50))
+                    .accessibilityIdentifier("node-open-chest")
             } else {
                 Button { perform(.start) } label: {
                     HStack(spacing: 6) {
@@ -125,6 +126,7 @@ struct NodePopover: View {
                     }
                 }
                 .buttonStyle(.pill(.ink, height: 50))
+                .accessibilityIdentifier("node-start")
             }
         case .completed:
             if node.kind == .chest {

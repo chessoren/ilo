@@ -42,6 +42,7 @@ struct ReorderModule: View {
                             .offset(y: isDragging ? dragOffset : 0)
                             .zIndex(isDragging ? 10 : 0)
                             .gesture(dragGesture(for: row), including: session.isResolved ? .subviews : .all)
+                            .accessibilityIdentifier("reorder-row-\(position)")
                             .appear(appeared, delay: 0.05 + Double(position) * 0.05)
                     }
                 }

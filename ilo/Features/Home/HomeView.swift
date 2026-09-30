@@ -212,6 +212,7 @@ struct ContinueHeroCard: View {
                             }
                         }
                         .buttonStyle(.pill(.ink, height: 50, fullWidth: false))
+                        .accessibilityIdentifier("home-continue")
                     }
                     Spacer()
                     if let node, model.generating.contains(node.id) {
@@ -247,6 +248,7 @@ struct ContinueHeroCard: View {
             router.openPath(course)
         }
         .onLongPressGesture(minimumDuration: 0.4, pressing: { pressed = $0 }, perform: { router.openPath(course) })
+        .accessibilityIdentifier("home-hero")
     }
 }
 

@@ -232,6 +232,7 @@ struct SpeedRoundModule: View {
             .frame(height: 96)
         }
         .buttonStyle(.answerTile(value ? .correct : .wrong, radius: 28, lip: 6))
+        .accessibilityIdentifier(value ? "speed-true" : "speed-false")
     }
 
     private var passed: Bool { Double(score) >= Double(order.count) * 0.7 }

@@ -98,6 +98,7 @@ struct OBChoiceCard<Accessory: View>: View {
             .animation(.spring(response: 0.3, dampingFraction: 0.7), value: selected)
         }
         .buttonStyle(.squish(0.97))
+        .accessibilityIdentifier("choice")
     }
 }
 
