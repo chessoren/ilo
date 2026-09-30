@@ -18,6 +18,8 @@ struct CategorizeModule: View {
     private var buckets: [String] { session.module.buckets ?? [] }
 
     var body: some View {
+        // Scrolls when many items land in one bucket, so nothing hides behind the feedback panel.
+        ScrollView {
         VStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 20) {
                 ModulePrompt(title: session.module.title, prompt: session.module.prompt ?? "Sort these into the right group")
@@ -65,6 +67,9 @@ struct CategorizeModule: View {
             Spacer(minLength: 0)
         }
         .coordinateSpace(.named("categorize"))
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .scrollDisabled(dragItem != nil)
         .animation(.spring(response: 0.4, dampingFraction: 0.78), value: placed)
         .animation(.spring(response: 0.3, dampingFraction: 0.65), value: selected)
         .onAppear {

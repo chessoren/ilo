@@ -20,6 +20,8 @@ final class ModulesE2ETests: IloUITestCase {
         playLessonToEnd(maxSteps: 6)
         XCTAssertTrue(button("celebration-continue").waitForExistence(timeout: 12), "\(type): lesson did not finish",
                       file: file, line: line)
+        // Leave the app idle on its root screen before teardown.
+        finishCelebration()
     }
 
     func testStoryCards() { run("storyCards", graded: false) }
