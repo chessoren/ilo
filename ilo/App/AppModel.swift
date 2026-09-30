@@ -1,6 +1,7 @@
 import Foundation
 import Observation
 import SwiftUI
+import UserNotifications
 
 /// Rewards produced by finishing a lesson — drives the celebration sequence.
 struct RewardSummary: Hashable, Sendable {
@@ -422,6 +423,7 @@ final class AppModel {
 
     /// Wipes everything (Settings → Reset).
     func reset() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         player = Player()
         courses = []
         progress = [:]

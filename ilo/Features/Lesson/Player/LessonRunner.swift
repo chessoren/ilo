@@ -168,6 +168,21 @@ extension LessonModule {
         m.statements = m.statements?.map { var st = $0; st.id = UUID(); return st }
         m.pairs = m.pairs?.map { var p = $0; p.id = UUID(); return p }
         m.items = m.items?.map { var i = $0; i.id = UUID(); return i }
+        return m.withShuffledChoices()
+    }
+
+    /// Shuffles single-answer choices (keeping `correctIndex` and scenario consequences aligned)
+    /// so the right answer isn't always in the same slot.
+    func withShuffledChoices() -> LessonModule {
+        guard [.multipleChoice, .fillBlank, .scenario].contains(type),
+              let options, let correct = correctIndex, options.indices.contains(correct) else { return self }
+        var m = self
+        let order = Array(options.indices).shuffled()
+        m.options = order.map { options[$0] }
+        m.correctIndex = order.firstIndex(of: correct)
+        if let consequences, consequences.count == options.count {
+            m.consequences = order.map { consequences[$0] }
+        }
         return m
     }
 }
