@@ -92,7 +92,7 @@ async function authenticate(req: Request): Promise<{ userId: string; admin: Supa
 
 async function enforceRateLimit(admin: SupabaseClient, userId: string, action: string) {
   const since = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
-  const { count, error } = await admin.from("ai_usage").select("id", { count: "exact", head: true })
+  const { count, error } = await admin.from("ilo_ai_usage").select("id", { count: "exact", head: true })
     .eq("user_id", userId).eq("action", action).gte("created_at", since);
   if (error) { console.warn("[rate-limit] skipped:", error.message); return; }
   let limit = DAILY_LIMITS[action] ?? 100;
@@ -118,7 +118,7 @@ async function isPro(userId: string): Promise<boolean> {
 }
 
 async function recordUsage(admin: SupabaseClient, userId: string, action: string, model: string, tokensIn?: number, tokensOut?: number) {
-  const { error } = await admin.from("ai_usage").insert({ user_id: userId, action, model, tokens_in: tokensIn ?? null, tokens_out: tokensOut ?? null });
+  const { error } = await admin.from("ilo_ai_usage").insert({ user_id: userId, action, model, tokens_in: tokensIn ?? null, tokens_out: tokensOut ?? null });
   if (error) console.warn("[usage]", error.message);
 }
 
@@ -139,11 +139,11 @@ async function plan(body: J, admin: SupabaseClient, userId: string, emit: Emit):
   const goalHash = await sha256(`${normalise(goal)}|${request.level ?? 1}`);
   const personal = !!request.motivation || !!request.deadline;
   if (!personal) {
-    const { data: cached } = await admin.from("courses_shared").select("course, sources, hits").eq("goal_hash", goalHash).maybeSingle();
+    const { data: cached } = await admin.from("ilo_courses_shared").select("course, sources, hits").eq("goal_hash", goalHash).maybeSingle();
     if (cached?.course) {
       step("researching", "Found a proven path for this goal", `${(cached.sources ?? []).length} sources`);
       step("designing", "Personalising it for you");
-      await admin.from("courses_shared").update({ hits: (cached.hits ?? 0) + 1 }).eq("goal_hash", goalHash);
+      await admin.from("ilo_courses_shared").update({ hits: (cached.hits ?? 0) + 1 }).eq("goal_hash", goalHash);
       const course = { ...cached.course, sources: cached.sources ?? cached.course.sources ?? [] };
       step("done", "Your path is ready");
       emit("course", course);
@@ -206,7 +206,7 @@ async function plan(body: J, admin: SupabaseClient, userId: string, emit: Emit):
 
   await recordUsage(admin, userId, "plan", result.model, result.tokensIn, result.tokensOut);
   if (!personal) {
-    await admin.from("courses_shared").upsert({ goal_hash: goalHash, goal, course, sources: course.sources, model: result.model });
+    await admin.from("ilo_courses_shared").upsert({ goal_hash: goalHash, goal, course, sources: course.sources, model: result.model });
   }
   emit("course", course);
   return course;
@@ -221,9 +221,9 @@ async function lesson(body: J, admin: SupabaseClient, userId: string): Promise<J
   const key = await sha256([normalise(String(body.course?.goal ?? "")), node.title, node.brief, node.kind, body.course?.level].join("|"));
 
   if (!personalised) {
-    const { data: cached } = await admin.from("lessons_shared").select("lesson, hits").eq("lesson_key", key).maybeSingle();
+    const { data: cached } = await admin.from("ilo_lessons_shared").select("lesson, hits").eq("lesson_key", key).maybeSingle();
     if (cached?.lesson) {
-      await admin.from("lessons_shared").update({ hits: (cached.hits ?? 0) + 1 }).eq("lesson_key", key);
+      await admin.from("ilo_lessons_shared").update({ hits: (cached.hits ?? 0) + 1 }).eq("lesson_key", key);
       return cached.lesson;
     }
   }
@@ -257,7 +257,7 @@ async function lesson(body: J, admin: SupabaseClient, userId: string): Promise<J
   }
   if (best.valid === 0) throw new HttpError(502, "the model produced no playable modules");
   if (!personalised && best.valid >= 6) {
-    await admin.from("lessons_shared").upsert({ lesson_key: key, lesson: best.lesson, model: first.model });
+    await admin.from("ilo_lessons_shared").upsert({ lesson_key: key, lesson: best.lesson, model: first.model });
   }
   return best.lesson;
 }

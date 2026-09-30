@@ -39,7 +39,7 @@ enum LeaderboardService {
         guard AppConfig.hasBackend else { return LeagueSimulator.board(for: player, weekStart: player.weekStart) }
         do {
             await syncProfile(player)
-            let data = try await SupabaseClient.shared.rpc("leaderboard", params: Empty())
+            let data = try await SupabaseClient.shared.rpc("ilo_leaderboard", params: Empty())
             var rows = try JSONDecoder().decode([Row].self, from: data).map { entry(from: $0, player: player) }
             if rows.count < minimumCohort {
                 let bots = LeagueSimulator.board(for: player, weekStart: player.weekStart, size: minimumCohort - rows.count + 1)
@@ -56,7 +56,7 @@ enum LeaderboardService {
     static func friends(for player: Player) async -> [LeaderboardEntry] {
         guard AppConfig.hasBackend else { return LeagueSimulator.friends(for: player) }
         do {
-            let data = try await SupabaseClient.shared.rpc("friends_board", params: Empty())
+            let data = try await SupabaseClient.shared.rpc("ilo_friends_board", params: Empty())
             let remote = try JSONDecoder().decode([Row].self, from: data).map { entry(from: $0, player: player) }
             // Local friends (added offline) stay visible alongside real ones.
             let local = LeagueSimulator.friends(for: player).filter { !$0.isMe && !remote.map(\.name).contains($0.name) }
@@ -69,13 +69,13 @@ enum LeaderboardService {
     /// Reports XP just earned (call after each lesson). Fire-and-forget; silently no-ops offline.
     static func reportXP(_ xp: Int, player: Player) async {
         guard AppConfig.hasBackend, xp > 0 else { return }
-        _ = try? await SupabaseClient.shared.rpc("add_xp", params: XPParams(p_xp: xp, p_streak: player.streak))
+        _ = try? await SupabaseClient.shared.rpc("ilo_add_xp", params: XPParams(p_xp: xp, p_streak: player.streak))
     }
 
     /// Pushes name, bloub and league to the backend profile.
     static func syncProfile(_ player: Player) async {
         guard AppConfig.hasBackend else { return }
-        _ = try? await SupabaseClient.shared.rpc("upsert_profile", params: ProfileParams(
+        _ = try? await SupabaseClient.shared.rpc("ilo_upsert_profile", params: ProfileParams(
             p_name: player.name.isEmpty ? "Learner" : player.name,
             p_shape: player.bloubShape.rawValue, p_color: player.bloubColor.rawValue,
             p_league: player.league.rawValue, p_total_xp: player.totalXP, p_streak: player.streak))
@@ -85,7 +85,7 @@ enum LeaderboardService {
     static func friendCode(for player: Player) async -> String? {
         guard AppConfig.hasBackend else { return nil }
         struct Profile: Decodable { var friend_code: String }
-        guard let data = try? await SupabaseClient.shared.rpc("upsert_profile", params: ProfileParams(
+        guard let data = try? await SupabaseClient.shared.rpc("ilo_upsert_profile", params: ProfileParams(
             p_name: player.name.isEmpty ? "Learner" : player.name,
             p_shape: player.bloubShape.rawValue, p_color: player.bloubColor.rawValue,
             p_league: player.league.rawValue, p_total_xp: player.totalXP, p_streak: player.streak)) else { return nil }
@@ -95,7 +95,7 @@ enum LeaderboardService {
     /// Adds a friend by code; returns their name.
     static func addFriend(code: String) async throws -> String {
         guard AppConfig.hasBackend else { throw AIError.notConfigured }
-        let data = try await SupabaseClient.shared.rpc("add_friend", params: CodeParams(p_code: code))
+        let data = try await SupabaseClient.shared.rpc("ilo_add_friend", params: CodeParams(p_code: code))
         return (try? JSONDecoder().decode(String.self, from: data)) ?? code
     }
 
