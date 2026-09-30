@@ -3,6 +3,14 @@
 <h1 align="center">ilo</h1>
 <p align="center"><b>Learn anything. Like it's a game.</b><br>Duolingo-style paths for any goal, built live by an AI agent.</p>
 
+<p align="center">
+<img src="docs/assets/screenshot-02-goal.png" width="19%">
+<img src="docs/assets/screenshot-03-building.png" width="19%">
+<img src="docs/assets/screenshot-06-path.png" width="19%">
+<img src="docs/assets/screenshot-07-lesson.png" width="19%">
+<img src="docs/assets/screenshot-08-complete.png" width="19%">
+</p>
+
 ---
 
 Type a goal: *"salsa for my grandma's wedding"*, *"code my first website"*, *"Atomic Habits"*. ilo researches it, designs
@@ -49,6 +57,22 @@ Copy `ilo/Config.example.plist` to `ilo/Config.plist` (it is git-ignored) and fi
 | `REVENUECAT_ENTITLEMENT` | Entitlement id (default `pro`) |
 
 Backend setup: see [`docs/BACKEND.md`](docs/BACKEND.md). RevenueCat setup: see [`docs/REVENUECAT.md`](docs/REVENUECAT.md).
+
+## Tests
+`iloUITests` drives the real app with XCUITest:
+- the full onboarding → paywall → purchase flow;
+- a complete lesson from the path to the celebration;
+- every tab and the Create flow;
+- one test per core lesson module.
+
+Launch arguments such as `-seedDemo`, `-demoLesson` and `-demoModule <type>` (DEBUG only) jump straight to a screen.
+
+```bash
+xcodebuild test -project ilo.xcodeproj -scheme ilo -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+```
+
+The offline brain has a self-test: run it with the `-brainSelfTest -exitAfterSelfTest` launch arguments. It generates
+every flagship lesson and 8 generic goals and validates each module.
 
 ## Architecture
 ```

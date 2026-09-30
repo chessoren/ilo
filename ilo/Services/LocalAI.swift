@@ -37,9 +37,9 @@ struct LocalAI: LearningAI {
 
         if let flagship = FlagshipCatalog.match(goal) {
             for note in flagship.researchNotes.prefix(1) { await step(.understanding, note, nil, 0.5) }
-            await step(.researching, "Searching expert sources", nil, 0.7)
+            await step(.researching, "Opening ilo's expert library", "curated, offline", 0.7)
             for source in flagship.sources.prefix(4) {
-                await step(.researching, "Reading \(source.title)", host(source.url), 0.55)
+                await step(.researching, "Drawing on \(source.title)", host(source.url), 0.55)
             }
             for note in flagship.researchNotes.dropFirst().prefix(2) { await step(.researching, note, nil, 0.5) }
             await step(.designing, "Mapping the skill tree", "\(flagship.units.count) units", 0.6)
@@ -60,7 +60,7 @@ struct LocalAI: LearningAI {
             : nil
 
         await step(.researching, "Searching for the best way in", topic.shortTitle, 0.7)
-        await step(.researching, "Reading Wikipedia — \(topic.shortTitle)", "en.wikipedia.org", 0.6)
+        await step(.researching, "Recalling the fundamentals", topic.shortTitle, 0.6)
         await step(.researching, "Checking the learning science", "deliberate practice · spacing · retrieval", 0.7)
         await step(.researching, "Collecting beginner mistakes to avoid", nil, 0.6)
         await step(.designing, "Mapping the skill tree", "\(topic.category.rawValue) · \(request.level.title.lowercased())", 0.7)

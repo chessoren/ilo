@@ -179,10 +179,17 @@ struct EstimateModule: View {
         let correct = abs(value - answer) <= tolerance
         let diff = abs(value - answer)
         let note = correct
-            ? "Within \(ModuleNumberFormat.format(diff, step: step))\(unit.isEmpty ? "" : " \(unit)") of the real answer."
-            : "You were \(ModuleNumberFormat.format(diff, step: step))\(unit.isEmpty ? "" : " \(unit)") off."
+            ? "Within \(withUnit(diff)) of the real answer."
+            : "You were \(withUnit(diff)) off."
         session.resolve(correct: correct,
                         feedback: [note, module.explanation].compactMap { $0 }.joined(separator: " "),
-                        correctAnswer: "\(ModuleNumberFormat.format(answer, step: step))\(unit.isEmpty ? "" : " \(unit)")")
+                        correctAnswer: withUnit(answer))
+    }
+
+    /// "13x", "40%", "12 km" — symbol-like units attach without a space.
+    private func withUnit(_ v: Double) -> String {
+        let number = ModuleNumberFormat.format(v, step: step)
+        if unit.isEmpty { return number }
+        return ["x", "×", "%", "°"].contains(unit) ? number + unit : "\(number) \(unit)"
     }
 }
