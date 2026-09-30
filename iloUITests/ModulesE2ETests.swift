@@ -6,7 +6,7 @@ final class ModulesE2ETests: IloUITestCase {
         launch(["-skipOnboarding", "-unlockPro", "-demoLesson", "-demoModule", type, "-demoSkipIntro", "-demoDelay", "0.3"])
         let header = element("module-\(type)")
         waitFor(header, timeout: 20, "\(type) never appeared", file: file, line: line)
-        playCurrentModule(shotPrefix: "50-\(type)")
+        playCurrentModule(shotPrefix: "50")
         if graded {
             let appeared = feedbackContinue.waitForExistence(timeout: 12)
             if !appeared { shot("FAIL-\(type)-no-feedback") }
@@ -15,10 +15,11 @@ final class ModulesE2ETests: IloUITestCase {
             shot("51-\(type)-feedback")
             tap(feedbackContinue)
         }
-        // A one-module lesson ends in the celebration.
-        let done = button("celebration-continue")
-        let reachedEnd = done.waitForExistence(timeout: 12) || feedbackContinue.exists
-        XCTAssertTrue(reachedEnd, "\(type): lesson did not finish", file: file, line: line)
+        // A missed question comes back once at the end (Duolingo-style retry); play it, then the lesson ends.
+        pause(1.0)
+        playLessonToEnd(maxSteps: 6)
+        XCTAssertTrue(button("celebration-continue").waitForExistence(timeout: 12), "\(type): lesson did not finish",
+                      file: file, line: line)
     }
 
     func testStoryCards() { run("storyCards", graded: false) }

@@ -357,7 +357,10 @@ struct LessonFeedbackPanel: View {
                         .font(.body(15, weight: .bold))
                     Text(answer)
                         .font(.body(16, weight: .semibold))
+                        .lineLimit(6)
+                        .minimumScaleFactor(0.85)
                 }
+                .fixedSize(horizontal: false, vertical: true)
                 .foregroundStyle(textColor)
             }
             if let feedback = session.feedback, !feedback.isEmpty {

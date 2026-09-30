@@ -12,10 +12,16 @@ enum LeagueSimulator {
         var rng = Mulberry32(seed: UInt32(truncatingIfNeeded: Int(weekStart.timeIntervalSince1970 / 3600)) &+ UInt32(player.league.rawValue * 7919))
         let elapsed = min(max(now.timeIntervalSince(weekStart) / (7 * 86_400), 0), 1)
         let tierBoost = 1 + Double(player.league.rawValue) * 0.35
+        // Unique rivals: a seeded shuffle of the name pool (never the learner's own name).
+        var pool = names.filter { $0.caseInsensitiveCompare(player.name) != .orderedSame }
+        for i in stride(from: pool.count - 1, to: 0, by: -1) {
+            pool.swapAt(i, Int(rng.next() * Double(i + 1)) % (i + 1))
+        }
         var entries: [LeaderboardEntry] = (0..<(size - 1)).map { i in
             let pace = rng.next()
             let weekly = Int((40 + pace * pace * 520) * tierBoost * elapsed)
-            let name = names[(i + Int(rng.next() * 100)) % names.count]
+            _ = rng.next()
+            let name = pool[i % pool.count]
             return LeaderboardEntry(id: UUID(uuidString: String(format: "00000000-0000-0000-0000-%012d", i)) ?? UUID(),
                                     name: name,
                                     shape: BloubShape.allCases[Int(rng.next() * 8) % 8],

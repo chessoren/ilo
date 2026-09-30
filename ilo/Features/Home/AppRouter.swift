@@ -28,7 +28,17 @@ final class AppRouter {
     }
 
     func openPath(_ course: Course) {
+        guard tab != .home else {
+            if homePath.last != course.id { homePath = [course.id] }
+            return
+        }
+        // Switching tab and pushing onto that tab's stack in the same update leaves the pushed PathView blank
+        // (seen from Create → "Let's go"): switch first, push once the Home stack is on screen.
+        homePath = []
         tab = .home
-        if homePath.last != course.id { homePath = [course.id] }
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(300))
+            if homePath.last != course.id { homePath = [course.id] }
+        }
     }
 }

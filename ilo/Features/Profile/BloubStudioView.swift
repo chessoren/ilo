@@ -85,6 +85,7 @@ struct BloubStudioView: View {
                     .font(.body(13)).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
             }
             .padding(Metrics.gutter)
+            .padding(.bottom, 90) // clear the floating tab bar
         }
         .background(IloBackground(tint: p.bloubColor.color.opacity(0.6), lines: false))
         .navigationTitle("My bloub")

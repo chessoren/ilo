@@ -59,6 +59,8 @@ struct PathView: View {
                 }
             }
             .scrollIndicators(.hidden)
+            // The course header scrolls under the glass toolbar: a hard edge keeps the title from colliding with it.
+            .scrollEdgeEffectStyle(.hard, for: .top)
             .onChange(of: selected) { _, id in
                 guard let id else { return }
                 Task {
@@ -187,7 +189,7 @@ struct PathView: View {
                 .padding(.top, node.kind == .boss ? 24 : 0)
                 .padding(.vertical, 11)
                 .padding(.top, i == 0 ? 26 : 0)
-                .padding(.top, state == .current && i > 0 ? 26 : 0)
+                .padding(.top, state == .current ? 26 : 0)
                 .padding(.bottom, i == unit.nodes.count - 1 ? 24 : 0)
                 .id(node.id)
                 .scrollTransition(.animated(.spring)) { v, phase in

@@ -48,9 +48,14 @@ struct Topic: Sendable {
         while let w = core.first?.lowercased(), Topic.leading.contains(w) { core.removeFirst() }
         if let cut = core.firstIndex(where: { Topic.stops.contains($0.lowercased()) }), cut > 0 { core = Array(core[..<cut]) }
         let timeWords: Set<String> = ["every", "each", "daily", "more", "better", "again", "regularly", "often", "properly", "well", "fast", "faster"]
+        let quantities: Set<String> = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "twenty", "hundred", "few", "several"]
         if Topic.verbs.contains(first), core.isEmpty || timeWords.contains(core[0].lowercased()) {
             // "meditate every day" → "meditating"
             short = Topic.gerund(first)
+        } else if Topic.verbs.contains(first), let q = core.first?.lowercased(),
+                  quantities.contains(q) || q.first?.isNumber == true {
+            // "juggle three balls" → "juggling three balls", "run 5k" → "running 5k" (the object alone isn't the topic)
+            short = ([Topic.gerund(first)] + core.prefix(2)).joined(separator: " ")
         } else {
             let handle = core.prefix(3).joined(separator: " ")
             short = handle.isEmpty ? (words.last ?? goal) : handle

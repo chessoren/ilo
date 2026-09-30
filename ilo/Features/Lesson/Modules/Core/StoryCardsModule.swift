@@ -42,6 +42,10 @@ struct StoryCardsModule: View {
                 .onTapGesture(coordinateSpace: .local) { location in
                     if location.x < geo.size.width * 0.3 { back() } else { next() }
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityHint("Next card")
+                .accessibilityAction { next() }
                 .accessibilityIdentifier("story-cards")
             }
             .padding(.horizontal, Metrics.gutter)

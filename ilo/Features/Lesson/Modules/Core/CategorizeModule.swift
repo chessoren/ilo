@@ -79,6 +79,8 @@ struct CategorizeModule: View {
         Text(item.text)
             .font(.body(compact ? 14 : 16, weight: .semibold))
             .multilineTextAlignment(.center)
+            .lineLimit(3)
+            .fixedSize(horizontal: false, vertical: true)
             .padding(.horizontal, compact ? 10 : 14)
             .padding(.vertical, compact ? 8 : 11)
             .answerTile(state, radius: compact ? 12 : 16, lip: compact ? 3 : 4)
