@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A10000000000000000000020 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000021 /* RevenueCat */; };
+		A10000000000000000000023 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000024 /* RevenueCatUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A10000000000000000000001 /* ilo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ilo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +28,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10000000000000000000020 /* RevenueCat in Frameworks */,
+				A10000000000000000000023 /* RevenueCatUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +72,8 @@
 			);
 			name = ilo;
 			packageProductDependencies = (
+				A10000000000000000000021 /* RevenueCat */,
+				A10000000000000000000024 /* RevenueCatUI */,
 			);
 			productName = ilo;
 			productReference = A10000000000000000000001 /* ilo.app */;
@@ -94,6 +103,9 @@
 			);
 			mainGroup = A10000000000000000000004;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A10000000000000000000022 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A10000000000000000000005 /* Products */;
 			projectDirPath = "";
@@ -123,6 +135,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A10000000000000000000022 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A10000000000000000000021 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000022 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		A10000000000000000000024 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000022 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A1000000000000000000000C /* Debug */ = {
