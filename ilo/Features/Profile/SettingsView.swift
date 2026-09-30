@@ -83,7 +83,7 @@ struct SettingsView: View {
 
             Section("About") {
                 HStack(spacing: 14) {
-                    BloubView(shape: .circle, color: .ink, expression: .happy).frame(width: 44)
+                    BloubView(shape: .circle, color: .ilo, expression: .happy).frame(width: 44)
                     VStack(alignment: .leading, spacing: 2) {
                         Text("ilo").font(.display(18, weight: .heavy))
                         Text("Learn anything, one bite at a time.").font(.body(13)).foregroundStyle(Palette.muted)

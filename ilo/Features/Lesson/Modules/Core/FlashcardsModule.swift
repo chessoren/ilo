@@ -119,7 +119,7 @@ struct FlashcardsModule: View {
 
     private var doneView: some View {
         VStack(spacing: 16) {
-            BloubView(shape: .circle, color: .ink, expression: .proud)
+            BloubView(shape: .circle, color: .ilo, expression: .proud)
                 .frame(width: 110, height: 110)
             Text("Deck mastered!")
                 .font(.display(30, weight: .heavy))

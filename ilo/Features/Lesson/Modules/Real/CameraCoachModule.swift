@@ -310,7 +310,7 @@ struct CameraCoachModule: View {
 
     private var doneCard: some View {
         VStack(spacing: 14) {
-            BloubView(color: .ink, expression: .proud)
+            BloubView(color: .ilo, expression: .proud)
                 .frame(width: 110, height: 110)
             Text("\(target) \(move.lowercased()) — done!")
                 .font(.display(26, weight: .heavy))

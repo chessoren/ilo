@@ -79,7 +79,7 @@ private struct MissingCourseView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            BloubView(shape: .circle, color: .ink, expression: .confused).frame(width: 110)
+            BloubView(shape: .circle, color: .ilo, expression: .confused).frame(width: 110)
             Text("This course is gone").font(.display(22, weight: .bold))
             Button("Back home") { router.homePath = [] }
                 .buttonStyle(.pill(.ink, fullWidth: false))

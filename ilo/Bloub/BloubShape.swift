@@ -51,6 +51,11 @@ enum BloubShape: String, CaseIterable, Codable, Identifiable, Sendable {
 /// Bloub body colours (ported palette).
 enum BloubColor: String, CaseIterable, Codable, Identifiable, Sendable {
     case ink, brown, red, orange, amber, green, turquoise, blue, violet, pink, grey, cream
+    /// ilo's own brand colour — reserved for the mascot, never offered to players.
+    case ilo
+
+    /// Colours a player can pick for their own bloub.
+    static var playerColors: [BloubColor] { allCases.filter { $0 != .ilo } }
 
     var id: String { rawValue }
 
@@ -68,6 +73,7 @@ enum BloubColor: String, CaseIterable, Codable, Identifiable, Sendable {
         case .pink: Color(hex: 0xE152B0)
         case .grey: Color(hex: 0xA3A3A3)
         case .cream: Color(hex: 0xF1EFE9)
+        case .ilo: Color(hex: 0x5A6BFF)
         }
     }
 
@@ -82,6 +88,7 @@ enum BloubColor: String, CaseIterable, Codable, Identifiable, Sendable {
         case .amber, .brown: 6
         case .grey: 8
         case .cream: 12
+        case .ilo: 999
         }
     }
 }

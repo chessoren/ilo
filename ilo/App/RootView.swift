@@ -22,7 +22,7 @@ struct RootView: View {
                 } else {
                     ZStack {
                         IloBackground()
-                        BloubView(shape: .circle, color: .ink, mode: .thinking).frame(width: 90, height: 90)
+                        BloubView(shape: .circle, color: .ilo, mode: .thinking).frame(width: 90, height: 90)
                     }
                     .transition(.opacity)
                 }

@@ -44,7 +44,7 @@ struct OBBloubMakerStep: View {
 
                 section("Colour") {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 6), spacing: 12) {
-                        ForEach(BloubColor.allCases) { color in colorButton(color) }
+                        ForEach(BloubColor.playerColors) { color in colorButton(color) }
                     }
                 }
                 .appear(visible, delay: 0.2)
@@ -193,7 +193,7 @@ struct OBBloubMakerStep: View {
 
     private func randomize() {
         let shapes = BloubShape.allCases.filter { $0.unlockLevel <= playerLevel && $0 != answers.shape }
-        let colors = BloubColor.allCases.filter { $0.unlockLevel <= playerLevel && $0 != answers.color }
+        let colors = BloubColor.playerColors.filter { $0.unlockLevel <= playerLevel && $0 != answers.color }
         pick {
             if let s = shapes.randomElement() { answers.shape = s }
             if let c = colors.randomElement() { answers.color = c }
@@ -290,7 +290,7 @@ struct OBRemindersStep: View {
 
     private var notificationMock: some View {
         HStack(alignment: .top, spacing: 12) {
-            BloubView(shape: .circle, color: .ink, expression: .happy)
+            BloubView(shape: .circle, color: .ilo, expression: .happy)
                 .frame(width: 28, height: 28)
                 .frame(width: 42, height: 42)
                 .background(Palette.periwinkle, in: .rect(cornerRadius: 11, style: .continuous))

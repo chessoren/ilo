@@ -68,7 +68,7 @@ struct SourcesSheet: View {
             Group {
                 if course.sources.isEmpty {
                     VStack(spacing: 14) {
-                        BloubView(shape: .circle, color: .ink, expression: .shy).frame(width: 100)
+                        BloubView(shape: .circle, color: .ilo, expression: .shy).frame(width: 100)
                         Text("No sources for this path").font(.display(20, weight: .bold))
                         Text("ilo built it from its own knowledge.").font(.body(15)).foregroundStyle(Palette.muted)
                     }

@@ -362,7 +362,7 @@ private struct MascotDecoration: View {
         } label: {
             ZStack(alignment: .bottom) {
                 Ellipse().fill(tint.base.opacity(0.18)).frame(width: 64, height: 12).offset(y: 4)
-                BloubView(shape: .circle, color: .ink, expression: poke % 2 == 1 ? .surprised : expression)
+                BloubView(shape: .circle, color: .ilo, expression: poke % 2 == 1 ? .surprised : expression)
                     .frame(width: 62, height: 62)
                     .keyframeAnimator(initialValue: CGFloat(0), trigger: poke) { v, y in v.offset(y: y) } keyframes: { _ in
                         SpringKeyframe(-26, duration: 0.2)

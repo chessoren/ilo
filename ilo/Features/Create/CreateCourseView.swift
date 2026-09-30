@@ -104,7 +104,7 @@ struct CreateCourseView: View {
                     .foregroundStyle(Palette.ink)
             }
             Spacer(minLength: 8)
-            BloubView(shape: .circle, color: .ink,
+            BloubView(shape: .circle, color: .ilo,
                       expression: canBuild ? .excited : (focused ? .attentive : .curious),
                       mode: focused && !goal.isEmpty && !canBuild ? .thinking : .face)
                 .frame(width: 76)

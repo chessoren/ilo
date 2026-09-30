@@ -119,7 +119,7 @@ struct TeachBackModule: View {
                 .animation(.smooth, value: kidLine)
 
             ZStack(alignment: .topTrailing) {
-                BloubView(color: .ink, expression: kidExpression, mode: model.status == .grading ? .thinking : .face,
+                BloubView(color: .ilo, expression: kidExpression, mode: model.status == .grading ? .thinking : .face,
                           lookAt: model.voice.isListening ? CGPoint(x: 0, y: 0.6) : nil)
                     .frame(width: 150, height: 150)
                     .overlay(alignment: .top) {

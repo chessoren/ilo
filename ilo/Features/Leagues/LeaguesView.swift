@@ -25,7 +25,7 @@ struct LeaguesView: View {
                 .onChange(of: board) { Haptics.shared.tick() }
 
                 if provider.isLoading {
-                    BloubView(shape: .circle, color: .ink, mode: .thinking).frame(width: 90).padding(40)
+                    BloubView(shape: .circle, color: .ilo, mode: .thinking).frame(width: 90).padding(40)
                 } else if board == .friends && entries.count <= 1 {
                     friendsEmpty
                 } else {
@@ -104,7 +104,7 @@ struct LeaguesView: View {
 
     private var friendsEmpty: some View {
         VStack(spacing: 12) {
-            BloubView(shape: .circle, color: .ink, expression: .shy).frame(width: 110)
+            BloubView(shape: .circle, color: .ilo, expression: .shy).frame(width: 110)
             Text("Learning is better together").font(.display(20, weight: .bold))
             Text("Invite friends to race them on XP every week.")
                 .font(.body(15)).foregroundStyle(Palette.muted).multilineTextAlignment(.center)

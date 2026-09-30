@@ -87,7 +87,7 @@ struct OnboardingFlow: View {
         VStack(alignment: .leading, spacing: 14) {
             HStack(alignment: .center, spacing: 16) {
                 OBBounce(trigger: answers.reactions) {
-                    BloubView(shape: .circle, color: .ink, expression: iloExpression, lookAt: iloLookAt)
+                    BloubView(shape: .circle, color: .ilo, expression: iloExpression, lookAt: iloLookAt)
                         .frame(width: 66, height: 66)
                 }
                 OBSpeechBubble(text: header.line)

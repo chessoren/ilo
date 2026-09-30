@@ -105,7 +105,7 @@ private final class BloubEngine {
 /// The animated bloub avatar — ilo's mascot and every player's avatar.
 struct BloubView: View {
     var shape: BloubShape = .circle
-    var color: BloubColor = .ink
+    var color: BloubColor = .ilo
     var expression: BloubExpression = .neutral
     var mode: BloubMode = .face
     /// Optional point to look at, in unit coordinates (-1...1, y down).

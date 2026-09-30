@@ -39,7 +39,7 @@ struct LessonLoadingView: View {
                 Spacer(minLength: 10)
 
                 VStack(spacing: 18) {
-                    BloubView(shape: .circle, color: .ink, expression: .curious, mode: .thinking)
+                    BloubView(shape: .circle, color: .ilo, expression: .curious, mode: .thinking)
                         .frame(width: showWarmup ? 110 : 150, height: showWarmup ? 110 : 150)
                         .appear(appeared)
                     VStack(spacing: 8) {
@@ -205,7 +205,7 @@ struct LessonErrorView: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 6)
                 Spacer()
-                BloubView(shape: .circle, color: .ink, expression: .sad)
+                BloubView(shape: .circle, color: .ilo, expression: .sad)
                     .frame(width: 140, height: 140)
                     .appear(appeared)
                 Text("ilo tripped over a wire")

@@ -77,7 +77,7 @@ struct QuestsView: View {
                     .contentTransition(.numericText())
             }
             Spacer()
-            BloubView(shape: .circle, color: .ink,
+            BloubView(shape: .circle, color: .ilo,
                       expression: model.quests.allSatisfy(\.claimed) ? .proud : (model.quests.contains { $0.isDone && !$0.claimed } ? .excited : .attentive))
                 .frame(width: 96)
         }

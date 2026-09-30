@@ -61,7 +61,7 @@ struct BloubStudioView: View {
 
                 section("Colour") {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 6), spacing: 14) {
-                        ForEach(BloubColor.allCases.sorted { $0.unlockLevel < $1.unlockLevel }) { color in
+                        ForEach(BloubColor.playerColors.sorted { $0.unlockLevel < $1.unlockLevel }) { color in
                             let locked = color.unlockLevel > p.level
                             Button { pick(color: color, locked: locked) } label: {
                                 ZStack {

@@ -342,7 +342,7 @@ struct DeckPreview: View {
             }
             if deck.isEmpty {
                 HStack(spacing: 12) {
-                    BloubView(shape: .circle, color: .ink, expression: .curious, alive: false).frame(width: 44)
+                    BloubView(shape: .circle, color: .ilo, expression: .curious, alive: false).frame(width: 44)
                     Text("Key ideas from your lessons will land here.")
                         .font(.body(14)).foregroundStyle(Palette.muted)
                 }

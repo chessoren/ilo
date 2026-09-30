@@ -111,7 +111,7 @@ struct RealModulesDemoHost: View {
                     Button { go(i) } label: { Label(m.type.displayName, systemImage: m.type.symbol) }
                 }
             } label: {
-                BloubView(color: .ink, expression: session.mood, alive: true)
+                BloubView(color: .ilo, expression: session.mood, alive: true)
                     .frame(width: 34, height: 34)
                     .frame(width: 42, height: 42)
                     .glassEffect(.regular.interactive(), in: .circle)

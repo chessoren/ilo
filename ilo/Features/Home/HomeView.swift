@@ -99,7 +99,7 @@ struct DailyGoalCard: View {
                         Haptics.shared.softTap()
                         SoundFX.shared.play(.bubble)
                     } label: {
-                        BloubView(shape: .circle, color: .ink, expression: iloExpression,
+                        BloubView(shape: .circle, color: .ilo, expression: iloExpression,
                                   mode: p.todayXP == 0 ? .sleeping : .face)
                             .frame(width: 78, height: 78)
                             .keyframeAnimator(initialValue: CGFloat(1), trigger: bounce) { view, s in
@@ -216,7 +216,7 @@ struct ContinueHeroCard: View {
                     }
                     Spacer()
                     if let node, model.generating.contains(node.id) {
-                        BloubView(shape: .circle, color: .ink, mode: .thinking).frame(width: 40)
+                        BloubView(shape: .circle, color: .ilo, mode: .thinking).frame(width: 40)
                     } else if let node, model.lessons[node.id] != nil {
                         Label("Ready", systemImage: "sparkles")
                             .font(.body(13, weight: .semibold))
@@ -412,7 +412,7 @@ struct CreatePromptCard: View {
             HStack(spacing: 14) {
                 ZStack {
                     Circle().fill(Palette.periwinkle.gradient).blur(radius: 8).frame(width: 46).opacity(0.8)
-                    BloubView(shape: .circle, color: .ink, expression: .curious).frame(width: 46)
+                    BloubView(shape: .circle, color: .ilo, expression: .curious).frame(width: 46)
                 }
                 VStack(alignment: .leading, spacing: 3) {
                     Text("Create a new course").font(.display(18, weight: .bold))
@@ -442,7 +442,7 @@ struct EmptyHomeCard: View {
 
     var body: some View {
         VStack(spacing: 18) {
-            BloubView(shape: .circle, color: .ink, expression: wave ? .excited : .happy)
+            BloubView(shape: .circle, color: .ilo, expression: wave ? .excited : .happy)
                 .frame(width: 130)
                 .phaseAnimator([0.0, -10.0]) { v, y in v.offset(y: y) } animation: { _ in .easeInOut(duration: 1.1) }
             Text("What do you want\nto learn?")

@@ -92,7 +92,7 @@ struct NodePopover: View {
                 .font(.system(size: 20))
                 .foregroundStyle(Palette.success)
         } else if model.generating.contains(node.id) {
-            BloubView(shape: .circle, color: .ink, mode: .thinking).frame(width: 28)
+            BloubView(shape: .circle, color: .ilo, mode: .thinking).frame(width: 28)
         } else if model.lessons[node.id] != nil {
             Image(systemName: "sparkles")
                 .font(.system(size: 17, weight: .semibold))

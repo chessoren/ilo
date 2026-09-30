@@ -63,7 +63,7 @@ struct PaywallHeroPage: View {
                     .fill(RadialGradient(colors: [tint.base.opacity(0.45), .clear], center: .center, startRadius: 5, endRadius: 110))
                     .frame(width: 300, height: 170)
                 HStack(alignment: .bottom, spacing: -8) {
-                    BloubView(shape: .circle, color: .ink, expression: .happy)
+                    BloubView(shape: .circle, color: .ilo, expression: .happy)
                         .frame(width: 104, height: 104)
                         .phaseAnimator([0.0, -8.0]) { v, y in v.offset(y: y) } animation: { _ in .easeInOut(duration: 0.9) }
                     BloubView(shape: player.bloubShape, color: player.bloubColor, expression: .excited)
@@ -393,7 +393,7 @@ struct PaywallSuccessOverlay: View {
                         .frame(width: 280, height: 280)
                         .scaleEffect(shown ? 1 : 0.4)
                     HStack(alignment: .bottom, spacing: -6) {
-                        BloubView(shape: .circle, color: .ink, expression: .laughing).frame(width: 110, height: 110)
+                        BloubView(shape: .circle, color: .ilo, expression: .laughing).frame(width: 110, height: 110)
                         BloubView(shape: player.bloubShape, color: player.bloubColor, expression: .excited).frame(width: 90, height: 90)
                     }
                     Image(systemName: "crown.fill")

@@ -188,7 +188,7 @@ struct OBWelcomeStep: View {
                         .appear(visible, delay: 0.1 + Double(i) * 0.07)
                     }
                     OBBounce(trigger: focus) {
-                        BloubView(shape: .circle, color: .ink, expression: .excited,
+                        BloubView(shape: .circle, color: .ilo, expression: .excited,
                                   lookAt: CGPoint(x: topics[focus].at.x / 130, y: topics[focus].at.y / 150))
                             .frame(width: 140, height: 140)
                     }
@@ -224,7 +224,7 @@ struct OBHowItWorksStep: View {
                 }
                 card(index: 2, tint: .lavender, title: "ilo researches it", subtitle: "Real sources, turned into a path made for you.") {
                     HStack(spacing: 12) {
-                        BloubView(shape: .circle, color: .ink, mode: .thinking).frame(width: 40, height: 40)
+                        BloubView(shape: .circle, color: .ilo, mode: .thinking).frame(width: 40, height: 40)
                         Chip(text: "12 sources", systemImage: "doc.text.magnifyingglass", fill: .white)
                         Chip(text: "6 units", systemImage: "square.stack.3d.up.fill", fill: .white)
                         Spacer(minLength: 0)

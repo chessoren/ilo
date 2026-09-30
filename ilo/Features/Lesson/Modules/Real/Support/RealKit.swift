@@ -382,7 +382,7 @@ struct RealThinkingRow: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            BloubView(color: .ink, expression: .curious, mode: .thinking)
+            BloubView(color: .ilo, expression: .curious, mode: .thinking)
                 .frame(width: 54, height: 54)
             Text(text)
                 .font(.body(16, weight: .semibold))
@@ -401,7 +401,7 @@ struct RealErrorRow: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            BloubView(color: .ink, expression: .sad)
+            BloubView(color: .ilo, expression: .sad)
                 .frame(width: 50, height: 50)
             VStack(alignment: .leading, spacing: 8) {
                 Text(text)

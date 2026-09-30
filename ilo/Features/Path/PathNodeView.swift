@@ -114,7 +114,7 @@ struct PathNodeView: View {
 
     @ViewBuilder private var badge: some View {
         if isThinking {
-            BloubView(shape: .circle, color: .ink, mode: .thinking)
+            BloubView(shape: .circle, color: .ilo, mode: .thinking)
                 .frame(width: 26, height: 26)
                 .padding(4)
                 .background(.white, in: .circle)

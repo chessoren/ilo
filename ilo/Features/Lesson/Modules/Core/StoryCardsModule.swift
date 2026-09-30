@@ -136,7 +136,7 @@ struct StoryCardsModule: View {
             Spacer(minLength: 0)
             HStack(alignment: .bottom) {
                 Spacer()
-                BloubView(shape: .circle, color: .ink, expression: card.mood ?? .happy, alive: i == index)
+                BloubView(shape: .circle, color: .ilo, expression: card.mood ?? .happy, alive: i == index)
                     .frame(width: 58, height: 58)
                     .offset(y: 6)
             }

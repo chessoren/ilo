@@ -242,7 +242,7 @@ struct IloReactor: View {
     private struct Bounce { var y: CGFloat = 0; var sx: CGFloat = 1; var sy: CGFloat = 1 }
 
     var body: some View {
-        BloubView(shape: .circle, color: .ink, expression: mood, mode: mode)
+        BloubView(shape: .circle, color: .ilo, expression: mood, mode: mode)
             .frame(width: size, height: size)
             .keyframeAnimator(initialValue: Bounce(), trigger: mood) { content, v in
                 content
@@ -410,7 +410,7 @@ struct LessonQuitSheet: View {
 
     var body: some View {
         VStack(spacing: 14) {
-            BloubView(shape: .circle, color: .ink, expression: .sad)
+            BloubView(shape: .circle, color: .ilo, expression: .sad)
                 .frame(width: 96, height: 96)
                 .padding(.top, 28)
             Text("Wait, don't go!")

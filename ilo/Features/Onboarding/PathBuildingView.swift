@@ -75,7 +75,7 @@ struct PathBuildingView: View {
                     .frame(width: 180, height: 180)
                     .phaseAnimator([0.9, 1.1]) { view, s in view.scaleEffect(s) } animation: { _ in .easeInOut(duration: 1.2) }
                 OBBounce(trigger: celebrate + rows.count) {
-                    BloubView(shape: .circle, color: .ink, expression: bloubExpression,
+                    BloubView(shape: .circle, color: .ilo, expression: bloubExpression,
                               mode: stage == .working ? .thinking : .face)
                         .frame(width: isCompact ? 84 : 116, height: isCompact ? 84 : 116)
                 }
