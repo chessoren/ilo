@@ -1,0 +1,14 @@
+# Minimal Supabase CLI config for ilo. `supabase link` fills in the remote project.
+project_id = "ilo"
+
+[api]
+schemas = ["public"]
+
+[auth]
+# ilo signs every learner in anonymously (no account wall). Also enable it in the dashboard for the hosted project:
+# Authentication → Sign In / Providers → "Allow anonymous sign-ins".
+enable_anonymous_sign_ins = true
+
+[functions.ilo-ai]
+# The function verifies the user's JWT itself (auth.getUser), which works with both legacy and new API keys.
+verify_jwt = false
