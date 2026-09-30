@@ -109,7 +109,7 @@ struct VictorySunburst: View {
 struct CelebrationBloub: View {
     var expression: BloubExpression
     var size: CGFloat = 150
-    var color: BloubColor = .ink
+    var color: BloubColor = .ilo
 
     private struct Jump { var y: CGFloat = 0; var sx: CGFloat = 1; var sy: CGFloat = 1; var r: Double = 0 }
 

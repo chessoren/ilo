@@ -10,4 +10,4 @@ node_modules/
 .claude/
 
 # Demo video (large; regenerate with DemoReelTests)
-docs/assets/demo-raw.mp4
+docs/assets/*.mp4

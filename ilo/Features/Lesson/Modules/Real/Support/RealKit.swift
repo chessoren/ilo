@@ -55,12 +55,12 @@ struct RealHeader: View {
 
 // MARK: - ilo speech bubble
 
-/// ilo (ink bloub) with a speech bubble next to it.
+/// ilo (its brand-colour bloub) with a speech bubble next to it.
 struct RealIloSays: View {
     var text: String
     var expression: BloubExpression = .attentive
     var mode: BloubMode = .face
-    var bloubColor: BloubColor = .ink
+    var bloubColor: BloubColor = .ilo
     var bloubShape: BloubShape = .circle
     var size: CGFloat = 64
     var bubbleFill: Color = .white

@@ -32,11 +32,20 @@ final class DemoReelTests: IloUITestCase {
         for ch in text {
             chunk.append(ch)
             if ch == " " || ch == "\n" {
-                field.typeText(chunk)
+                typeChunk(chunk, into: field)
                 chunk = ""
             }
         }
-        if !chunk.isEmpty { field.typeText(chunk) }
+        if !chunk.isEmpty { typeChunk(chunk, into: field) }
+    }
+
+    /// A busy simulator can drop the keyboard focus between chunks: tap the end of the field to get it back.
+    private func typeChunk(_ chunk: String, into field: XCUIElement) {
+        if (field.value(forKey: "hasKeyboardFocus") as? Bool) == false {
+            field.coordinate(withNormalizedOffset: CGVector(dx: 0.97, dy: 0.5)).tap()
+            pause(0.3)
+        }
+        field.typeText(chunk)
     }
 
     private func point(_ x: CGFloat, _ y: CGFloat) -> XCUICoordinate {

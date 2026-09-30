@@ -5,7 +5,7 @@ final class LessonE2ETests: IloUITestCase {
     /// Onboarding shortcut: jump to path building with pre-filled answers ("Salsa for my grandma's wedding"),
     /// Pro unlocked so we land on the main tabs.
     func onboardFast() {
-        launch(["-resetOnboarding", "-unlockPro", "-onboardingStep", "12"])
+        launch(["-resetOnboarding", "-unlockPro", "-onboardingStep", "13"])
         let ready = button("path-ready")
         waitFor(ready, timeout: 90, "Path never finished building")
         tap(ready)

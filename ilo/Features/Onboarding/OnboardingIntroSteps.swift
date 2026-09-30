@@ -12,8 +12,8 @@ struct OBSplashStep: View {
     @State private var finished = false
 
     private let frames: [(BloubShape, BloubColor)] = [
-        (.circle, .ink), (.squircle, .blue), (.cloud, .violet), (.droplet, .orange),
-        (.hexagon, .green), (.capsule, .pink), (.pebble, .turquoise), (.circle, .ink),
+        (.circle, .ilo), (.squircle, .blue), (.cloud, .violet), (.droplet, .orange),
+        (.hexagon, .green), (.capsule, .pink), (.pebble, .turquoise), (.circle, .ilo),
     ]
 
     var body: some View {
