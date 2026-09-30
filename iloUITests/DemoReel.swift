@@ -163,6 +163,13 @@ final class DemoReelTests: IloUITestCase {
         mark("reminders")
         pause(1.6)
         tap(app.buttons["Not now"])
+
+        // Connect your Claude: show the screen, then use the offline brain for a deterministic reel.
+        mark("claude")
+        let skip = button("claude-skip")
+        waitFor(skip, timeout: 10, "Claude step never appeared")
+        pause(2.4)
+        tap(skip)
     }
 
     private func buildingCommitPaywall() {

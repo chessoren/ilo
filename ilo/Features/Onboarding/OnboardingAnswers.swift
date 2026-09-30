@@ -4,7 +4,7 @@ import SwiftUI
 
 /// Every screen of the onboarding, in order.
 enum OnboardingStep: Int, CaseIterable, Comparable {
-    case splash, welcome, howItWorks, goal, why, deadline, level, styles, minutes, name, bloub, reminders, building, commit
+    case splash, welcome, howItWorks, goal, why, deadline, level, styles, minutes, name, bloub, reminders, claude, building, commit
 
     static func < (a: OnboardingStep, b: OnboardingStep) -> Bool { a.rawValue < b.rawValue }
 

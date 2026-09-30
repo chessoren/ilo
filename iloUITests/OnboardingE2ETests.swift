@@ -63,6 +63,12 @@ final class OnboardingE2ETests: IloUITestCase {
         // Reminders → Not now
         tap(app.buttons["Not now"])
 
+        // Connect your Claude → skip (offline brain; no key in CI)
+        let skip = button("claude-skip")
+        waitFor(skip, timeout: 10, "Claude step never appeared")
+        shot("07b-claude")
+        tap(skip)
+
         // Path building (LocalAI ~8s + reveal)
         pause(3)
         shot("08-building")

@@ -7,6 +7,7 @@ struct OnboardingFlow: View {
     @State private var answers = OnboardingAnswers()
     @State private var step: OnboardingStep = .splash
     @State private var forward = true
+    @State private var claudeConnected = AnthropicKeyStore.isConnected
 
     var body: some View {
         ZStack {
@@ -120,6 +121,7 @@ struct OnboardingFlow: View {
         case .name: OBNameStep(answers: answers) { if canContinue { advance() } }
         case .bloub: OBBloubMakerStep(answers: answers)
         case .reminders: OBRemindersStep(answers: answers) { advance(from: .reminders) }
+        case .claude: OBClaudeStep(connected: $claudeConnected) { advance(from: .claude) }
         case .building:
             PathBuildingView(request: answers.request) { course in
                 answers.course = course
@@ -161,6 +163,9 @@ struct OnboardingFlow: View {
             return Header(line: line, title: "What should I call you?")
         case .reminders:
             return Header(line: "A tiny nudge a day keeps the streak alive.", title: "Want a daily reminder?")
+        case .claude:
+            let line = claudeConnected ? "Whoa. I can feel the whole internet now." : "One last thing: give me a real brain."
+            return Header(line: line, title: "Connect your Claude")
         case .commit:
             return Header(line: "Last thing, \(name). Make a promise to yourself.", title: "Commit to your streak")
         case .splash, .welcome, .bloub, .building:
@@ -208,6 +213,7 @@ struct OnboardingFlow: View {
             }
         case .name: return answers.trimmedName.isEmpty ? .shy : .happy
         case .reminders: return .attentive
+        case .claude: return claudeConnected ? .excited : .curious
         case .commit: return .proud
         default: return .happy
         }
