@@ -75,7 +75,7 @@ They found ten bugs I would have shipped, including the Create flow landing on a
 
 The product is a learning habit, so the main product is a subscription with a real trial.
 
-- **Plans.** Annual at $79.99 with a 7-day free trial, shown as $1.54 a week, computed from the store price in the user's currency. Weekly at $7.99 as the anchor. The paywall shows the trial as a timeline: today, full access; day 5, we remind you; day 7, you're billed, with the actual date.
+- **Plans.** Annual at $79.99 with a 7-day free trial, shown as about $1.53 a week, computed from the store price in the user's currency. Weekly at $7.99 as the anchor. The paywall shows the trial as a timeline: today, full access; day 5, we remind you; day 7, you're billed, with the actual date.
 - **Hard paywall at the moment of proof.** It comes after you've watched your own path being built and made a promise to yourself, not before. Its headline is your course title: "Your *Salsa, wedding-ready* path is ready."
 - **One `pro` entitlement, one `default` offering** with `$rc_annual` and `$rc_weekly` packages, so prices and plans change from the dashboard without an update.
 - **Live access.** `customerInfoStream` drives access, so renewals, expiries, refunds and restores unlock or lock ilo without a relaunch. Trial eligibility is checked before the paywall promises a free week.

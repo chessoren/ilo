@@ -20,9 +20,20 @@ enum AppConfig {
     static var supabaseURL: URL? { string("SUPABASE_URL").flatMap(URL.init(string:)) }
     static var supabaseAnonKey: String? { string("SUPABASE_ANON_KEY") }
     /// RevenueCat public SDK key (Test Store key `test_…` works without App Store Connect).
-    static var revenueCatAPIKey: String? { string("REVENUECAT_API_KEY") }
+    static var revenueCatAPIKey: String? {
+        if let key = string("REVENUECAT_API_KEY") { return key }
+        #if DEBUG
+        // RevenueCat Test Store public SDK key (sandbox only, safe to ship): anyone who clones the repo can buy in the
+        // simulator without an Apple account. UI tests pass `-noStore` to use the simulated purchase instead.
+        if !ProcessInfo.processInfo.arguments.contains("-noStore") { return "test_GRtVIWecARMLDWKvQbqLwKQWYec" }
+        #endif
+        return nil
+    }
     /// Entitlement identifier configured in RevenueCat.
     static var entitlementID: String { string("REVENUECAT_ENTITLEMENT") ?? "pro" }
+
+    /// True once the `ilo-ai` edge function is deployed (OpenRouter proxy). Leaderboards only need `hasBackend`.
+    static var aiFunctionEnabled: Bool { (values["SUPABASE_AI_FUNCTION"] as? Bool) ?? false }
 
     static var hasBackend: Bool { supabaseURL != nil && supabaseAnonKey != nil }
     static var hasRevenueCat: Bool { revenueCatAPIKey != nil }

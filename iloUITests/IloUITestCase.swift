@@ -22,7 +22,7 @@ class IloUITestCase: XCTestCase {
 
     func launch(_ arguments: [String]) {
         app = XCUIApplication()
-        app.launchArguments = arguments
+        app.launchArguments = arguments + ["-noStore"]
         app.launch()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 20), "app did not launch")
     }

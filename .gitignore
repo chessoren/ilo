@@ -11,3 +11,4 @@ node_modules/
 
 # Demo video (large; regenerate with DemoReelTests)
 docs/assets/*.mp4
+video/

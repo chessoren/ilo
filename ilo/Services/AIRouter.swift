@@ -12,7 +12,7 @@ struct DynamicAI: LearningAI {
 
     private var current: LearningAI {
         if let key = AnthropicKeyStore.key { return FallbackAI(primary: AnthropicAI(apiKey: key), fallback: local) }
-        if AppConfig.hasBackend { return FallbackAI(primary: RemoteAI(), fallback: local) }
+        if AppConfig.hasBackend && AppConfig.aiFunctionEnabled { return FallbackAI(primary: RemoteAI(), fallback: local) }
         return local
     }
 
